@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Console\Commands;
+
+use App\Article;
+use Illuminate\Console\Command;
+use App\Http\Controllers\Feed;
+
+class CheckFeeds extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'feeds:check';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Checks feeds in the feeds table and adds new articles.';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $urls = \App\Feed::all();
+
+        foreach($urls as $url) {
+            $feed = new Feed();
+
+            $feeds = $feed->getFeed($url->feed_url);
+
+            foreach($feeds as $feed) {
+                if(!Article::where('article_title', '=', $feed['title'])->count() > 0) {
+                    $article = new Article();
+                    $article->article_description = $feed['des'];
+                    $article->article_title = $feed['title'];
+                    $article->article_img = $feed['thumb'];
+                    $article->feed_id = $url->id;
+                    $article->save();
+                }
+            }
+        }
+    }
+}

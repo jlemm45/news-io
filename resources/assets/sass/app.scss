@@ -1,0 +1,23 @@
+@import "semantic/scss/semantic.min";
+
+body {
+  background: #ddd;
+}
+
+#feed-stream {
+  .contain {
+    background: none;
+    box-shadow: none;
+    border: none;
+
+    .icon {
+      float: right;
+    }
+  }
+}
+
+.ui.menu {
+  position: fixed;
+  height: 100%;
+}
+
