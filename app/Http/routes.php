@@ -13,4 +13,5 @@
 
 Route::get('/', 'Feed@getView');
 
-Route::get('/feeds', 'Feed@getArticles');
+Route::get('/articles', 'Feed@getArticles');
+

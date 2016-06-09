@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Article;
 use SimplePie;
 use App\Feed as FeedModel;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
 
 class Feed extends Controller
 {
     public function getFeed($url) {
-        //$url = 'http://feeds.feedburner.com/TechCrunch/';
         $feed = new SimplePie();
         $feed->set_feed_url($url);
         $feed->set_cache_location(dirname(dirname(dirname(dirname(__FILE__)))) . '/storage/framework/cache');
@@ -33,7 +33,16 @@ class Feed extends Controller
     }
 
     public function getArticles() {
-        return Article::limit(60)->orderBy('id', 'desc')->get();
+        //return Article::limit(60)->orderBy('id', 'desc')->get();
+        $where = isset($_GET['start']) ? ['articles.id', '<', $_GET['start']] : ['articles.id', '>', 0];
+        return DB::table('articles')
+            ->join('feeds', 'feed_id', '=', 'feeds.id')
+            ->select('feeds.icon_name', 'articles.feed_id', 'articles.id', 'article_title', 'article_img',
+                'article_description')
+            ->where($where[0], $where[1], $where[2])
+            ->orderBy('articles.id', 'desc')
+            ->limit(10)
+            ->get();
     }
 
     public function getView() {

@@ -39,6 +39,7 @@ class CheckFeeds extends Command
      */
     public function handle()
     {
+        //$urls = \App\Feed::where('id', '=', 4)->get();
         $urls = \App\Feed::all();
 
         foreach($urls as $url) {

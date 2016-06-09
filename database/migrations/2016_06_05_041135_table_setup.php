@@ -16,13 +16,14 @@ class TableSetup extends Migration
             $table->increments('id');
             $table->string('feed_url');
             $table->string('source');
+            $table->string('icon_name');
             $table->timestamps();
         });
 
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('feed_id');
-            $table->string('article_description')->nullable();
+            $table->longText('article_description')->nullable();
             $table->string('article_title')->nullable();
             $table->string('article_img')->nullable();
             $table->timestamps();
