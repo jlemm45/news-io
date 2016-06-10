@@ -11,7 +11,14 @@
 |
 */
 
-Route::get('/', 'Feed@getView');
+Route::get('/', 'FeedController@welcomeView');
+Route::get('/feeds', 'FeedController@feedsView');
 
-Route::get('/articles', 'Feed@getArticles');
+
+Route::group(['prefix' => 'api'], function () {
+    Route::resource('feed', 'Api\FeedController');
+    //Route::resource('article', 'Api\ArticleController');
+
+    Route::get('articles', 'FeedController@getArticles');
+});
 

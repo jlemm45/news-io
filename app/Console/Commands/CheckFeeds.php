@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Article;
 use Illuminate\Console\Command;
-use App\Http\Controllers\Feed;
+use App\Http\Controllers\FeedController;
 
 class CheckFeeds extends Command
 {
@@ -43,7 +43,7 @@ class CheckFeeds extends Command
         $urls = \App\Feed::all();
 
         foreach($urls as $url) {
-            $feed = new Feed();
+            $feed = new FeedController();
 
             $feeds = $feed->getFeed($url->feed_url);
 
