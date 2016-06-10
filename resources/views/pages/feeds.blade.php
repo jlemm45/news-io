@@ -12,15 +12,19 @@
                     <img src="https://s3-us-west-2.amazonaws.com/news-io/img/logo-green.png" class="img-responsive">
                 </a>
             </div>
-            {{--<div id="toggle-wrap">--}}
-            {{--<i class="sidebar icon"></i>--}}
-            {{--</div>--}}
             <div class="item" ng-class="{'active': articleFilter == @{{feed.id}}}" ng-repeat="feed in activeFeeds">
                 <a href="#" ng-click="filterArticles(feed.id)"><img ng-src="https://s3-us-west-2.amazonaws.com/news-io/icons/@{{feed.icon_name}}.png"><b ng-show="!sidebarToggle">@{{feed.source}}</b></a>
             </div>
         </div>
         <div id="feed-stream" ng-class="{'wider': sidebarToggle}">
             <div class="ui text segment contain">
+                <div class="ui warning message" ng-show="!warning">
+                    <i class="close icon" ng-click="warning=true;"></i>
+                    <div class="header">
+                        FYI
+                    </div>
+                    <p>Don't forget to register to save your feeds.</p>
+                </div>
                 <div class="ui grid">
                     <div class="six wide column">
                         <div class="featured-article article">
@@ -49,17 +53,11 @@
                         </button>
                     </div>
                 </div>
-
-                {{--<div class="ui left dividing rail">--}}
-                {{--<div class="ui segment">--}}
-                {{--@foreach($feeds as $feed)--}}
-                {{--<div class="item">--}}
-                {{--<a href="/"><b>{{$feed->source}}</b></a>--}}
-                {{--</div>--}}
-                {{--@endforeach--}}
-                {{--</div>--}}
-                {{--</div>--}}
             </div>
+        </div>
+        <div id="utility-bar">
+            <button class="ui button right floated">Login</button>
+            <button class="ui button right floated">Register</button>
         </div>
     </div>
 @endsection

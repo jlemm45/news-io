@@ -81,6 +81,20 @@ body {
   position: fixed;
   height: 100%; }
 
+#utility-bar {
+  position: fixed;
+  bottom: 0;
+  height: 40px;
+  background: #333;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  padding: 7px; }
+  #utility-bar button {
+    height: 26px;
+    line-height: 0.25em;
+    font-size: 0.9em; }
+
 #header {
   background: #21BA45;
   height: 400px;
