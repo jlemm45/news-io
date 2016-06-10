@@ -1,6 +1,6 @@
 'use strict';
 
-var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies']);
+var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies', 'modal', 'logincomponent']);
 
 /**
  * Feeds Controller
@@ -12,6 +12,12 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     $scope.lastFeedID = 43;                             //last article id for loading more articles
     $scope.sidebarToggle = false;                       //toggles state of sidebar
     $scope.articleFilter = false;                       //toggles filtering articles
+    $scope.loginModal = {
+        title: 'Login',
+        id: 'loginModal',
+        show: null,
+        template: 'login'
+    };
 
     /**
      * Returns feed id's from cookie
@@ -49,6 +55,10 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
      */
     $scope.filterArticles = function(id) {
         $scope.articleFilter = id;
+    };
+
+    $scope.showLoginModal = function() {
+        $scope.loginModal.show();
     };
 
     //on load

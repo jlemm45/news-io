@@ -3,6 +3,12 @@
 body {
   background: #ddd;
 }
+.modal {
+  .padding {
+    padding: 20px;
+    background: #eee;
+  }
+}
 
 @import "variables";
 @import "feedsPage";

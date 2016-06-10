@@ -1,6 +1,10 @@
 body {
   background: #ddd; }
 
+.modal .padding {
+  padding: 20px;
+  background: #eee; }
+
 #sidebar {
   background: #eee;
   width: 170px;

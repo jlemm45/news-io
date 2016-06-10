@@ -56,9 +56,17 @@
             </div>
         </div>
         <div id="utility-bar">
-            <button class="ui button right floated">Login</button>
-            <button class="ui button right floated">Register</button>
+            <div class="ui grid">
+                <div class="four wide column">
+                    <p>Jaden</p>
+                </div>
+                <div class="four wide column">
+                    <button class="ui button right floated" ng-click="showLoginModal()">Login</button>
+                    <button class="ui button right floated">Register</button>
+                </div>
+            </div>
         </div>
+        <modal options="loginModal"></modal>
     </div>
 @endsection
 
