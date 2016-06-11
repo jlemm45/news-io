@@ -1,9 +1,13 @@
-angular.module('article', ['ngSanitize']).directive('article', function($sce) {
+angular.module('article', ['ngSanitize', 'snugfeed.service.articles']).directive('article', function($sce,snugfeedArticlesService) {
 
     function link(scope, element, attrs) {
         scope.toTrustedHTML = function( html ){
             return $sce.trustAsHtml( html );
         };
+
+        scope.saveArticle = function(article) {
+            snugfeedArticlesService.saveArticle(article.id);
+        }
     }
 
     return {
@@ -11,6 +15,9 @@ angular.module('article', ['ngSanitize']).directive('article', function($sce) {
         restrict: 'E',
         scope: {article: '=article'},
         template: '' +
+        '<div class="actions">' +
+        '<i ng-click="saveArticle(article)" class="save icon"></i>' +
+        '</div>' +
         '<div class="icon">' +
         '<img ng-src="https://s3-us-west-2.amazonaws.com/news-io/icons/{{article.icon_name}}.png">' +
         '</div>' +

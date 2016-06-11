@@ -5,11 +5,17 @@ namespace App\Http\Controllers\Api;
 use App\Article;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Auth;
 
 class ArticleController extends ApiBaseController
 {
 
     protected $type = Article::class;
+
+    public function index() {
+        $user = Auth::user();
+        return $user->articles;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -52,7 +58,12 @@ class ArticleController extends ApiBaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Auth::user();
+        if (!$user->articles->contains($id)) {
+            $user->articles()->attach($id);
+            return ['status' => 'success'];
+        }
+        return ['status' => 'already saved'];
     }
 
     /**

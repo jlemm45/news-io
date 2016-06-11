@@ -11,22 +11,27 @@
 |
 */
 
-Route::get('/', 'FeedController@welcomeView');
+Route::get('/', 'FeedController@welcomeView')->middleware('guest');
 Route::get('/feeds', 'FeedController@feedsView');
+Route::get('/login', function(){
+    return view('pages.login');
+});
 
 // Authentication routes...
-Route::get('auth/login', 'Auth\AuthController@getLogin');
+//Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@login');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 // Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+//Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::get('auth/status', 'Auth\AuthController@status');
+Route::post('auth/register', 'Auth\AuthController@register');
 
 
 Route::group(['prefix' => 'api'], function () {
     Route::resource('feed', 'Api\FeedController');
-    //Route::resource('article', 'Api\ArticleController');
+    Route::resource('article', 'Api\ArticleController');
+    Route::put('feeds', 'Api\FeedController@updateUserFeeds');
 
     Route::get('articles', 'FeedController@getArticles');
 });

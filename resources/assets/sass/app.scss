@@ -3,13 +3,23 @@
 body {
   background: #ddd;
 }
-.modal {
+.ui.modal {
+  background: #eee;
+
   .padding {
     padding: 20px;
-    background: #eee;
+  }
+
+  .register {
+    text-align: center;
+    padding-bottom: 15px;
   }
 }
 
 @import "variables";
 @import "feedsPage";
 @import "welcomePage";
+@import "pages";
+
+//components
+@import "manageFeedsComponent";

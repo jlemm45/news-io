@@ -7,8 +7,18 @@ angular.module('snugfeed.service.articles', [])
             return $http.get("/api/articles"+ids+query);
         };
 
+        var saveArticle = function(id) {
+            return $http.put("/api/article/"+id);
+        };
+
+        var getSavedArticles = function() {
+            return $http.get("/api/article");
+        };
+
         return {
-            getArticles: getArticles
+            getArticles: getArticles,
+            saveArticle: saveArticle,
+            getSavedArticles: getSavedArticles
         };
 
     }]);

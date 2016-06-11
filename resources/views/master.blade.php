@@ -19,8 +19,12 @@
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script>
 <script src="/semantic/dist/semantic.min.js"></script>
 <script src="/js/Directives/Login.js"></script>
+<script src="/js/Directives/Register.js"></script>
+<script src="/js/Directives/ManageFeeds.js"></script>
 <script src="/js/Services/UserService.js"></script>
+<script src="/js/Services/FeedService.js"></script>
 <script src="/js/Directives/Modal.js"></script>
+<script src="/js/Functions.js"></script>
 @yield('scripts')
 </body>
 </html>

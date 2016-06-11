@@ -1,1 +1,7 @@
-<logincomponent></logincomponent>
+<logincomponent success="options.success" ng-show="options.activeModel == 'login'"></logincomponent>
+<registercomponent success="options.success" ng-show="options.activeModel == 'register'"></registercomponent>
+
+<div class="register">
+    <p><a href="#" ng-click="options.activeModel = 'register'" ng-show="options.activeModel == 'login'">Register</a></p>
+    <p><a href="#" ng-click="options.activeModel = 'login'" ng-show="options.activeModel == 'register'">Login</a></p>
+</div>

@@ -4,6 +4,9 @@ angular.module('modal', []).directive('modal', function($sce) {
         scope.options.show = function() {
             $('#'+scope.options.id).modal('show');
         };
+        scope.options.hide = function() {
+            $('#'+scope.options.id).modal('hide');
+        };
         scope.template = '/js/templates/modals/' + scope.options.template + '.html';
     }
 

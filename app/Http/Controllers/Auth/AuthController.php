@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 
 class AuthController extends Controller
 {
@@ -40,7 +41,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        //$this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
     /**
@@ -75,10 +76,43 @@ class AuthController extends Controller
 
     public function login()
     {
-        if (Auth::attempt(Input::all())) {
+        $login = Auth::attempt(Input::all());
+        if ($login) {
             // Authentication passed...
-            return ['status' => 'success'];
+            return Response::json([
+                'status' => 'success'
+            ]);
         }
-        return ['status' => 'error'];
+        return Response::json([
+            'status' => 'error'
+        ], 401);
+    }
+
+    public function register() {
+        $data = Input::all();
+        $validate = $this->validator($data);
+
+        if ($validate->fails()) {
+            return Response::json([
+                'status' => 'error',
+                'errors' => $validate->errors()->all()
+            ], 401);
+            //return ['status' => 'error'];
+        }
+
+        $this->create($data);
+
+        return ['status' => 'success'];
+    }
+
+    public function status() {
+        $user = Auth::user();
+
+        if($user) {
+            $user->feeds = User::find($user->id)->feeds()->get();
+
+            return ['user' => $user];
+        }
+        return ['user' => false];
     }
 }

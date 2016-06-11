@@ -23,4 +23,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function feeds()
+    {
+        return $this->belongsToMany('App\Feed');
+    }
+
+    public function articles()
+    {
+        return $this->belongsToMany('App\Article');
+    }
+
+    /**
+     * Remove all feeds attached to user
+     */
+    public function removeFeeds() {
+        $this->feeds()->detach();
+    }
 }

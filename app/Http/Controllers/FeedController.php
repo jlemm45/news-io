@@ -6,6 +6,7 @@ use App\Article;
 use SimplePie;
 use App\Feed as FeedModel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 
@@ -48,7 +49,12 @@ class FeedController extends Controller
     }
 
     public function feedsView() {
-        return view('pages.feeds', ['feeds' => FeedModel::all()]);
+        $user = false;
+        if (Auth::user())
+        {
+            $user = Auth::user();
+        }
+        return view('pages.feeds', ['feeds' => FeedModel::all(), 'user' => $user]);
     }
 
     public function welcomeView() {

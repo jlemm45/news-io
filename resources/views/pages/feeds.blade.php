@@ -18,7 +18,7 @@
         </div>
         <div id="feed-stream" ng-class="{'wider': sidebarToggle}">
             <div class="ui text segment contain">
-                <div class="ui warning message" ng-show="!warning">
+                <div class="ui warning message" ng-if="!user">
                     <i class="close icon" ng-click="warning=true;"></i>
                     <div class="header">
                         FYI
@@ -36,7 +36,6 @@
                             <a class="ui green ribbon label">Featured</a>
                             <article article="feeds[1]"></article>
                         </div>
-
                     </div>
                     <div class="ten wide column right">
                         <div class="ui three column grid">
@@ -56,17 +55,29 @@
             </div>
         </div>
         <div id="utility-bar">
-            <div class="ui grid">
-                <div class="four wide column">
-                    <p>Jaden</p>
+            <div ng-if="user">
+                <div id="user-manage-menu">
+                    <i class="settings icon"></i>
+                    <div class="avatar">@{{user.initials}}</div><span class="name">@{{user.name}}</span>
+                    <div class="popout">
+                        <span ng-click="showMangeFeedsModal()"><i class="configure icon"></i>Manage Feeds</span>
+                    </div>
                 </div>
-                <div class="four wide column">
+                <div class="line" ng-click="showSavedArticles()">
+                    <i class="archive icon"></i>
+                    <span>@{{savedArticles.length}} Saved Articles</span>
+                </div>
+                <a class="ui button right floated" href="/auth/logout">Logout</a>
+            </div>
+            <div ng-if="!user" class="ui grid">
+                <div class="sixteen wide column">
                     <button class="ui button right floated" ng-click="showLoginModal()">Login</button>
                     <button class="ui button right floated">Register</button>
                 </div>
             </div>
         </div>
         <modal options="loginModal"></modal>
+        <modal options="feedsModal"></modal>
     </div>
 @endsection
 
