@@ -36,6 +36,7 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     $scope.user = false;                                //holds active user info
     $scope.activeFeeds = $cookies.getObject('feeds');   //active feeds
     $scope.savedArticles = {};                          //user saved articles
+    $scope.showSaved = false;
 
     /**
      * Get's all articles saved by the user
@@ -93,7 +94,8 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     $scope.getArticles = function(page) {
         if(!page) $scope.feeds = [];
         page = page ? $scope.lastFeedID : false;
-        snugfeedArticlesService.getArticles(page,getFeedsIds()).then(function(data) {
+        var ids = $scope.articleFilter ? [$scope.articleFilter] : getFeedsIds();
+        snugfeedArticlesService.getArticles(page,ids).then(function(data) {
             $scope.feeds = $scope.feeds.concat(data.data);
             $scope.lastFeedID = data.data[data.data.length - 1].id;
         });
@@ -112,6 +114,8 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
      */
     $scope.filterArticles = function(id) {
         $scope.articleFilter = id;
+        $scope.getArticles(false);
+        $scope.showSaved = false;
     };
 
     /**
@@ -134,6 +138,7 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
      */
     $scope.showSavedArticles = function() {
         $scope.feeds = $scope.savedArticles;
+        $scope.showSaved = true;
     };
 
     //on load

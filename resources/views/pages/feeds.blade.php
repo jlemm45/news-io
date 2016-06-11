@@ -12,12 +12,25 @@
                     <img src="https://s3-us-west-2.amazonaws.com/news-io/img/logo-green.png" class="img-responsive">
                 </a>
             </div>
-            <div class="item" ng-class="{'active': articleFilter == @{{feed.id}}}" ng-repeat="feed in activeFeeds">
+            <div class="item" ng-class="{'active': !articleFilter && !showSaved}">
+                <a href="#" ng-click="filterArticles(false)">All</a>
+            </div>
+            <div class="item" ng-class="{'active': articleFilter == feed.id && !showSaved}" ng-repeat="feed in
+            activeFeeds">
                 <a href="#" ng-click="filterArticles(feed.id)"><img ng-src="https://s3-us-west-2.amazonaws.com/news-io/icons/@{{feed.icon_name}}.png"><b ng-show="!sidebarToggle">@{{feed.source}}</b></a>
             </div>
         </div>
         <div id="feed-stream" ng-class="{'wider': sidebarToggle}">
             <div class="ui text segment contain">
+                <div class="ui icon message">
+                    <i class="notched circle loading icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            Alert
+                        </div>
+                        <p>Incoming Article</p>
+                    </div>
+                </div>
                 <div class="ui warning message" ng-if="!user">
                     <i class="close icon" ng-click="warning=true;"></i>
                     <div class="header">
@@ -47,7 +60,9 @@
                             </div>
                         </div>
 
-                        <button id="load-more" class="ui primary button" ng-click="getArticles(true)">
+                        <button ng-if="!showSaved" id="load-more" class="ui primary button"
+                                ng-click="getArticles
+                        (true)">
                             Load More
                         </button>
                     </div>

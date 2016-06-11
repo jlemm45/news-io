@@ -56,7 +56,8 @@ body {
 
 #feed-stream {
   transition: all ease 0.5s;
-  margin-left: 180px; }
+  margin-left: 180px;
+  margin-bottom: 100px; }
   #feed-stream.wider {
     margin-left: 60px; }
   #feed-stream .contain {
