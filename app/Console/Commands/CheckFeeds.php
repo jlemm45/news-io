@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Article;
 use Illuminate\Console\Command;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\SocketController;
 
 class CheckFeeds extends Command
 {
@@ -41,12 +42,15 @@ class CheckFeeds extends Command
     {
         //$urls = \App\Feed::where('id', '=', 4)->get();
         $urls = \App\Feed::all();
+        $newArticles = false;
+        $newFeedIds = [];
 
         foreach($urls as $url) {
             $feed = new FeedController();
 
             $feeds = $feed->getFeed($url->feed_url);
 
+            $newArticleIds = [];
             foreach($feeds as $feed) {
                 if(!Article::where('article_title', '=', $feed['title'])->count() > 0) {
                     $article = new Article();
@@ -55,8 +59,12 @@ class CheckFeeds extends Command
                     $article->article_img = $feed['thumb'];
                     $article->feed_id = $url->id;
                     $article->save();
+                    $newArticleIds[] = $article->id;
+                    $newArticles = true;
                 }
             }
+            if(count($newArticleIds) > 0) $newFeedIds[] = [$url->id => $newArticleIds];
         }
+        if($newArticles) SocketController::pingSocketIO($newFeedIds);
     }
 }

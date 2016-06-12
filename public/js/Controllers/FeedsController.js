@@ -5,7 +5,7 @@ var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.artic
 /**
  * Feeds Controller
  */
-snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesService,$cookies,snugfeedUserService,snugfeedFeedsService) {
+snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesService,$cookies,snugfeedUserService,snugfeedFeedsService,$timeout) {
 
     $scope.feeds = [];                                  //all active articles
     $scope.lastFeedID = 43;                             //last article id for loading more articles
@@ -36,7 +36,7 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     $scope.user = false;                                //holds active user info
     $scope.activeFeeds = $cookies.getObject('feeds');   //active feeds
     $scope.savedArticles = {};                          //user saved articles
-    $scope.showSaved = false;
+    $scope.showSaved = false;                           //if we are showing saved articles
 
     /**
      * Get's all articles saved by the user
@@ -59,6 +59,16 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     }
 
     /**
+     * Subscribe logged in user to sockets
+     */
+    function subscribeToSockets() {
+        socket.emit('subscribe', {
+            userID: $scope.user.id,
+            feeds: getFeedsIds()
+        });
+    }
+
+    /**
      * Get's current user status as well as selected feeds
      */
     function getUserStatus() {
@@ -67,6 +77,7 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
                 $scope.user = data.data.user;
                 $scope.activeFeeds = $scope.user.feeds;
                 $scope.user.initials = snug.generateAvatarInitials($scope.user.name);
+                subscribeToSockets();
             }
             $scope.getArticles(false);
         });
@@ -144,4 +155,58 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     //on load
     getUserStatus();
     getSavedArticles();
+
+    function incoming() {
+        $scope.incoming = true;
+        setTimeout(function() {
+            $scope.incoming = false;
+            $scope.$apply();
+        },2000);
+        $scope.$apply();
+    }
+
+    //socket connection
+    var socket = io.connect('http://vagrant.local:8890/', {
+        reconnection: false
+    });
+
+    socket.on('article', function(json) {
+        handleNewArticles(json);
+    });
+
+    /**
+     * Handle new incoming articles. Only use articles in which feeds users are listening to.
+     * @param json
+     */
+    function handleNewArticles(json) {
+        var userFeedIds = getFeedsIds();
+        var idsToGet = [];
+        $.each(json[0], function(feedID,articleArr) {
+            if(userFeedIds.indexOf(parseInt(feedID)) > -1) {
+                $.each(articleArr, function(k,articleID) {
+                    idsToGet.push(articleID);
+                    $scope.feeds.unshift({incoming: true});
+                });
+            }
+        });
+        console.log(idsToGet);
+        if(idsToGet.length > 0) {
+            incoming();
+            snugfeedArticlesService.getArticlesByIds(idsToGet.join()).then(function(resp) {
+                var length = resp.data.length - 1;
+                $.each(resp.data, function(k,v) {
+                    bringInNewArticle(length, v);
+                    //$scope.feeds.unshift(v);
+                    length--;
+                });
+            });
+        }
+    }
+
+    function bringInNewArticle(index, article) {
+        $timeout(function() {
+            console.log(index);
+            $scope.feeds[index] = article;
+        },1000*index);
+    }
 });

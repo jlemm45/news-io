@@ -19,6 +19,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "semantic-ui": "^2.1.8"
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "semantic-ui": "^2.1.8",
+    "socket.io": "^1.4.6"
   }
 }

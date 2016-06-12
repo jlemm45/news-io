@@ -76,4 +76,8 @@ class ArticleController extends ApiBaseController
     {
         //
     }
+
+    public function show(Request $request, $id) {
+        return Article::find($id);
+    }
 }

@@ -57,7 +57,8 @@ body {
 #feed-stream {
   transition: all ease 0.5s;
   margin-left: 180px;
-  margin-bottom: 100px; }
+  margin-bottom: 100px;
+  position: relative; }
   #feed-stream.wider {
     margin-left: 60px; }
   #feed-stream .contain {
@@ -75,6 +76,12 @@ body {
     margin: 10px 0;
     border-bottom: 6px solid #ccc;
     border-radius: 0; }
+    #feed-stream .article.incoming, #feed-stream .article.ui.fluid.card.incoming {
+      background: #fff url("http://semantic-ui.com/images/wireframe/short-paragraph.png");
+      background-size: 80%;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 400px; }
     #feed-stream .article .actions, #feed-stream .article.ui.fluid.card .actions {
       float: left; }
   #feed-stream img {

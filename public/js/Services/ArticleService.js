@@ -11,6 +11,14 @@ angular.module('snugfeed.service.articles', [])
             return $http.put("/api/article/"+id);
         };
 
+        var getArticle = function(id) {
+            return $http.get("/api/article/"+id);
+        };
+
+        var getArticlesByIds = function(ids) {
+            return $http.get("/api/articles?article-ids="+ids);
+        };
+
         var getSavedArticles = function() {
             return $http.get("/api/article");
         };
@@ -18,7 +26,9 @@ angular.module('snugfeed.service.articles', [])
         return {
             getArticles: getArticles,
             saveArticle: saveArticle,
-            getSavedArticles: getSavedArticles
+            getSavedArticles: getSavedArticles,
+            getArticle: getArticle,
+            getArticlesByIds: getArticlesByIds
         };
 
     }]);

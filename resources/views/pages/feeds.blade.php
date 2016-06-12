@@ -21,8 +21,11 @@
             </div>
         </div>
         <div id="feed-stream" ng-class="{'wider': sidebarToggle}">
+            {{--<div class="new-articles">--}}
+                {{--New Articles--}}
+            {{--</div>--}}
             <div class="ui text segment contain">
-                <div class="ui icon message">
+                <div class="ui icon message" ng-show="incoming">
                     <i class="notched circle loading icon"></i>
                     <div class="content">
                         <div class="header">
@@ -39,22 +42,22 @@
                     <p>Don't forget to register to save your feeds.</p>
                 </div>
                 <div class="ui grid">
-                    <div class="six wide column">
-                        <div class="featured-article article">
-                            <a class="ui green ribbon label">The Latest</a>
-                            <article article="feeds[0]"></article>
-                        </div>
+                    {{--<div class="six wide column">--}}
+                        {{--<div class="featured-article article" ng-class="{'incoming': feeds[0].incoming}">--}}
+                            {{--<a class="ui green ribbon label">The Latest</a>--}}
+                            {{--<article article="feeds[0]"></article>--}}
+                        {{--</div>--}}
 
-                        <div class="featured-article article">
-                            <a class="ui green ribbon label">Featured</a>
-                            <article article="feeds[1]"></article>
-                        </div>
-                    </div>
-                    <div class="ten wide column right">
-                        <div class="ui three column grid">
-                            <div class="column" ng-repeat="feed in feeds" ng-if="$index > 0 && !articleFilter ||
+                        {{--<div class="featured-article article" ng-class="{'incoming': feeds[1].incoming}">--}}
+                            {{--<a class="ui green ribbon label">Featured</a>--}}
+                            {{--<article article="feeds[1]"></article>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    <div class="sixteen wide column right">
+                        <div class="ui two column grid">
+                            <div class="column" ng-repeat="feed in feeds" ng-if="!articleFilter ||
                         articleFilter == feed.feed_id">
-                                <div class="ui fluid card article">
+                                <div class="ui fluid card article" ng-class="{'incoming': feed.incoming}">
                                     <article article="feed"></article>
                                 </div>
                             </div>
@@ -97,6 +100,7 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
     <script src="/js/Controllers/FeedsController.js"></script>
     <script src="/js/Directives/Article.js"></script>
     <script src="/js/Services/ArticleService.js"></script>

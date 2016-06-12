@@ -34,6 +34,10 @@ class FeedController extends Controller
     }
 
     public function getArticles() {
+        if(isset($_GET['article-ids'])) {
+            $ids = explode(',', $_GET['article-ids']);
+            return Article::find($ids);
+        }
         //return Article::limit(60)->orderBy('id', 'desc')->get();
         $where = isset($_GET['start']) ? ['articles.id', '<', $_GET['start']] : ['articles.id', '>', 0];
         $ids = explode(',', $_GET['ids']);
