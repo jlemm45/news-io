@@ -53,7 +53,7 @@ io.on('connection', function(socket){
     socket.on('subscribe', function(obj){
         connectedUsers.push({socket: socket, feeds: obj.feeds, userID: obj.userID});
         //console.log(connectedUsers[0]);
-        console.log(checkUsersForFeeds('1,2,3,4'));
+        //console.log(checkUsersForFeeds('1,2,3,4'));
     });
 
     /**

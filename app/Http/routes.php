@@ -16,6 +16,9 @@ Route::get('/feeds', 'FeedController@feedsView');
 Route::get('/login', function(){
     return view('pages.login');
 });
+Route::get('/register', function(){
+    return view('pages.register');
+});
 
 // Authentication routes...
 //Route::get('auth/login', 'Auth\AuthController@getLogin');

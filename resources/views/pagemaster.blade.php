@@ -7,16 +7,9 @@
                 <span class="logo">
                     <a href="/"><img src="https://s3-us-west-2.amazonaws.com/news-io/img/logo-white.png"></a>
                 </span>
-                {{--<a class="toc item">--}}
-                    {{--<i class="sidebar icon"></i>--}}
-                {{--</a>--}}
                 <a class="active item" href="/">Home</a>
-                <a class="item" href="/register">Sign Up</a>
-                <a class="item" href="/about">About</a>
-                {{--<div class="right item">--}}
-                    {{--<a class="ui inverted button">Log in</a>--}}
-                    {{--<a class="ui inverted button">Sign Up</a>--}}
-                {{--</div>--}}
+                <a class="item" href="/register">Register</a>
+                <a class="item" href="/login">Login</a>
             </div>
         </div>
     </div>

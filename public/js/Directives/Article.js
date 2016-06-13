@@ -7,13 +7,13 @@ angular.module('article', ['ngSanitize', 'snugfeed.service.articles']).directive
 
         scope.saveArticle = function(article) {
             snugfeedArticlesService.saveArticle(article.id);
-        }
+        };
     }
 
     return {
         link: link,
         restrict: 'E',
-        scope: {article: '=article'},
+        scope: {article: '=article', view: '=view'},
         template: '' +
         '<div class="actions">' +
         '<i ng-click="saveArticle(article)" class="save icon"></i>' +
@@ -22,7 +22,7 @@ angular.module('article', ['ngSanitize', 'snugfeed.service.articles']).directive
         '<img ng-src="https://s3-us-west-2.amazonaws.com/news-io/icons/{{article.icon_name}}.png">' +
         '</div>' +
         '<h2 class="ui header">{{article.article_title}}</h2>' +
-        '<p ng-bind-html="toTrustedHTML(article.article_description)"></p>' +
+        '<p ng-bind-html="toTrustedHTML(article.article_description)" ng-if="view"></p>' +
         '<p><a href="#">Read More</a></p>'
     };
 });

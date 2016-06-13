@@ -19,6 +19,7 @@ angular.module('registercomponent', ['snugfeed.service.user']).directive('regist
             if($('#register-form').form('is valid'))
             snugfeedUserService.registerUser(register).then(function(resp) {
                 if(typeof scope.success === 'function') scope.success(resp.data);
+                else window.location = '/login'
             },function(error) {
                 $('#register-form').form('add errors', error.data.errors);
             });

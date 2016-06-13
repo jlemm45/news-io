@@ -37,6 +37,21 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     $scope.activeFeeds = $cookies.getObject('feeds');   //active feeds
     $scope.savedArticles = {};                          //user saved articles
     $scope.showSaved = false;                           //if we are showing saved articles
+    $scope.articleView = true;                          //handles toggling view to list or grid
+
+    var msnry = new Masonry( '#article-contain', {      //msnry layout
+        itemSelector: '.mason',
+        columnWidth: '.mason-sizer',
+        percentPosition: true,
+        gutter: '.mason-gutter'
+    });
+
+    function resetLayout() {
+        $timeout(function() {
+            msnry.reloadItems();
+            msnry.layout();
+        },200);
+    }
 
     /**
      * Get's all articles saved by the user
@@ -109,6 +124,9 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
         snugfeedArticlesService.getArticles(page,ids).then(function(data) {
             $scope.feeds = $scope.feeds.concat(data.data);
             $scope.lastFeedID = data.data[data.data.length - 1].id;
+
+            resetLayout();
+
         });
     };
 
@@ -161,7 +179,7 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
         setTimeout(function() {
             $scope.incoming = false;
             $scope.$apply();
-        },2000);
+        },3000);
         $scope.$apply();
     }
 
@@ -188,6 +206,7 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
                     $scope.feeds.unshift({incoming: true});
                 });
             }
+            resetLayout();
         });
         console.log(idsToGet);
         if(idsToGet.length > 0) {
@@ -207,6 +226,12 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
         $timeout(function() {
             console.log(index);
             $scope.feeds[index] = article;
-        },1000*index);
+            resetLayout();
+        },3000*(index+1));
+    }
+
+    $scope.toggleView = function(toggle) {
+        $scope.articleView = toggle;
+        //console.log(toggle);
     }
 });

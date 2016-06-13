@@ -3,6 +3,12 @@
 
 @section('content')
     <div ng-controller="feedsController">
+        <div id="incoming" ng-class="{'active': incoming}">
+            <div class="ui container">
+                <i class="notched circle loading icon"></i>
+                <p>Incoming Article</p>
+            </div>
+        </div>
         <div class="ui thin sidebar visible" id="sidebar" ng-class="{'hidden': sidebarToggle}">
             <div class="toggle" ng-click="toggleSidebar()">
                 <i class="sidebar icon"></i>
@@ -25,15 +31,15 @@
                 {{--New Articles--}}
             {{--</div>--}}
             <div class="ui text segment contain">
-                <div class="ui icon message" ng-show="incoming">
-                    <i class="notched circle loading icon"></i>
-                    <div class="content">
-                        <div class="header">
-                            Alert
-                        </div>
-                        <p>Incoming Article</p>
-                    </div>
-                </div>
+                {{--<div class="ui icon message" ng-show="incoming">--}}
+                    {{--<i class="notched circle loading icon"></i>--}}
+                    {{--<div class="content">--}}
+                        {{--<div class="header">--}}
+                            {{--Alert--}}
+                        {{--</div>--}}
+                        {{--<p>Incoming Article</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <div class="ui warning message" ng-if="!user">
                     <i class="close icon" ng-click="warning=true;"></i>
                     <div class="header">
@@ -41,7 +47,7 @@
                     </div>
                     <p>Don't forget to register to save your feeds.</p>
                 </div>
-                <div class="ui grid">
+                <div class="">
                     {{--<div class="six wide column">--}}
                         {{--<div class="featured-article article" ng-class="{'incoming': feeds[0].incoming}">--}}
                             {{--<a class="ui green ribbon label">The Latest</a>--}}
@@ -53,39 +59,63 @@
                             {{--<article article="feeds[1]"></article>--}}
                         {{--</div>--}}
                     {{--</div>--}}
-                    <div class="sixteen wide column right">
-                        <div class="ui two column grid">
+                    <div id="article-contain">
+                        <div class="mason-sizer"></div>
+                        <div class="mason-gutter"></div>
+                        <div class="mason" ng-repeat="feed in feeds" ng-if="!articleFilter ||
+                        articleFilter == feed.feed_id">
+                            <div class="ui fluid card article" ng-class="{'incoming': feed.incoming}">
+                                <article article="feed" view="true"></article>
+                            </div>
+                        </div>
+                        {{--<div class="mason-parent" ng-if="articleView">--}}
+                            {{----}}
+                        {{--</div>--}}
+
+                        <div class="ui one column grid" ng-if="!articleView">
                             <div class="column" ng-repeat="feed in feeds" ng-if="!articleFilter ||
                         articleFilter == feed.feed_id">
                                 <div class="ui fluid card article" ng-class="{'incoming': feed.incoming}">
-                                    <article article="feed"></article>
+                                    <article article="feed" view="false"></article>
                                 </div>
                             </div>
                         </div>
-
-                        <button ng-if="!showSaved" id="load-more" class="ui primary button"
-                                ng-click="getArticles
-                        (true)">
-                            Load More
-                        </button>
                     </div>
+                    <button ng-if="!showSaved" id="load-more" class="ui primary button"
+                            ng-click="getArticles
+                        (true)">
+                        Load More
+                    </button>
                 </div>
             </div>
         </div>
         <div id="utility-bar">
-            <div ng-if="user">
-                <div id="user-manage-menu">
-                    <i class="settings icon"></i>
-                    <div class="avatar">@{{user.initials}}</div><span class="name">@{{user.name}}</span>
-                    <div class="popout">
-                        <span ng-click="showMangeFeedsModal()"><i class="configure icon"></i>Manage Feeds</span>
+            <div ng-if="user" class="ui grid">
+                <div class="twelve wide column">
+                    <div id="user-manage-menu">
+                        <i class="settings icon"></i>
+                        <div class="avatar">@{{user.initials}}</div><span class="name">@{{user.name}}</span>
+                        <div class="popout">
+                            <span ng-click="showMangeFeedsModal()"><i class="configure icon"></i>Manage Feeds</span>
+                        </div>
+                    </div>
+                    <div class="line pointer" ng-click="showSavedArticles()">
+                        <i class="archive icon"></i>
+                        <span>@{{savedArticles.length}} Saved Articles</span>
                     </div>
                 </div>
-                <div class="line" ng-click="showSavedArticles()">
-                    <i class="archive icon"></i>
-                    <span>@{{savedArticles.length}} Saved Articles</span>
+                <div class="four wide column">
+                    <div class="line">
+                        <span>List View</span>
+                        <div class="ui slider checkbox">
+                            <input type="checkbox" name="public" ng-change="toggleView(toggle)" ng-model="toggle"
+                                   ng-init="toggle=true">
+                            <label></label>
+                        </div>
+                        <span>Grid View</span>
+                    </div>
+                    <a class="ui button right floated" href="/auth/logout">Logout</a>
                 </div>
-                <a class="ui button right floated" href="/auth/logout">Logout</a>
             </div>
             <div ng-if="!user" class="ui grid">
                 <div class="sixteen wide column">
@@ -101,6 +131,7 @@
 
 @section('scripts')
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+    <script src="//npmcdn.com/masonry-layout@4.0.0/dist/masonry.pkgd.min.js"></script>
     <script src="/js/Controllers/FeedsController.js"></script>
     <script src="/js/Directives/Article.js"></script>
     <script src="/js/Services/ArticleService.js"></script>
