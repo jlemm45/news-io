@@ -1,3 +1,6 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
 body {
   background: #ddd; }
 
@@ -95,8 +98,24 @@ body {
     float: left; }
   #feed-stream .mason-sizer, #feed-stream .mason {
     width: calc(20% - 10px); }
+    @media (max-width: 1200px) {
+      #feed-stream .mason-sizer, #feed-stream .mason {
+        width: calc(50% - 10px); } }
+    @media (max-width: 800px) {
+      #feed-stream .mason-sizer, #feed-stream .mason {
+        width: calc(100% - 10px); } }
   #feed-stream .mason-gutter {
     width: 10px; }
+  #feed-stream .list-article {
+    background: #fff;
+    padding: 2px 10px;
+    margin: 5px 0; }
+    #feed-stream .list-article .actions {
+      float: right;
+      margin: 10px; }
+    #feed-stream .list-article h2.ui.header {
+      font-size: 1.2em;
+      margin: 5px 0; }
 
 .featured-article .label.ui.ribbon {
   left: -3.3em; }
@@ -162,8 +181,10 @@ body {
       font-size: 1.5em;
       line-height: 1.5em;
       margin-right: 1em; }
-  #utility-bar .ui.slider.checkbox input:checked ~ .box:before, #utility-bar .ui.slider.checkbox input:checked ~ label:before, #utility-bar .ui.slider.checkbox .box:before, #utility-bar .ui.slider.checkbox label:before {
-    background-color: #21BA45 !important; }
+  #utility-bar .ui.slider.checkbox {
+    padding: 5px 3px 4px 13px; }
+    #utility-bar .ui.slider.checkbox input:checked ~ .box:before, #utility-bar .ui.slider.checkbox input:checked ~ label:before, #utility-bar .ui.slider.checkbox .box:before, #utility-bar .ui.slider.checkbox label:before {
+      background-color: #21BA45 !important; }
 
 #incoming {
   position: fixed;

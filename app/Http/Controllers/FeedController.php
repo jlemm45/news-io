@@ -48,7 +48,7 @@ class FeedController extends Controller
             ->whereIn('feeds.id', $ids)
             ->where($where[0], $where[1], $where[2])
             ->orderBy('articles.id', 'desc')
-            ->limit(10)
+            ->limit(20)
             ->get();
     }
 

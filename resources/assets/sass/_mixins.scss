@@ -1,0 +1,21 @@
+//vendor prefixes
+@mixin prefix($property, $value, $vendors: webkit moz ms o) {
+  @if $vendors {
+    @each $vendor in $vendors {
+      #{"-" + $vendor + "-" + $property}: #{$value};
+    }
+  }
+  #{$property}: #{$value};
+}
+
+//handles media query max height
+@mixin mediaHeight($size) {
+  @media (max-height: #{$size}) {
+    @content;
+  }
+}
+@mixin mediaWidth($size) {
+  @media (max-width: #{$size}) {
+    @content;
+  }
+}

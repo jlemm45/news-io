@@ -3,10 +3,10 @@
 
 @section('content')
     <div ng-controller="feedsController">
-        <div id="incoming" ng-class="{'active': incoming}">
+        <div id="incoming" ng-class="{'active': incoming}" ng-cloak>
             <div class="ui container">
                 <i class="notched circle loading icon"></i>
-                <p>Incoming Article</p>
+                <p>@{{noti.text}}</p>
             </div>
         </div>
         <div class="ui thin sidebar visible" id="sidebar" ng-class="{'hidden': sidebarToggle}">
@@ -26,7 +26,7 @@
                 <a href="#" ng-click="filterArticles(feed.id)"><img ng-src="https://s3-us-west-2.amazonaws.com/news-io/icons/@{{feed.icon_name}}.png"><b ng-show="!sidebarToggle">@{{feed.source}}</b></a>
             </div>
         </div>
-        <div id="feed-stream" ng-class="{'wider': sidebarToggle}">
+        <div id="feed-stream" ng-class="{'wider': sidebarToggle}" ng-cloak>
             {{--<div class="new-articles">--}}
                 {{--New Articles--}}
             {{--</div>--}}
@@ -60,24 +60,21 @@
                         {{--</div>--}}
                     {{--</div>--}}
                     <div id="article-contain">
-                        <div class="mason-sizer"></div>
-                        <div class="mason-gutter"></div>
-                        <div class="mason" ng-repeat="feed in feeds" ng-if="!articleFilter ||
-                        articleFilter == feed.feed_id">
-                            <div class="ui fluid card article" ng-class="{'incoming': feed.incoming}">
-                                <article article="feed" view="true"></article>
+                        <div ng-if="articleView">
+                            <div class="mason-sizer"></div>
+                            <div class="mason-gutter"></div>
+                            <div class="mason" ng-repeat="feed in feeds" ng-if="!articleFilter ||
+                        articleFilter == feed.feed_id || showSaved">
+                                <div class="ui fluid card article" ng-class="{'incoming': feed.incoming}">
+                                    <article article="feed" view="true"></article>
+                                </div>
                             </div>
                         </div>
-                        {{--<div class="mason-parent" ng-if="articleView">--}}
-                            {{----}}
-                        {{--</div>--}}
 
-                        <div class="ui one column grid" ng-if="!articleView">
-                            <div class="column" ng-repeat="feed in feeds" ng-if="!articleFilter ||
-                        articleFilter == feed.feed_id">
-                                <div class="ui fluid card article" ng-class="{'incoming': feed.incoming}">
-                                    <article article="feed" view="false"></article>
-                                </div>
+                        <div ng-if="!articleView">
+                            <div ng-repeat="feed in feeds" class="list-article" ng-if="!articleFilter || articleFilter
+                             == feed.feed_id || showSaved">
+                                <article article="feed" view="false"></article>
                             </div>
                         </div>
                     </div>
@@ -131,6 +128,7 @@
 
 @section('scripts')
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
     <script src="//npmcdn.com/masonry-layout@4.0.0/dist/masonry.pkgd.min.js"></script>
     <script src="/js/Controllers/FeedsController.js"></script>
     <script src="/js/Directives/Article.js"></script>

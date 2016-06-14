@@ -16,6 +16,7 @@ Route::get('/feeds', 'FeedController@feedsView');
 Route::get('/login', function(){
     return view('pages.login');
 });
+
 Route::get('/register', function(){
     return view('pages.register');
 });
@@ -37,5 +38,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('feeds', 'Api\FeedController@updateUserFeeds');
 
     Route::get('articles', 'FeedController@getArticles');
+
+    Route::get('socket', function() {
+        return env('SOCKET_URL');
+    });
 });
 

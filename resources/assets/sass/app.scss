@@ -1,5 +1,9 @@
 //@import "semantic/scss/semantic.min";
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 body {
   background: #ddd;
 }
@@ -19,6 +23,7 @@ body {
   cursor: pointer;
 }
 
+@import "mixins";
 @import "variables";
 @import "feedsPage";
 @import "welcomePage";

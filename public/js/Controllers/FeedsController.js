@@ -38,19 +38,29 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     $scope.savedArticles = {};                          //user saved articles
     $scope.showSaved = false;                           //if we are showing saved articles
     $scope.articleView = true;                          //handles toggling view to list or grid
-
-    var msnry = new Masonry( '#article-contain', {      //msnry layout
-        itemSelector: '.mason',
-        columnWidth: '.mason-sizer',
-        percentPosition: true,
-        gutter: '.mason-gutter'
-    });
-
+    $scope.noti = {                                     //holds values for top notification bar
+        text: 'Alert'
+    };
+    var msnry;
     function resetLayout() {
-        $timeout(function() {
-            msnry.reloadItems();
-            msnry.layout();
-        },200);
+        if($scope.articleView) {
+            $timeout(function () {
+                msnry = new Masonry( '#article-contain', {      //init mason layout
+                    itemSelector: '.mason',
+                    columnWidth: '.mason-sizer',
+                    percentPosition: true,
+                    gutter: '.mason-gutter'
+                });
+
+                imagesLoaded($('#article-contain')).on( 'progress', function() {
+                    // layout Masonry after each image loads
+                    msnry.layout();
+                });
+            }, 200);
+        }
+        else {
+            msnry.destroy();
+        }
     }
 
     /**
@@ -77,9 +87,19 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
      * Subscribe logged in user to sockets
      */
     function subscribeToSockets() {
-        socket.emit('subscribe', {
-            userID: $scope.user.id,
-            feeds: getFeedsIds()
+        $http.get('/api/socket').then(function(resp) {
+            var socket = io.connect('http://vagrant.local:8890/', {
+                reconnection: false
+            });
+
+            socket.on('article', function(json) {
+                handleNewArticles(json);
+            });
+
+            socket.emit('subscribe', {
+                userID: $scope.user.id,
+                feeds: getFeedsIds()
+            });
         });
     }
 
@@ -168,29 +188,22 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     $scope.showSavedArticles = function() {
         $scope.feeds = $scope.savedArticles;
         $scope.showSaved = true;
+        resetLayout();
     };
 
     //on load
     getUserStatus();
     getSavedArticles();
 
-    function incoming() {
+    function incoming(text) {
         $scope.incoming = true;
+        $scope.noti.text = text;
         setTimeout(function() {
             $scope.incoming = false;
             $scope.$apply();
         },3000);
         $scope.$apply();
     }
-
-    //socket connection
-    var socket = io.connect('http://vagrant.local:8890/', {
-        reconnection: false
-    });
-
-    socket.on('article', function(json) {
-        handleNewArticles(json);
-    });
 
     /**
      * Handle new incoming articles. Only use articles in which feeds users are listening to.
@@ -210,12 +223,11 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
         });
         console.log(idsToGet);
         if(idsToGet.length > 0) {
-            incoming();
+            incoming('Incoming Article');
             snugfeedArticlesService.getArticlesByIds(idsToGet.join()).then(function(resp) {
                 var length = resp.data.length - 1;
                 $.each(resp.data, function(k,v) {
                     bringInNewArticle(length, v);
-                    //$scope.feeds.unshift(v);
                     length--;
                 });
             });
@@ -232,6 +244,12 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
 
     $scope.toggleView = function(toggle) {
         $scope.articleView = toggle;
-        //console.log(toggle);
-    }
+        resetLayout();
+    };
+
+    //listen to emit event from article saved
+    $scope.$on('article saved', function(c,v,r) {
+        $scope.savedArticles.push(v);
+        incoming('Article Saved!');
+    });
 });

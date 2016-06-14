@@ -135,8 +135,30 @@
   }
   .mason-sizer, .mason {
     width: calc(20% - 10px);
+    @include mediaWidth(1200px) {
+      width: calc(50% - 10px);
+    }
+    @include mediaWidth(800px) {
+      width: calc(100% - 10px);
+    }
   }
   .mason-gutter {width: 10px; }
+
+  .list-article {
+    background: #fff;
+    padding: 2px 10px;
+    margin: 5px 0;
+
+    .actions {
+      float: right;
+      margin: 10px;
+    }
+
+    h2.ui.header {
+      font-size: 1.2em;
+      margin: 5px 0;
+    }
+  }
 }
 
 .featured-article {
@@ -221,8 +243,12 @@
     }
   }
 
-  .ui.slider.checkbox input:checked~.box:before, .ui.slider.checkbox input:checked~label:before, .ui.slider.checkbox .box:before, .ui.slider.checkbox label:before {
-    background-color: $green !important;
+  .ui.slider.checkbox {
+    input:checked~.box:before, input:checked~label:before, .box:before, label:before {
+      background-color: $green !important;
+    }
+
+    padding: 5px 3px 4px 13px;
   }
 }
 
