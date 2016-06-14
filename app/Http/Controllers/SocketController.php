@@ -15,7 +15,7 @@ class SocketController extends Controller
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_POST => TRUE,
-            CURLOPT_URL => 'http://localhost:8890/ping',
+            CURLOPT_URL => env('SOCKET_URL').'ping',
             CURLOPT_HTTPHEADER => array(
                 'Content-Type: application/json'
             ),
