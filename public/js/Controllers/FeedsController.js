@@ -88,7 +88,7 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
      */
     function subscribeToSockets() {
         $http.get('/api/socket').then(function(resp) {
-            var socket = io.connect('http://vagrant.local:8890/', {
+            var socket = io.connect(resp.data, {
                 reconnection: false
             });
 
