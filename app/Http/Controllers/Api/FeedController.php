@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Auth;
 use App\Http\Controllers\FeedController as Feeds;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Artisan;
 
 class FeedController extends ApiBaseController
 {
@@ -57,14 +58,19 @@ class FeedController extends ApiBaseController
     public function store(Request $request)
     {
         $f = new Feeds();
-        if(count($f->getFeed($request->feed_url)) > 0) {
+
+        $check = $f->checkIfFeedIsValid($request->feed_url);
+
+        if($check) {
             $feed = new Feed;
             $feed->feed_url = $request->feed_url;
+            $feed->source = $check->get_title();
             $feed->save();
+            Artisan::call('feeds:check'); //do an immediate check after a new feed is added
             return $feed;
         }
-        return ['status' => 'invalid'];
 
+        return ['status' => 'error'];
     }
 
     /**

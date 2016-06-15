@@ -93,7 +93,8 @@
                         <i class="settings icon"></i>
                         <div class="avatar">@{{user.initials}}</div><span class="name">@{{user.name}}</span>
                         <div class="popout">
-                            <span ng-click="showMangeFeedsModal()"><i class="configure icon"></i>Manage Feeds</span>
+                            <div ng-click="showMangeFeedsModal()"><i class="configure icon"></i>Manage Feeds</div>
+                            <div ng-click="showNewFeedModal()"><i class="plus icon"></i>Add New Feed</div>
                         </div>
                     </div>
                     <div class="line pointer" ng-click="showSavedArticles()">
@@ -121,8 +122,12 @@
                 </div>
             </div>
         </div>
-        <modal options="loginModal"></modal>
-        <modal options="feedsModal"></modal>
+        <modal template="login" header="Login" modal-id="loginModal" options="loginModal"></modal>
+        <modal template="manageFeeds" header="Manage Feeds" modal-id="feedsModal" options="manageFeedsModal"></modal>
+        <modal header="Add New Feed" modal-id="newFeedModal">
+            <p>Feed must be a valid xml rss feed.</p>
+            <newfeedcomponent></newfeedcomponent>
+        </modal>
     </div>
 @endsection
 
@@ -132,5 +137,6 @@
     <script src="//npmcdn.com/masonry-layout@4.0.0/dist/masonry.pkgd.min.js"></script>
     <script src="/js/Controllers/FeedsController.js"></script>
     <script src="/js/Directives/Article.js"></script>
+    <script src="/js/Directives/NewFeed.js"></script>
     <script src="/js/Services/ArticleService.js"></script>
 @endsection

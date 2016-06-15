@@ -16,7 +16,7 @@ angular.module('logincomponent', ['snugfeed.service.user']).directive('logincomp
             $event.preventDefault();
             if($('#login-form').form('is valid'))
             snugfeedUserService.loginUser(login).then(function(resp) {
-                if(typeof scope.success === 'function') scope.success(resp.data);
+                scope.$emit('login success', resp.data); //emit to parents
             },function(error) {
                 $('#login-form').form('add errors', ['Invalid email or password']);
             });

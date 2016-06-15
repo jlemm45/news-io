@@ -18,8 +18,7 @@ angular.module('registercomponent', ['snugfeed.service.user']).directive('regist
             $event.preventDefault();
             if($('#register-form').form('is valid'))
             snugfeedUserService.registerUser(register).then(function(resp) {
-                if(typeof scope.success === 'function') scope.success(resp.data);
-                else window.location = '/login'
+                scope.$emit('register success', resp.data); //emit to parents
             },function(error) {
                 $('#register-form').form('add errors', error.data.errors);
             });

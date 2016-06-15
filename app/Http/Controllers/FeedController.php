@@ -7,18 +7,27 @@ use SimplePie;
 use App\Feed as FeedModel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 
 use App\Http\Requests;
 
 class FeedController extends Controller
 {
+    var $cache;
+
+    public function __construct()
+    {
+        $this->cache = dirname(dirname(dirname(dirname(__FILE__)))) . '/storage/framework/cache';
+    }
+
     public function getFeed($url) {
         $feed = new SimplePie();
         $feed->set_feed_url($url);
-        $feed->set_cache_location(dirname(dirname(dirname(dirname(__FILE__)))) . '/storage/framework/cache');
+        $feed->set_cache_location($this->cache);
         $feed->init();
         $feed->handle_content_type();
         $arr = [];
+
         foreach ($feed->get_items() as $item) {
 
             $enclosure = $item->get_enclosure(0);
@@ -31,6 +40,25 @@ class FeedController extends Controller
 
         }
         return $arr;
+    }
+
+    /**
+     * Verify and return feed if valid
+     *
+     * @param $url
+     * @return bool|SimplePie
+     */
+    public function checkIfFeedIsValid($url) {
+        $feed = new SimplePie();
+        $feed->set_feed_url($url);
+        $feed->set_cache_location($this->cache);
+        $feed->init();
+        $feed->handle_content_type();
+
+        if($feed->error()) {
+            return false;
+        }
+        return $feed;
     }
 
     public function getArticles() {

@@ -8,7 +8,9 @@ body {
   background: #ddd;
 }
 .ui.modal {
-  background: #eee;
+  > .content {
+    background: #eee;
+  }
 
   .padding {
     padding: 20px;

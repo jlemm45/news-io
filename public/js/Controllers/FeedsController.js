@@ -1,6 +1,6 @@
 'use strict';
 
-var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies', 'modal', 'logincomponent', 'registercomponent', 'snugfeed.service.user', 'managefeedscomponent', 'snugfeed.service.feeds']);
+var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies', 'modal', 'logincomponent', 'registercomponent', 'snugfeed.service.user', 'managefeedscomponent', 'snugfeed.service.feeds', 'newfeedcomponent']);
 
 /**
  * Feeds Controller
@@ -11,25 +11,11 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     $scope.lastFeedID = 43;                             //last article id for loading more articles
     $scope.sidebarToggle = false;                       //toggles state of sidebar
     $scope.articleFilter = false;                       //toggles filtering articles
-    $scope.loginModal = {
-        title: 'Login',                                 //title of modal
-        id: 'loginModal',                               //id of modal
-        show: null,                                     //show the modal
-        hide: null,                                     //hide the modal
-        template: 'login',                              //modal template
-        activeModel: 'login',                           //login or register
-        success: function(data) {                       //callback called on success of login component
-            getUserStatus();
-            $scope.loginModal.hide();
-        }
+    $scope.loginModal = {                               //custom options for login modal
+        activeModel: 'login'                            //login or register
     };
-    $scope.feedsModal = {
-        title: 'Manage Feeds',
-        id: 'feedsModal',
-        show: null,
-        hide: null,
-        template: 'manageFeeds',
-        saveFeeds: function(feeds) {
+    $scope.manageFeedsModal = {                         //custom options for manage feeds modal
+        saveFeeds: function(feeds) {                    //save the selected feeds
             handleFeedUpdate(feeds);
         }
     };
@@ -53,7 +39,6 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
                 });
 
                 imagesLoaded($('#article-contain')).on( 'progress', function() {
-                    // layout Masonry after each image loads
                     msnry.layout();
                 });
             }, 200);
@@ -129,7 +114,7 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
 
         snugfeedFeedsService.updateFeeds(feeds).then(function(data) {
             getUserStatus();
-            $scope.feedsModal.hide();
+            $('#feedsModal').modal('hide');
         });
     }
 
@@ -171,15 +156,22 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
      * Shows the login modal
      */
     $scope.showLoginModal = function() {
+        $('#loginModal').modal('show');
         $scope.loginModal.activeModel = 'login';
-        $scope.loginModal.show();
+    };
+
+    /**
+     * Show the add new feed modal
+     */
+    $scope.showNewFeedModal = function() {
+        $('#newFeedModal').modal('show');
     };
 
     /**
      * Shows the manage feed modal
      */
     $scope.showMangeFeedsModal = function() {
-        $scope.feedsModal.show();
+        $('#feedsModal').modal('show');
     };
 
     /**
@@ -221,7 +213,6 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
             }
             resetLayout();
         });
-        console.log(idsToGet);
         if(idsToGet.length > 0) {
             incoming('Incoming Article');
             snugfeedArticlesService.getArticlesByIds(idsToGet.join()).then(function(resp) {
@@ -251,5 +242,20 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     $scope.$on('article saved', function(c,v,r) {
         $scope.savedArticles.push(v);
         incoming('Article Saved!');
+    });
+
+    $scope.$on('login success', function() {
+        getUserStatus();
+        $('#loginModal').modal('hide');
+    });
+
+    $scope.$on('register success', function() {
+        $scope.loginModal.activeModel = 'login';
+    });
+
+    $scope.$on('add feed success', function() {
+        incoming('New Feed Added. Add the new feed in manage feeds!');
+        $('#newFeedModal').modal('hide');
+        $scope.$broadcast('reload manage feeds');
     });
 });

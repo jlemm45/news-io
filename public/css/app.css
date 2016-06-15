@@ -4,13 +4,15 @@
 body {
   background: #ddd; }
 
-.ui.modal {
+.ui.modal > .content {
   background: #eee; }
-  .ui.modal .padding {
-    padding: 20px; }
-  .ui.modal .register {
-    text-align: center;
-    padding-bottom: 15px; }
+
+.ui.modal .padding {
+  padding: 20px; }
+
+.ui.modal .register {
+  text-align: center;
+  padding-bottom: 15px; }
 
 .pointer {
   cursor: pointer; }

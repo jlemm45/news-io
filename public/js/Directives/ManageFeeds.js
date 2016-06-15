@@ -1,14 +1,22 @@
 angular.module('managefeedscomponent', ['snugfeed.service.feeds']).directive('managefeedscomponent', function(snugfeedFeedsService) {
 
     function link(scope, element, attrs) {
-        snugfeedFeedsService.getFeeds().then(function(data) {
-            scope.feeds = data.data;
-        });
+
+        function init() {
+            snugfeedFeedsService.getFeeds().then(function(data) {
+                scope.feeds = data.data;
+            });
+        }
+        init();
 
         scope.activateFeed = function(feed) {
             feed.active = feed.active ? false : true;
             scope.data = scope.feeds;
         };
+
+        scope.$on('reload manage feeds', function() {
+            init();
+        });
     }
 
     return {
