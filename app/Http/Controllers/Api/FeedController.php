@@ -7,6 +7,8 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
+use App\Http\Controllers\FeedController as Feeds;
+use Illuminate\Http\Response;
 
 class FeedController extends ApiBaseController
 {
@@ -54,7 +56,15 @@ class FeedController extends ApiBaseController
      */
     public function store(Request $request)
     {
-        //
+        $f = new Feeds();
+        if(count($f->getFeed($request->feed_url)) > 0) {
+            $feed = new Feed;
+            $feed->feed_url = $request->feed_url;
+            $feed->save();
+            return $feed;
+        }
+        return ['status' => 'invalid'];
+
     }
 
     /**

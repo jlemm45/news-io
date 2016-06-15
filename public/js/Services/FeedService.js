@@ -5,13 +5,18 @@ angular.module('snugfeed.service.feeds', [])
             return $http.get("/api/feed");
         };
 
+        var addFeed = function (data) {
+            return $http.post("/api/feed", data);
+        };
+
         var updateFeeds = function (feeds) {
             return $http.put("/api/feeds", feeds);
         };
 
         return {
             getFeeds: getFeeds,
-            updateFeeds: updateFeeds
+            updateFeeds: updateFeeds,
+            addFeed: addFeed
         };
 
     }]);

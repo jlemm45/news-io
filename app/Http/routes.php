@@ -43,4 +43,3 @@ Route::group(['prefix' => 'api'], function () {
         return env('SOCKET_URL');
     });
 });
-
