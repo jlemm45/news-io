@@ -23,7 +23,7 @@ angular.module('article', ['ngSanitize', 'snugfeed.service.articles']).directive
         '<i ng-click="saveArticle(article)" class="save icon pointer"></i>' +
         '</div>' +
         '<div class="icon">' +
-        '<img ng-src="https://s3-us-west-2.amazonaws.com/news-io/icons/{{article.icon_name}}.png">' +
+        '<img ng-if="article.icon_name" ng-src="https://s3-us-west-2.amazonaws.com/news-io/icons/{{article.icon_name}}.png">' +
         '</div>' +
         '<h2 class="ui header">{{article.article_title}}</h2>' +
         '<p ng-bind-html="toTrustedHTML(article.article_description)" ng-if="view"></p>' +

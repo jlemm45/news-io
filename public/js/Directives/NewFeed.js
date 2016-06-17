@@ -2,15 +2,15 @@ function newFeedController($scope, $element, $attrs, snugfeedFeedsService,$timeo
     $scope.submit = function(feed) {
         $scope.loading = true;
         $scope.checking = true;
+        $scope.message = {
+            top: 'Just on second',
+            bottom: 'Checking if feed is valid...'
+        };
+        $scope.negative = false;
         snugfeedFeedsService.addFeed({feed_url: feed}).then(function(resp) {
             $scope.loading = false;
             var r = resp.data;
-            if(r.status == 'error') {
-                $scope.negative = true;
-                $scope.message.top = 'Sorry';
-                $scope.message.bottom = 'This feed is invalid';
-            }
-            else {
+            if(r.status == 'success') {
                 $scope.newFeed = '';
                 $scope.message.top = 'Success!';
                 $scope.message.bottom = '';
@@ -25,15 +25,22 @@ function newFeedController($scope, $element, $attrs, snugfeedFeedsService,$timeo
                     $scope.checking = false;
                 },1000);
             }
+            else if(r.status == 'feed already added') {
+                $scope.negative = true;
+                $scope.message.top = 'Feed has already been added.';
+                $scope.message.bottom = '';
+            }
+            else {
+                $scope.negative = true;
+                $scope.message.top = 'Sorry';
+                $scope.message.bottom = 'This feed is invalid';
+            }
         });
     };
     $scope.allowSubmit = false;
     $scope.loading = false;
     $scope.checking = false;
-    $scope.message = {
-        top: 'Just on second',
-        bottom: 'Checking if feed is valid...'
-    }
+    $scope.message = {};
 }
 
 angular.module('newfeedcomponent', ['snugfeed.service.feeds']).component('newfeedcomponent', {
@@ -51,7 +58,7 @@ angular.module('newfeedcomponent', ['snugfeed.service.feeds']).component('newfee
     '</div>' +
     '<form class="ui large form" ng-submit="submit(newFeed)">' +
         '<input type="text" name="newfeed" ng-model="newFeed" placeholder="Add a Feed">' +
-        '<button class="fluid ui green button" type="submit">Add Feed</button>' +
+        '<button class="ui green button" type="submit">Add Feed</button>' +
     '</form>' +
     ''
 });

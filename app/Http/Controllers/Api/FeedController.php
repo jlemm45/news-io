@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Feed;
 use App\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
@@ -61,13 +62,19 @@ class FeedController extends ApiBaseController
 
         $check = $f->checkIfFeedIsValid($request->feed_url);
 
-        if($check) {
-            $feed = new Feed;
-            $feed->feed_url = $request->feed_url;
-            $feed->source = $check->get_title();
-            $feed->save();
-            Artisan::call('feeds:check'); //do an immediate check after a new feed is added
-            return $feed;
+        try{
+            Feed::where('feed_url', '=', $request->feed_url)->firstOrFail();
+            return ['status' => 'feed already added'];
+        }
+        catch(ModelNotFoundException $e) {
+            if($check) {
+                $feed = new Feed;
+                $feed->feed_url = $request->feed_url;
+                $feed->source = $check->get_title();
+                $feed->save();
+                Artisan::call('feeds:check'); //do an immediate check after a new feed is added
+                return ['status' => 'success'];
+            }
         }
 
         return ['status' => 'error'];

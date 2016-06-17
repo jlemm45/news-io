@@ -267,4 +267,7 @@ body {
       height: 100%;
       line-height: 2em; }
 
+newfeedcomponent button.ui.green.button {
+  margin-top: 20px; }
+
 /*# sourceMappingURL=app.css.map */
