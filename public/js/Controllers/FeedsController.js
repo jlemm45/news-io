@@ -1,6 +1,6 @@
 'use strict';
 
-var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies', 'modal', 'logincomponent', 'registercomponent', 'snugfeed.service.user', 'managefeedscomponent', 'snugfeed.service.feeds', 'newfeedcomponent']);
+var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies', 'modal', 'logincomponent', 'registercomponent', 'snugfeed.service.user', 'managefeedscomponent', 'snugfeed.service.feeds', 'newfeedcomponent', 'readarticlecomponent']);
 
 /**
  * Feeds Controller
@@ -24,6 +24,7 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
     $scope.savedArticles = {};                          //user saved articles
     $scope.showSaved = false;                           //if we are showing saved articles
     $scope.articleView = true;                          //handles toggling view to list or grid
+    $scope.articleToRead = {};                          //active article to read in modal
     $scope.noti = {                                     //holds values for top notification bar
         text: 'Alert'
     };
@@ -251,6 +252,12 @@ snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesSe
 
     $scope.$on('register success', function() {
         $scope.loginModal.activeModel = 'login';
+    });
+
+    $scope.$on('read article', function(c,value,r) {
+        $scope.articleToRead = value;
+        $('#readArticleModal')
+            .modal({ blurring: true }).modal('show');
     });
 
     $scope.$on('add feed success', function() {

@@ -7,8 +7,8 @@ var snuglogin = angular.module('snug-login', ['logincomponent']);
  */
 snuglogin.controller('loginController', function($scope) {
 
-    $scope.loginSuccess = function() {
+    $scope.$on('login success', function() {
         window.location = '/feeds';
-    }
+    });
 
 });

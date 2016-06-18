@@ -124,12 +124,12 @@
         </div>
         <modal template="login" header="Login" modal-id="loginModal" options="loginModal"></modal>
         <modal template="manageFeeds" header="Manage Feeds" modal-id="feedsModal" options="manageFeedsModal"></modal>
-        <modal header="Read" modal-id="readModal" basic="basic">
-                
-        </modal>
         <modal header="Add New Feed" modal-id="newFeedModal">
             <p>Feed must be a valid xml rss feed.</p>
             <newfeedcomponent></newfeedcomponent>
+        </modal>
+        <modal header="@{{articleToRead.article_title}}" modal-id="readArticleModal">
+            <readarticlecomponent article="articleToRead"></readarticlecomponent>
         </modal>
     </div>
 @endsection
@@ -142,4 +142,5 @@
     <script src="/js/Directives/Article.js"></script>
     <script src="/js/Directives/NewFeed.js"></script>
     <script src="/js/Services/ArticleService.js"></script>
+    <script src="/js/Directives/ReadArticle.js"></script>
 @endsection

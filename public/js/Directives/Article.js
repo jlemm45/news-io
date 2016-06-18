@@ -12,6 +12,10 @@ angular.module('article', ['ngSanitize', 'snugfeed.service.articles']).directive
                 })
             });
         };
+
+        scope.readMore = function(article) {
+            scope.$emit('read article', article);
+        }
     }
 
     return {
@@ -27,6 +31,6 @@ angular.module('article', ['ngSanitize', 'snugfeed.service.articles']).directive
         '</div>' +
         '<h2 class="ui header">{{article.article_title}}</h2>' +
         '<p ng-bind-html="toTrustedHTML(article.article_description)" ng-if="view"></p>' +
-        '<p><a href="#">Read More</a></p>'
+        '<p><a href="#" ng-click="readMore(article)">Read More</a></p>'
     };
 });
