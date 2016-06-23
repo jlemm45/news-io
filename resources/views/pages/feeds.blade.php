@@ -117,8 +117,7 @@
             </div>
             <div ng-if="!user" class="ui grid">
                 <div class="sixteen wide column">
-                    <button class="ui button right floated" ng-click="showLoginModal()">Login</button>
-                    <button class="ui button right floated">Register</button>
+                    <button class="ui button right floated" ng-click="showLoginModal()">Login/Register</button>
                 </div>
             </div>
         </div>

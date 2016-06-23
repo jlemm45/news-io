@@ -1,22 +1,26 @@
-angular.module('snugfeed.service.user', [])
-    .service('snugfeedUserService', [ "$http", "$q", "$rootScope", function ($http, $q, $rootScope) {
+'use strict';
 
-        var loginUser = function (login) {
-            return $http.post('/auth/login', login);
-        };
+(function(angular) {
+    angular.module('snugfeed.service.user', [])
+        .service('snugfeedUserService', [ "$http", "$q", "$rootScope", function ($http, $q, $rootScope) {
 
-        var registerUser = function (register) {
-            return $http.post('/auth/register', register);
-        };
+            var loginUser = function (login) {
+                return $http.post('/auth/login', login);
+            };
 
-        var getUserStatus = function () {
-            return $http.get('/auth/status');
-        };
+            var registerUser = function (register) {
+                return $http.post('/auth/register', register);
+            };
 
-        return {
-            loginUser: loginUser,
-            registerUser: registerUser,
-            getUserStatus: getUserStatus
-        };
+            var getUserStatus = function () {
+                return $http.get('/auth/status');
+            };
 
-    }]);
+            return {
+                loginUser: loginUser,
+                registerUser: registerUser,
+                getUserStatus: getUserStatus
+            };
+
+        }]);
+})(angular);

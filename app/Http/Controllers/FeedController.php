@@ -71,7 +71,7 @@ class FeedController extends Controller
         $ids = explode(',', $_GET['ids']);
         return DB::table('articles')
             ->join('feeds', 'feed_id', '=', 'feeds.id')
-            ->select('feeds.icon_name', 'articles.feed_id', 'articles.id', 'article_title', 'article_img',
+            ->select('feeds.icon_name', 'articles.feed_id', 'articles.created_at', 'articles.id', 'article_title', 'article_img',
                 'article_description')
             ->whereIn('feeds.id', $ids)
             ->where($where[0], $where[1], $where[2])
