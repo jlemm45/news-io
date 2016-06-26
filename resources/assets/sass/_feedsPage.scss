@@ -135,6 +135,10 @@
   }
   .mason-sizer, .mason {
     width: calc(20% - 10px);
+
+    &.featured, .mason-featured {
+      width: calc(100% - 10px);
+    }
     @include mediaWidth(1200px) {
       width: calc(50% - 10px);
     }

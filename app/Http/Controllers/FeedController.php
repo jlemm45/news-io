@@ -17,9 +17,16 @@ class FeedController extends Controller
 
     public function __construct()
     {
+        //have to define a cache location
         $this->cache = dirname(dirname(dirname(dirname(__FILE__)))) . '/storage/framework/cache';
     }
 
+    /**
+     * Get an rss feed using simple pie
+     *
+     * @param $url
+     * @return array
+     */
     public function getFeed($url) {
         $feed = new SimplePie();
         $feed->set_feed_url($url);
@@ -61,7 +68,32 @@ class FeedController extends Controller
         return $feed;
     }
 
+    /**
+     * Main method to return article data to the front
+     *
+     * @return mixed
+     */
     public function getArticles() {
+        $articles = $this->getArticlesFromDB();
+
+        $featuredChosen = false;
+        $newArr = $articles;
+
+        foreach($articles as $key => $article) {
+            $des = $article->article_description;
+            $article->article_description = $this->stripATags($des);
+            $article->article_title = htmlspecialchars_decode($article->article_title);
+            if($article->article_img && !$featuredChosen) {
+                $article->featured = true;
+                $featuredChosen = true;
+                array_unshift($newArr, $article);
+                unset($newArr[$key+1]);
+            }
+        }
+        return array_values($newArr);
+    }
+
+    private function getArticlesFromDB() {
         if(isset($_GET['article-ids'])) {
             $ids = explode(',', $_GET['article-ids']);
             return Article::find($ids);
@@ -80,6 +112,21 @@ class FeedController extends Controller
             ->get();
     }
 
+    /**
+     * Strip out anchor tags from html
+     *
+     * @param $description
+     * @return mixed
+     */
+    private function stripATags($description) {
+        return preg_replace('/<a\b[^>]*>(.*?)<\/a>/i', '', $description);
+    }
+
+    /**
+     * Return the view for the feeds page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function feedsView() {
         $user = false;
         if (Auth::user())
@@ -89,6 +136,11 @@ class FeedController extends Controller
         return view('pages.feeds', ['feeds' => FeedModel::all(), 'user' => $user]);
     }
 
+    /**
+     * Welcome page view
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function welcomeView() {
         return view('pages.welcome');
     }

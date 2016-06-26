@@ -100,6 +100,8 @@ body {
     float: left; }
   #feed-stream .mason-sizer, #feed-stream .mason {
     width: calc(20% - 10px); }
+    #feed-stream .mason-sizer.featured, #feed-stream .mason-sizer .mason-featured, #feed-stream .mason.featured, #feed-stream .mason .mason-featured {
+      width: calc(100% - 10px); }
     @media (max-width: 1200px) {
       #feed-stream .mason-sizer, #feed-stream .mason {
         width: calc(50% - 10px); } }

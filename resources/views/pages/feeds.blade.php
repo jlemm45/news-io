@@ -15,7 +15,10 @@
             </div>
             <div id="logo">
                 <a href="/">
-                    <img src="https://s3-us-west-2.amazonaws.com/news-io/img/logo-green.png" class="img-responsive">
+                    <img src="https://s3-us-west-2.amazonaws.com/news-io/img/logo-green.png" class="img-responsive"
+                         ng-if="!sidebarToggle">
+                    <img src="https://s3-us-west-2.amazonaws.com/news-io/img/logo-green-abb.png"
+                         class="img-responsive" ng-if="sidebarToggle">
                 </a>
             </div>
             <div class="item" ng-class="{'active': !articleFilter && !showSaved}">
@@ -63,10 +66,12 @@
                         <div ng-if="articleView">
                             <div class="mason-sizer"></div>
                             <div class="mason-gutter"></div>
+                            <div class="mason-featured"></div>
+
                             <div class="mason" ng-repeat="feed in feeds" ng-if="!articleFilter ||
-                        articleFilter == feed.feed_id || showSaved">
+                        articleFilter == feed.feed_id || showSaved" ng-class="{'featured': feed.featured}">
                                 <div class="ui fluid card article" ng-class="{'incoming': feed.incoming}">
-                                    <article article="feed" view="true"></article>
+                                    <article article="feed" view="true" showsaved="showSaved"></article>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +79,7 @@
                         <div ng-if="!articleView">
                             <div ng-repeat="feed in feeds" class="list-article" ng-if="!articleFilter || articleFilter
                              == feed.feed_id || showSaved">
-                                <article article="feed" view="false"></article>
+                                <article article="feed" view="false" showsaved="showSaved"></article>
                             </div>
                         </div>
                     </div>
@@ -107,7 +112,7 @@
                         <span>List View</span>
                         <div class="ui slider checkbox">
                             <input type="checkbox" name="public" ng-change="toggleView(toggle)" ng-model="toggle"
-                                   ng-init="toggle=true">
+                                   ng-init="toggle=articleView">
                             <label></label>
                         </div>
                         <span>Grid View</span>
@@ -143,4 +148,5 @@
     <script src="/js/Directives/NewFeed.js"></script>
     <script src="/js/Services/ArticleService.js"></script>
     <script src="/js/Directives/ReadArticle.js"></script>
+    <script src="/js/Services/PreferenceService.js"></script>
 @endsection

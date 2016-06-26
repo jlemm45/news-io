@@ -5,8 +5,6 @@
         $scope.toTrustedHTML = function( html ){
             return $sce.trustAsHtml( html );
         };
-
-        console.log($scope);
     }
 
     angular.module('readarticlecomponent', ['ngSanitize']).component('readarticlecomponent', {

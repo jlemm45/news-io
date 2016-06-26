@@ -1,34 +1,38 @@
-angular.module('snugfeed.service.articles', [])
-    .service('snugfeedArticlesService', [ "$http", "$q", "$rootScope", function ($http, $q, $rootScope) {
+'use strict';
 
-        var getArticles = function (page,ids) {
-            var query = page ? '&start='+page : '';
-            ids = '?ids='+ids.join();
-            return $http.get("/api/articles"+ids+query);
-        };
+(function(angular) {
+    angular.module('snugfeed.service.articles', [])
+        .service('snugfeedArticlesService', [ "$http", "$q", "$rootScope", function ($http, $q, $rootScope) {
 
-        var saveArticle = function(id) {
-            return $http.put("/api/article/"+id);
-        };
+            var getArticles = function (page,ids) {
+                var query = page ? '&start='+page : '';
+                ids = '?ids='+ids.join();
+                return $http.get("/api/articles"+ids+query);
+            };
 
-        var getArticle = function(id) {
-            return $http.get("/api/article/"+id);
-        };
+            var saveArticle = function(id) {
+                return $http.put("/api/article/"+id);
+            };
 
-        var getArticlesByIds = function(ids) {
-            return $http.get("/api/articles?article-ids="+ids);
-        };
+            var getArticle = function(id) {
+                return $http.get("/api/article/"+id);
+            };
 
-        var getSavedArticles = function() {
-            return $http.get("/api/article");
-        };
+            var getArticlesByIds = function(ids) {
+                return $http.get("/api/articles?article-ids="+ids);
+            };
 
-        return {
-            getArticles: getArticles,
-            saveArticle: saveArticle,
-            getSavedArticles: getSavedArticles,
-            getArticle: getArticle,
-            getArticlesByIds: getArticlesByIds
-        };
+            var getSavedArticles = function() {
+                return $http.get("/api/article");
+            };
 
-    }]);
+            return {
+                getArticles: getArticles,
+                saveArticle: saveArticle,
+                getSavedArticles: getSavedArticles,
+                getArticle: getArticle,
+                getArticlesByIds: getArticlesByIds
+            };
+
+        }]);
+})(angular);
