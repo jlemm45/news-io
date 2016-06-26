@@ -24,14 +24,14 @@
         $scope.activeFeeds = $cookies.getObject('feeds');           //active feeds
         $scope.savedArticles = {};                                  //user saved articles
         $scope.showSaved = false;                                   //if we are showing saved articles
-        $scope.articleView = preferenceService.get('articleView');          //handles toggling view to list or grid
+        $scope.articleView = preferenceService.get('articleView');  //handles toggling view to list or grid
         $scope.articleToRead = {};                                  //active article to read in modal
         $scope.noti = {                                             //holds values for top notification bar
             text: 'Alert'
         };
-        var msnry;
+        var msnry = false;
         function resetLayout() {
-            if($scope.articleView) {
+            if(!$scope.articleView) {
                 $timeout(function () {
                     msnry = new Masonry( '#article-contain', {      //init mason layout
                         itemSelector: '.mason',
@@ -46,7 +46,7 @@
                 }, 200);
             }
             else {
-                msnry.destroy();
+                if(msnry) msnry.destroy();
             }
         }
 

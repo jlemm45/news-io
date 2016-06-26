@@ -63,7 +63,7 @@
                         {{--</div>--}}
                     {{--</div>--}}
                     <div id="article-contain">
-                        <div ng-if="articleView">
+                        <div ng-if="!articleView">
                             <div class="mason-sizer"></div>
                             <div class="mason-gutter"></div>
                             <div class="mason-featured"></div>
@@ -76,7 +76,7 @@
                             </div>
                         </div>
 
-                        <div ng-if="!articleView">
+                        <div ng-if="articleView">
                             <div ng-repeat="feed in feeds" class="list-article" ng-if="!articleFilter || articleFilter
                              == feed.feed_id || showSaved">
                                 <article article="feed" view="false" showsaved="showSaved"></article>
@@ -109,13 +109,13 @@
                 </div>
                 <div class="four wide column">
                     <div class="line">
-                        <span>List View</span>
+                        <span>Grid View</span>
                         <div class="ui slider checkbox">
                             <input type="checkbox" name="public" ng-change="toggleView(toggle)" ng-model="toggle"
                                    ng-init="toggle=articleView">
                             <label></label>
                         </div>
-                        <span>Grid View</span>
+                        <span>List View</span>
                     </div>
                     <a class="ui button right floated" href="/auth/logout">Logout</a>
                 </div>

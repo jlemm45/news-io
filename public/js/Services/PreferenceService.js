@@ -21,7 +21,8 @@
              * @returns {boolean}
              */
             function get(preference) {
-                return $cookies.getObject('preferences')[preference] == true;
+                if(typeof $cookies.getObject('preferences') !== 'undefined') return $cookies.getObject('preferences')[preference];
+                return false;
             }
 
             return {
