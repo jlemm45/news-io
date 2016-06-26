@@ -1,3 +1,5 @@
+'use strict';
+
 (function(angular) {
     angular.module('managefeedscomponent', ['snugfeed.service.feeds']).directive('managefeedscomponent', function(snugfeedFeedsService) {
 
@@ -19,7 +21,6 @@
                 init();
             });
         }
-
         return {
             link: link,
             restrict: 'E',

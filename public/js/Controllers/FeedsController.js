@@ -139,7 +139,6 @@
             page = page ? $scope.lastFeedID : false;
             var ids = $scope.articleFilter ? [$scope.articleFilter] : getFeedsIds();
             snugfeedArticlesService.getArticles(page,ids).then(function(data) {
-                console.log(data.data);
                 $scope.feeds = $scope.feeds.concat(data.data);
                 $scope.lastFeedID = data.data[data.data.length - 1].id;
 

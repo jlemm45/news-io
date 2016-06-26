@@ -9,6 +9,9 @@ var snug = snug || {};
                 initals+= v.slice(0,1);
             });
             return initals;
+        },
+        parseDate: function(date) {
+            return moment(date).format('MMMM Do YYYY, h:mm a');
         }
     }
 })();
