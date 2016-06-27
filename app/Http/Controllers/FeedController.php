@@ -76,6 +76,8 @@ class FeedController extends Controller
     public function getArticles() {
         $articles = $this->getArticlesFromDB();
 
+        if(is_object($articles)) return $articles;
+
         $featuredChosen = false;
         $newArr = $articles;
 
@@ -90,6 +92,7 @@ class FeedController extends Controller
                 unset($newArr[$key+1]);
             }
         }
+
         return array_values($newArr);
     }
 
