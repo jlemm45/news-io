@@ -43,3 +43,17 @@ Route::group(['prefix' => 'api'], function () {
         return env('SOCKET_URL');
     });
 });
+
+//public outside api
+Route::group(['prefix' => 'api/v1', 'middleware' => ['auth:api', 'cors']], function () {
+    Route::resource('feed', 'Api\FeedController');
+    Route::resource('article', 'Api\ArticleController');
+    Route::put('feeds', 'Api\FeedController@updateUserFeeds');
+    Route::get('user/status', 'Auth\AuthController@status');
+    Route::get('articles', 'FeedController@getArticles');
+});
+
+//public outside api
+Route::group(['prefix' => 'api/v1', 'middleware' => ['cors']], function () {
+    Route::post('user/login', 'Auth\AuthController@apiLogin');
+});

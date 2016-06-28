@@ -106,7 +106,7 @@ class AuthController extends Controller
     }
 
     public function status() {
-        $user = Auth::user();
+        $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
 
         if($user) {
             $user->feeds = User::find($user->id)->feeds()->get();
@@ -114,5 +114,20 @@ class AuthController extends Controller
             return ['user' => $user];
         }
         return ['user' => false];
+    }
+
+    /**
+     * Used to get api token with username and password
+     *
+     * @return mixed
+     */
+    public function apiLogin() {
+        $req = Input::all();
+        if (Auth::once($req)) {
+            return User::where('email', '=', $req['email'])->select('api_token')->get();
+        }
+        return Response::json([
+            'error' => 'Invalid Credentials'
+        ], 401);
     }
 }
