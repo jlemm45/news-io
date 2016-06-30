@@ -30,7 +30,7 @@ class ApiBaseController extends Controller
 
         $query = $model::with($relations);
 
-        $this->addConstraints($query, Input::get());
+        //$this->addConstraints($query, Input::get());
 
         return $query->get();
     }

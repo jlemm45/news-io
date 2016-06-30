@@ -19,8 +19,9 @@ class FeedController extends ApiBaseController
 
     public function index() {
         $feeds = parent::index()->toArray();
-        if(Auth::user()) {
-            $activeFeeds = Auth::user()->feeds()->get();
+        $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
+        if($user) {
+            $activeFeeds = $user->feeds()->get();
 
             $ids = [];
             foreach($activeFeeds as $active) {
@@ -121,11 +122,11 @@ class FeedController extends ApiBaseController
      * @return array
      */
     public function updateUserFeeds(Request $request) {
-        $user = Auth::user();
+        $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
         $user->feeds()->detach();
         $ids = [];
         foreach($request->all() as $r) {
-            $ids[] = $r['id'];
+            if(!empty($r['id'])) $ids[] = $r['id'];
         }
         $user->feeds()->attach($ids);
         return ['status', 'success'];
