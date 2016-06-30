@@ -106,7 +106,7 @@ class ApiBaseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->type::class::destroy($id);
     }
 
     private function addConstraints(&$query, $constraints)

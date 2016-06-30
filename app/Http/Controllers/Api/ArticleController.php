@@ -74,7 +74,7 @@ class ArticleController extends ApiBaseController
      */
     public function destroy($id)
     {
-        //
+        return ['hello' => 'world'];
     }
 
     public function show(Request $request, $id) {

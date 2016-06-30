@@ -70,16 +70,6 @@
             });
         }
 
-        //function updatePreferencesCookie(preference, value) {
-        //    var cookie = $cookies.getObject('preferences') ? $cookies.getObject('preferences') : {};
-        //    cookie[preference] = value;
-        //    $cookies.putObject('preferences', cookie);
-        //}
-        //
-        //function getPreference(preference) {
-        //    return $cookies.getObject('preferences')[preference] == true;
-        //}
-
         /**
          * Subscribe logged in user to sockets
          */
@@ -219,7 +209,7 @@
             var idsToGet = [];
             _.each(json[0], function(articleArr, feedID) {
                 if(userFeedIds.indexOf(parseInt(feedID)) > -1) {
-                    _.each(articleArr, function(articleID, k) {
+                    _.each(articleArr, function(articleID) {
                         idsToGet.push(articleID);
                         $scope.feeds.unshift({incoming: true});
                     });
@@ -230,7 +220,7 @@
                 incoming('Incoming Article');
                 snugfeedArticlesService.getArticlesByIds(idsToGet.join()).then(function(resp) {
                     var length = resp.data.length - 1;
-                    _.each(resp.data, function(v, k) {
+                    _.each(resp.data, function(v) {
                         bringInNewArticle(length, v);
                         length--;
                     });
@@ -253,9 +243,21 @@
         };
 
         //listen to emit event from article saved
-        $scope.$on('article saved', function(c,v,r) {
+        $scope.$on('article saved', function(c,v) {
             $scope.savedArticles.push(v);
             incoming('Article Saved!');
+        });
+
+        $scope.$on('article deleted', function(c,article) {
+            var arr = $scope.savedArticles;
+            arr = _.filter(arr, function(item) {
+                console.log(item);
+                return item.id !== article.id;
+            });
+            $scope.savedArticles = arr;
+            $scope.showSavedArticles();
+
+            incoming('Article Deleted!');
         });
 
         $scope.$on('login success', function() {
@@ -267,7 +269,7 @@
             $scope.loginModal.activeModel = 'login';
         });
 
-        $scope.$on('read article', function(c,value,r) {
+        $scope.$on('read article', function(c,value) {
             $scope.articleToRead = value;
             $('#readArticleModal')
                 .modal({ blurring: true }).modal('show');
