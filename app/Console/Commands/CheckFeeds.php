@@ -41,7 +41,7 @@ class CheckFeeds extends Command
      */
     public function handle()
     {
-        $time_start = microtime(true);
+        //$time_start = microtime(true);
         //$urls = \App\Feed::where('id', '=', 4)->get();
         $urls = \App\Feed::all();
         $newArticles = false;
@@ -52,11 +52,11 @@ class CheckFeeds extends Command
 
             $feeds = $feed->getFeed($url->feed_url);
 
-            echo 'before--------';
+            //echo 'before--------';
             if(Cache::get($url->feed_url) !== $feeds) {
                 Cache::put($url->feed_url, $feeds, 60);
 
-                echo 'cache different';
+                //echo 'cache different';
 
                 $newArticleIds = [];
                 foreach ($feeds as $feed) {
@@ -65,6 +65,7 @@ class CheckFeeds extends Command
                         $article->article_description = $feed['des'];
                         $article->article_title = $feed['title'];
                         $article->article_img = $feed['thumb'];
+                        $article->article_link = $feed['link'];
                         $article->feed_id = $url->id;
                         $article->save();
                         $newArticleIds[] = $article->id;
@@ -75,8 +76,8 @@ class CheckFeeds extends Command
             }
         }
         if($newArticles) SocketController::pingSocketIO($newFeedIds);
-        $time_end = microtime(true);
-        $execution_time = ($time_end - $time_start);
-        echo $execution_time;
+        //$time_end = microtime(true);
+        //$execution_time = ($time_end - $time_start);
+        //echo $execution_time;
     }
 }

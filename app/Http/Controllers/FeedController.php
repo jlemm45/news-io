@@ -7,7 +7,8 @@ use SimplePie;
 use App\Feed as FeedModel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Response;
+use App\Helpers\Time;
+use GuzzleHttp;
 
 use App\Http\Requests;
 
@@ -42,11 +43,22 @@ class FeedController extends Controller
             $arr[] = [
                 'des' => $item->get_description(),
                 'title' => $item->get_title(),
-                'thumb' => $enclosure->get_thumbnail()
+                'thumb' => $enclosure->get_thumbnail(),
+                'link' => $item->get_permalink()
             ];
 
         }
         return $arr;
+    }
+
+    public function getBaseUrl($url) {
+        $info = parse_url($url);
+        $arr = explode('.',$info['host']);
+
+        $base = $arr[count($arr)-2];
+        $ending = end($arr);
+
+        return 'http://'.$base.'.'.$ending;
     }
 
     /**
@@ -85,6 +97,10 @@ class FeedController extends Controller
             $des = $article->article_description;
             $article->article_description = $this->stripATags($des);
             $article->article_title = htmlspecialchars_decode($article->article_title);
+            //$article->time_ago = Time::timePassed($article->created_at);
+            $article->created_at = Time::utcToCentral($article->created_at);
+            //$article->icon_url = 'https://www.google.com/s2/favicons?domain='.$article
+
             if($article->article_img && !$featuredChosen) {
                 $article->featured = true;
                 $featuredChosen = true;
@@ -106,7 +122,7 @@ class FeedController extends Controller
         $ids = explode(',', $_GET['ids']);
         return DB::table('articles')
             ->join('feeds', 'feed_id', '=', 'feeds.id')
-            ->select('feeds.icon_name', 'articles.feed_id', 'articles.created_at', 'articles.id', 'article_title', 'article_img',
+            ->select('articles.feed_id', 'article_link', 'articles.created_at', 'articles.id', 'article_title', 'article_img',
                 'article_description')
             ->whereIn('feeds.id', $ids)
             ->where($where[0], $where[1], $where[2])

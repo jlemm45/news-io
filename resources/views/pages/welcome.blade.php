@@ -16,8 +16,7 @@
 
                 <p>Select from the feeds below to build your customized news feed.</p>
                 <managefeedscomponent data="feedData"></managefeedscomponent>
-                <button class="fluid ui green button" ng-click="submit(feedData)" ng-class="{'loading': loading}">Get
-                    Started</button>
+                <button class="fluid ui green button" ng-click="submit(feedData)" ng-class="{'loading': loading}">Get Started</button>
             </div>
         </div>
     </div>

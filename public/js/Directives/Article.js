@@ -4,8 +4,17 @@
     angular.module('article', ['ngSanitize', 'snugfeed.service.articles']).directive('article', function($sce,snugfeedArticlesService,$timeout) {
 
         function link(scope, element, attrs) {
+
+            function charLimit(content) {
+                content = content.split('<br>')[0];
+                content = content.split('</p>')[0];
+                if(content.length > 400) content = content.substring(0,400)+'...';
+                return content;
+            }
+
             scope.toTrustedHTML = function( html ){
-                return $sce.trustAsHtml( html );
+                //charLimit(html);
+                return $sce.trustAsHtml( charLimit(html) );
             };
 
             scope.saveArticle = function(article) {
@@ -29,7 +38,17 @@
             };
 
             scope.parseDate = function(date) {
-                return snug.parseDate(date);
+                return 'Added '+snug.timePassed(date);
+            };
+
+            scope.favicon = getFavicon(scope.article.feed_id);
+
+            function getFavicon(id) {
+                if(scope.$parent.activeFeeds) {
+                    var arr = _.find(scope.$parent.activeFeeds, function(feed){ return feed.id == id });
+                    return arr.favicon_url;
+                }
+                return false;
             }
         }
 
@@ -43,7 +62,7 @@
             '<i ng-click="deleteArticle(article)" class="trash outline icon pointer" ng-if="showSaved"></i>' +
             '</div>' +
             '<div class="icon">' +
-            '<img ng-if="article.icon_name" ng-src="https://s3-us-west-2.amazonaws.com/news-io/icons/{{article.icon_name}}.png">' +
+            '<img ng-src="{{favicon}}">' +
             '</div>' +
             '<h2 class="ui header">{{article.article_title}}</h2>' +
             '<p ng-bind-html="parseDate(article.created_at)"></p>' +

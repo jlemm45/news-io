@@ -26,7 +26,7 @@
             </div>
             <div class="item" ng-class="{'active': articleFilter == feed.id && !showSaved}" ng-repeat="feed in
             activeFeeds">
-                <a href="#" ng-click="filterArticles(feed.id)"><img ng-if="feed.icon_name" ng-src="https://s3-us-west-2.amazonaws.com/news-io/icons/@{{feed.icon_name}}.png"><b ng-show="!sidebarToggle">@{{feed.source}}</b></a>
+                <a href="#" ng-click="filterArticles(feed.id)"><img ng-src="@{{feed.favicon_url}}"><b ng-show="!sidebarToggle">@{{feed.source}}</b></a>
             </div>
         </div>
         <div id="feed-stream" ng-class="{'wider': sidebarToggle}" ng-cloak>

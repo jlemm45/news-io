@@ -15,7 +15,7 @@ class FeedTest extends TestCase
     public function testExample()
     {
         $feed = new FeedController();
-        $test = $feed->getFeed('test');
+        $test = $feed->lookForFavicon('http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml');
 
         $this->assertTrue(true);
     }

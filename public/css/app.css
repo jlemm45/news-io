@@ -272,4 +272,10 @@ body {
 newfeedcomponent button.ui.green.button {
   margin-top: 20px; }
 
+#readArticleModal {
+  border-radius: 0; }
+  #readArticleModal .content img {
+    max-width: 100%;
+    height: auto; }
+
 /*# sourceMappingURL=app.css.map */

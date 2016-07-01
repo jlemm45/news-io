@@ -18,6 +18,8 @@ class FeedController extends ApiBaseController
     protected $type = Feed::class;
 
     public function index() {
+//        $feed = Feed::find(21);
+//        print_r($feed->getFavicon());
         $feeds = parent::index()->toArray();
         $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
         if($user) {
@@ -71,6 +73,7 @@ class FeedController extends ApiBaseController
             if($check) {
                 $feed = new Feed;
                 $feed->feed_url = $request->feed_url;
+                $feed->base_url = $f->getBaseUrl($request->feed_url);
                 $feed->source = $check->get_title();
                 $feed->save();
                 Artisan::call('feeds:check'); //do an immediate check after a new feed is added

@@ -271,8 +271,9 @@
 
         $scope.$on('read article', function(c,value) {
             $scope.articleToRead = value;
-            $('#readArticleModal')
-                .modal({ blurring: true }).modal('show');
+            $timeout(function() {
+                $('#readArticleModal').modal({ blurring: true }).modal('show');
+            },100);
         });
 
         $scope.$on('add feed success', function() {
