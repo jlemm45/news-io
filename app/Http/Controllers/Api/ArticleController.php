@@ -74,7 +74,9 @@ class ArticleController extends ApiBaseController
      */
     public function destroy($id)
     {
-        return ['hello' => 'world'];
+        $user = Auth::user();
+        $user->articles()->detach($id);
+        return ['status' => 'deleted'];
     }
 
     public function show(Request $request, $id) {
