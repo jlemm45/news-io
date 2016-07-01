@@ -123,9 +123,9 @@
                         <a class="ui basic right pointing label">
                             <div class="avatar">@{{user.initials}}</div><span class="name">@{{user.name}}</span>
                         </a>
-                        <div class="ui button">
+                        <a href="/auth/logout" class="ui button">
                             Logout
-                        </div>
+                        </a>
                     </div>
 
                     {{--<a class="ui button right floated" href="/auth/logout">Logout</a>--}}

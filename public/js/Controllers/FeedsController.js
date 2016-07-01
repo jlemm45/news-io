@@ -102,6 +102,7 @@
                     $scope.activeFeeds = $scope.user.feeds;
                     $scope.user.initials = snug.generateAvatarInitials($scope.user.name);
                     subscribeToSockets();
+                    getSavedArticles();
                 }
                 $scope.getArticles(false);
             });
@@ -202,7 +203,6 @@
 
         //on load
         getUserStatus();
-        getSavedArticles();
 
         function incoming(text) {
             $scope.incoming = true;

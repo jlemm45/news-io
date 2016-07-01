@@ -148,7 +148,7 @@ body {
     line-height: 3.1em;
     float: left;
     margin-left: 15px; }
-  #utility-bar button, #utility-bar a.button {
+  #utility-bar button {
     height: 26px;
     line-height: 0.40em;
     font-size: 0.9em;
