@@ -17,6 +17,13 @@ body {
 .pointer {
   cursor: pointer; }
 
+#page-loading {
+  transition: all ease 0.5s; }
+  #page-loading.ng-enter-active {
+    opacity: 1; }
+  #page-loading.ng-leave-active {
+    opacity: 0; }
+
 #sidebar {
   background: #eee;
   width: 170px;
@@ -151,44 +158,52 @@ body {
     color: #fff;
     line-height: 2.1em;
     margin-left: 10px; }
-  #utility-bar .avatar {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    background: #21BA45;
-    float: left;
-    text-align: center;
-    line-height: 2.1em;
-    text-transform: uppercase; }
+  #utility-bar #logout-avatar {
+    height: 35px;
+    margin: 5px; }
+    #utility-bar #logout-avatar .ui.label {
+      background: #21BA45; }
+    #utility-bar #logout-avatar .avatar {
+      background: #eee;
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+      float: left;
+      text-align: center;
+      line-height: 1.9em;
+      text-transform: uppercase; }
   #utility-bar #user-manage-menu {
     cursor: pointer;
-    width: 200px;
+    width: 50px;
     float: left;
     background: #444;
     height: 45px;
     padding: 7px; }
     #utility-bar #user-manage-menu:hover {
       background: #444; }
-      #utility-bar #user-manage-menu:hover .popout {
-        display: block; }
-    #utility-bar #user-manage-menu .popout {
-      display: none;
-      padding: 15px;
-      position: absolute;
-      top: -86px;
-      background: #333;
-      height: 100px;
-      left: 14px;
-      width: 200px; }
-    #utility-bar #user-manage-menu .settings.icon {
-      float: left;
-      font-size: 1.5em;
-      line-height: 1.5em;
-      margin-right: 1em; }
+    #utility-bar #user-manage-menu .setting.icon {
+      font-size: 1.8em;
+      line-height: 1.2em;
+      margin-left: 3px; }
   #utility-bar .ui.slider.checkbox {
     padding: 5px 3px 4px 13px; }
     #utility-bar .ui.slider.checkbox input:checked ~ .box:before, #utility-bar .ui.slider.checkbox input:checked ~ label:before, #utility-bar .ui.slider.checkbox .box:before, #utility-bar .ui.slider.checkbox label:before {
       background-color: #21BA45 !important; }
+
+.popout {
+  cursor: pointer;
+  color: #fff;
+  padding: 15px;
+  position: fixed;
+  bottom: 45px;
+  background: #333;
+  height: 100px;
+  left: 0;
+  width: 200px;
+  transition: all ease 0.5s;
+  z-index: 999; }
+  .popout.ng-hide {
+    bottom: -300px; }
 
 #incoming {
   position: fixed;
@@ -277,5 +292,8 @@ newfeedcomponent button.ui.green.button {
   #readArticleModal .content img {
     max-width: 100%;
     height: auto; }
+  #readArticleModal .content p {
+    font-size: 1.05em;
+    line-height: 1.6em; }
 
 /*# sourceMappingURL=app.css.map */

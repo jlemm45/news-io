@@ -1,13 +1,14 @@
 'use strict';
 
 (function(angular) {
-    var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies', 'modal', 'logincomponent', 'registercomponent', 'snugfeed.service.user', 'managefeedscomponent', 'snugfeed.service.feeds', 'newfeedcomponent', 'readarticlecomponent', 'snugfeed.service.preference']);
+    var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies', 'modal', 'logincomponent', 'registercomponent', 'snugfeed.service.user', 'managefeedscomponent', 'snugfeed.service.feeds', 'newfeedcomponent', 'readarticlecomponent', 'snugfeed.service.preference', 'ngAnimate']);
 
     /**
      * Feeds Controller
      */
     snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesService,$cookies,snugfeedUserService,snugfeedFeedsService,$timeout,preferenceService) {
 
+        $scope.loading = true;                                      //page loading control
         $scope.feeds = [];                                          //all active articles
         $scope.lastFeedID = 43;                                     //last article id for loading more articles
         $scope.sidebarToggle = preferenceService.get('sidebar');    //toggles state of sidebar
@@ -26,6 +27,7 @@
         $scope.showSaved = false;                                   //if we are showing saved articles
         $scope.articleView = preferenceService.get('articleView');  //handles toggling view to list or grid
         $scope.articleToRead = {};                                  //active article to read in modal
+        $scope.showSettingsMenu = false;                            //toggles the settings menu bottom right
         $scope.noti = {                                             //holds values for top notification bar
             text: 'Alert'
         };
@@ -133,7 +135,7 @@
                 $scope.lastFeedID = data.data[data.data.length - 1].id;
 
                 resetLayout();
-
+                $scope.loading = false;
             });
         };
 
@@ -186,6 +188,18 @@
             resetLayout();
         };
 
+        $scope.clearClick = function() {
+            $scope.showSettingsMenu = false;
+        };
+
+        /**
+         * Toggles the bottom right settings menu
+         */
+        $scope.toggleSettingsMenu = function($event) {
+            if($event) $event.stopPropagation();
+            $scope.showSettingsMenu = $scope.showSettingsMenu ? false : true;
+        };
+
         //on load
         getUserStatus();
         getSavedArticles();
@@ -230,7 +244,6 @@
 
         function bringInNewArticle(index, article) {
             $timeout(function() {
-                console.log(index);
                 $scope.feeds[index] = article;
                 resetLayout();
             },3000*(index+1));
@@ -272,7 +285,7 @@
         $scope.$on('read article', function(c,value) {
             $scope.articleToRead = value;
             $timeout(function() {
-                $('#readArticleModal').modal({ blurring: true }).modal('show');
+                $('#readArticleModal').modal('show');
             },100);
         });
 

@@ -6,10 +6,13 @@
         function link(scope, element, attrs) {
 
             function charLimit(content) {
-                content = content.split('<br>')[0];
-                content = content.split('</p>')[0];
-                if(content.length > 400) content = content.substring(0,400)+'...';
-                return content;
+                if(content) {
+                    content = content.split('<br>')[0];
+                    content = content.split('</p>')[0];
+                    if(content.length > 400) content = content.substring(0,400)+'...';
+                    return content;
+                }
+                return '';
             }
 
             scope.toTrustedHTML = function( html ){
@@ -44,11 +47,11 @@
             scope.favicon = getFavicon(scope.article.feed_id);
 
             function getFavicon(id) {
-                if(scope.$parent.activeFeeds) {
+                if(scope.$parent.activeFeeds && id) {
                     var arr = _.find(scope.$parent.activeFeeds, function(feed){ return feed.id == id });
                     return arr.favicon_url;
                 }
-                return false;
+                return '';
             }
         }
 

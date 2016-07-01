@@ -2,7 +2,10 @@
 @section('app', 'snug-feeds')
 
 @section('content')
-    <div ng-controller="feedsController">
+    <div ng-controller="feedsController" ng-click="clearClick()">
+        <div id="page-loading" class="ui active inverted dimmer" ng-if="loading">
+            <div class="ui large text loader">Loading</div>
+        </div>
         <div id="incoming" ng-class="{'active': incoming}" ng-cloak>
             <div class="ui container">
                 <i class="notched circle loading icon"></i>
@@ -15,9 +18,9 @@
             </div>
             <div id="logo">
                 <a href="/">
-                    <img src="https://s3-us-west-2.amazonaws.com/news-io/img/logo-green.png" class="img-responsive"
+                    <img src="https://s3-us-west-2.amazonaws.com/news-io/img/snug-logo.svg" class="img-responsive"
                          ng-if="!sidebarToggle">
-                    <img src="https://s3-us-west-2.amazonaws.com/news-io/img/logo-green-abb.png"
+                    <img src="https://s3-us-west-2.amazonaws.com/news-io/img/snug-logo-abbrv.svg"
                          class="img-responsive" ng-if="sidebarToggle">
                 </a>
             </div>
@@ -91,24 +94,23 @@
                 </div>
             </div>
         </div>
+        <div class="popout" ng-show="showSettingsMenu" ng-cloak>
+            <div ng-click="showMangeFeedsModal()"><i class="configure icon"></i>Manage Feeds</div>
+            <div ng-click="showNewFeedModal()"><i class="plus icon"></i>Add New Feed</div>
+        </div>
         <div id="utility-bar">
-            <div ng-if="user" class="ui grid">
-                <div class="twelve wide column">
+            <div ng-if="user" class="ui grid" ng-cloak>
+                <div class="eleven wide column">
                     <div id="user-manage-menu">
-                        <i class="settings icon"></i>
-                        <div class="avatar">@{{user.initials}}</div><span class="name">@{{user.name}}</span>
-                        <div class="popout">
-                            <div ng-click="showMangeFeedsModal()"><i class="configure icon"></i>Manage Feeds</div>
-                            <div ng-click="showNewFeedModal()"><i class="plus icon"></i>Add New Feed</div>
-                        </div>
+                        <i class="setting icon" ng-click="toggleSettingsMenu($event)"></i>
                     </div>
                     <div class="line pointer" ng-click="showSavedArticles()">
                         <i class="archive icon"></i>
                         <span>@{{savedArticles.length}} Saved Articles</span>
                     </div>
                 </div>
-                <div class="four wide column">
-                    <div class="line">
+                <div class="five wide column">
+                    <div class="line right floated">
                         <span>Grid View</span>
                         <div class="ui slider checkbox">
                             <input type="checkbox" name="public" ng-change="toggleView(toggle)" ng-model="toggle"
@@ -117,7 +119,16 @@
                         </div>
                         <span>List View</span>
                     </div>
-                    <a class="ui button right floated" href="/auth/logout">Logout</a>
+                    <div class="ui left labeled button right floated" id="logout-avatar">
+                        <a class="ui basic right pointing label">
+                            <div class="avatar">@{{user.initials}}</div><span class="name">@{{user.name}}</span>
+                        </a>
+                        <div class="ui button">
+                            Logout
+                        </div>
+                    </div>
+
+                    {{--<a class="ui button right floated" href="/auth/logout">Logout</a>--}}
                 </div>
             </div>
             <div ng-if="!user" class="ui grid">

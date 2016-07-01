@@ -18,8 +18,6 @@ class FeedController extends ApiBaseController
     protected $type = Feed::class;
 
     public function index() {
-//        $feed = Feed::find(21);
-//        print_r($feed->getFavicon());
         $feeds = parent::index()->toArray();
         $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
         if($user) {

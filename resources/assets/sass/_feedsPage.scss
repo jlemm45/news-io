@@ -1,3 +1,12 @@
+#page-loading {
+  transition: all ease 0.5s;
+  &.ng-enter-active {
+    opacity: 1;
+  }
+  &.ng-leave-active {
+    opacity: 0;
+  }
+}
 #sidebar {
   background: #eee;
   width: 170px;
@@ -69,22 +78,6 @@
   margin-bottom: 100px;
   position: relative;
 
-  //.new-articles {
-  //  position: absolute;
-  //  width: 120px;
-  //  height: 30px;
-  //  background: #eee;
-  //  border-radius: 20px;
-  //  text-align: center;
-  //  padding: 3px;
-  //  left: 0;
-  //  right: 0;
-  //  margin: auto;
-  //  z-index: 10;
-  //  border: 2px solid #ccc;
-  //  color: #555;
-  //  top: 0px;
-  //}
   &.wider {
     margin-left: 60px;
   }
@@ -205,45 +198,41 @@
     line-height: 2.1em;
     margin-left: 10px;
   }
-  .avatar {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    background: $green;
-    float: left;
-    text-align: center;
-    line-height: 2.1em;
-    text-transform: uppercase;
+  #logout-avatar {
+    height: 35px;
+    margin: 5px;
+
+    .ui.label {
+      background: $green;
+    }
+
+    .avatar {
+      background: #eee;
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+      float: left;
+      text-align: center;
+      line-height: 1.9em;
+      text-transform: uppercase;
+    }
   }
+
 
   #user-manage-menu {
     cursor: pointer;
-    width: 200px;
+    width: 50px;
     float: left;
     background: #444;
     height: 45px;
     padding: 7px;
     &:hover {
       background: #444;
-      .popout {
-        display: block;
-      }
     }
-    .popout {
-      display: none;
-      padding: 15px;
-      position: absolute;
-      top: -86px;
-      background: #333;
-      height: 100px;
-      left: 14px;
-      width: 200px;
-    }
-    .settings.icon {
-      float: left;
-      font-size: 1.5em;
-      line-height: 1.5em;
-      margin-right: 1em;
+    .setting.icon {
+      font-size: 1.8em;
+      line-height: 1.2em;
+      margin-left: 3px;
     }
   }
 
@@ -253,6 +242,23 @@
     }
 
     padding: 5px 3px 4px 13px;
+  }
+}
+.popout {
+  cursor: pointer;
+  color: #fff;
+  padding: 15px;
+  position: fixed;
+  bottom: 45px;
+  background: #333;
+  height: 100px;
+  left: 0;
+  width: 200px;
+  transition: all ease 0.5s;
+  z-index: 999;
+
+  &.ng-hide {
+    bottom: -300px;
   }
 }
 
