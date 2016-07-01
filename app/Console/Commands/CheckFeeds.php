@@ -6,6 +6,7 @@ use App\Article;
 use Illuminate\Console\Command;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\SocketController;
+use Illuminate\Support\Facades\Cache;
 
 class CheckFeeds extends Command
 {
@@ -40,6 +41,7 @@ class CheckFeeds extends Command
      */
     public function handle()
     {
+        $time_start = microtime(true);
         //$urls = \App\Feed::where('id', '=', 4)->get();
         $urls = \App\Feed::all();
         $newArticles = false;
@@ -50,21 +52,31 @@ class CheckFeeds extends Command
 
             $feeds = $feed->getFeed($url->feed_url);
 
-            $newArticleIds = [];
-            foreach($feeds as $feed) {
-                if(!Article::where('article_title', '=', $feed['title'])->count() > 0) {
-                    $article = new Article();
-                    $article->article_description = $feed['des'];
-                    $article->article_title = $feed['title'];
-                    $article->article_img = $feed['thumb'];
-                    $article->feed_id = $url->id;
-                    $article->save();
-                    $newArticleIds[] = $article->id;
-                    $newArticles = true;
+            echo 'before--------';
+            if(Cache::get($url->feed_url) !== $feeds) {
+                Cache::put($url->feed_url, $feeds, 60);
+
+                echo 'cache different';
+
+                $newArticleIds = [];
+                foreach ($feeds as $feed) {
+                    if (!Article::where('article_title', '=', $feed['title'])->count() > 0) {
+                        $article = new Article();
+                        $article->article_description = $feed['des'];
+                        $article->article_title = $feed['title'];
+                        $article->article_img = $feed['thumb'];
+                        $article->feed_id = $url->id;
+                        $article->save();
+                        $newArticleIds[] = $article->id;
+                        $newArticles = true;
+                    }
                 }
+                if (count($newArticleIds) > 0) $newFeedIds[] = [$url->id => $newArticleIds];
             }
-            if(count($newArticleIds) > 0) $newFeedIds[] = [$url->id => $newArticleIds];
         }
         if($newArticles) SocketController::pingSocketIO($newFeedIds);
+        $time_end = microtime(true);
+        $execution_time = ($time_end - $time_start);
+        echo $execution_time;
     }
 }
