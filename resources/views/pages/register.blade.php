@@ -7,7 +7,7 @@
             <h1>Register</h1>
         </div>
     </div>
-    <div>
+    <div ng-controller="registerController">
         <div class="ui grid container">
             <div class="ui two column centered grid">
                 <div class="column">

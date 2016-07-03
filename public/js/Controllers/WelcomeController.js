@@ -21,7 +21,7 @@
             });
             $cookies.putObject('feeds', selected);
             window.location = '/feeds'
-        }
+        };
 
     });
 })(angular);

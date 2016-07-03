@@ -132,10 +132,11 @@
             page = page ? $scope.lastFeedID : false;
             var ids = $scope.articleFilter ? [$scope.articleFilter] : getFeedsIds();
             snugfeedArticlesService.getArticles(page,ids).then(function(data) {
-                $scope.feeds = $scope.feeds.concat(data.data);
-                $scope.lastFeedID = data.data[data.data.length - 1].id;
-
-                resetLayout();
+                if(data.data.length > 0) {
+                    $scope.feeds = $scope.feeds.concat(data.data);
+                    $scope.lastFeedID = data.data[data.data.length - 1].id;
+                    resetLayout();
+                }
                 $scope.loading = false;
             });
         };
@@ -275,6 +276,7 @@
 
         $scope.$on('login success', function() {
             getUserStatus();
+            $scope.$broadcast('reload manage feeds');
             $('#loginModal').modal('hide');
         });
 
