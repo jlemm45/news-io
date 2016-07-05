@@ -34,13 +34,15 @@
         </div>
         <div id="feed-stream" ng-class="{'wider': sidebarToggle}" ng-cloak>
             <div class="ui text segment contain">
-                <div class="ui warning message" ng-if="!user">
-                    <i class="close icon" ng-click="warning=true;"></i>
-                    <div class="header">
-                        Notice
+                <div class="ui message" ng-if="!user && !showNotice">
+                    <i class="close icon" ng-click="hideNotice()"></i>
+                    <div class="content">
+                        <div class="header">
+                            Notice
+                        </div>
+                        <p>Don't forget to register to save your feeds.</p>
                     </div>
-                    <button class=""
-                    <p>Don't forget to register to save your feeds.</p>
+                    <button class="ui button">Register</button>
                 </div>
                 <div class="">
                     <div id="article-contain">
@@ -78,7 +80,7 @@
         </div>
         <div id="utility-bar">
             <div ng-if="user" class="ui grid" ng-cloak>
-                <div class="eleven wide column">
+                <div class="nine wide column">
                     <div id="user-manage-menu">
                         <i class="setting icon" ng-click="toggleSettingsMenu($event)"></i>
                     </div>
@@ -87,7 +89,7 @@
                         <span>@{{savedArticles.length}} Saved Articles</span>
                     </div>
                 </div>
-                <div class="five wide column">
+                <div class="seven wide column">
                     <div class="line right floated">
                         <span>Grid View</span>
                         <div class="ui slider checkbox">

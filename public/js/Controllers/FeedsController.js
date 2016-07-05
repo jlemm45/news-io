@@ -28,6 +28,7 @@
         $scope.articleView = preferenceService.get('articleView');  //handles toggling view to list or grid
         $scope.articleToRead = {};                                  //active article to read in modal
         $scope.showSettingsMenu = false;                            //toggles the settings menu bottom right
+        $scope.showNotice = preferenceService.get('hideNotice');    //shows the save feed top notice
         $scope.noti = {                                             //holds values for top notification bar
             text: 'Alert'
         };
@@ -287,6 +288,11 @@
                 $('#readArticleModal').modal('show');
             },100);
         });
+
+        $scope.hideNotice = function() {
+            $scope.showNotice = true;
+            preferenceService.set('hideNotice', true);
+        };
 
         $scope.$on('add feed success', function() {
             incoming('New Feed Added. We are working on adding the latest articles now!');

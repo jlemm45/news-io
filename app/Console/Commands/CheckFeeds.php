@@ -47,13 +47,13 @@ class CheckFeeds extends Command
         foreach ($urls as $url) {
 
             //only allow feed id to be queued once at a time
-            $query = DB::table('jobs')->where('queue', '=', $url->id)->get();
+            //$query = DB::table('jobs')->where('queue', '=', $url->id)->get();
 
-            if(count($query) == 0) {
+            //if(count($query) == 0) {
                 //assign the queue to be the feed id
-                $job = (new CrawlFeed($url))->onQueue($url->id);
+                $job = (new CrawlFeed($url));
                 $this->dispatch($job);
-            }
+            //}
         }
     }
 }

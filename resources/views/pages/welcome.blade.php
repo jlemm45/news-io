@@ -18,7 +18,9 @@
                 <p>Register and get access to add as many feeds and you want as well as your own custom feeds!</p>
 
                 <managefeedscomponent data="feedData"></managefeedscomponent>
-                <button class="fluid ui green button" ng-click="submit(feedData)" ng-class="{'loading': loading}">Get Started</button>
+                <button class="fluid ui green button" ng-click="submit(feedData)" ng-class="{'loading': loading}"
+                        ng-disabled="disabled"
+                >Get Started</button>
             </div>
         </div>
     </div>
