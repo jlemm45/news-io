@@ -9,7 +9,7 @@
                 if(content) {
                     content = content.split('<br>')[0];
                     content = content.split('</p>')[0];
-                    if(content.length > 400) content = content.substring(0,400)+'...';
+                    if(content.length > 500) content = content.substring(0,500)+'...';
                     return content;
                 }
                 return '';
@@ -69,6 +69,7 @@
             '</div>' +
             '<h2 class="ui header">{{article.article_title}}</h2>' +
             '<p ng-bind-html="parseDate(article.created_at)"></p>' +
+            '<p ng-if="article.article_img"><img ng-src="{{article.article_img}}"></p>' +
             '<p ng-bind-html="toTrustedHTML(article.article_description)" ng-if="view"></p>' +
             '<p><a href="#" ng-click="readMore(article)">Read More</a></p>'
         };

@@ -27,6 +27,7 @@
 <script src="/js/Services/UserService.js"></script>
 <script src="/js/Services/FeedService.js"></script>
 <script src="/js/Directives/Modal.js"></script>
+<script src="/js/Directives/Dropdown.js"></script>
 <script src="/js/Functions.js"></script>
 @yield('scripts')
 </body>

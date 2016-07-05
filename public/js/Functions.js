@@ -15,6 +15,9 @@ var snug = snug || {};
         },
         timePassed: function(date) {
             return moment(date).fromNow();
+        },
+        isInt: function(value) {
+            return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value));
         }
     }
 })();

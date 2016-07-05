@@ -113,13 +113,10 @@
          * @param feeds
          */
         function handleFeedUpdate(feeds) {
-            feeds = feeds.filter(function(i) {
-                if(i.active) return i;
-            });
-
             snugfeedFeedsService.updateFeeds(feeds).then(function(data) {
                 getUserStatus();
                 $('#feedsModal').modal('hide');
+                $scope.$broadcast('reload feeds');
             });
         }
 
@@ -294,6 +291,7 @@
         $scope.$on('add feed success', function() {
             incoming('New Feed Added. Add the new feed in manage feeds!');
             $('#newFeedModal').modal('hide');
+            getUserStatus();
             $scope.$broadcast('reload manage feeds');
         });
     });

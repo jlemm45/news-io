@@ -15,11 +15,16 @@
             scope.activateFeed = function(feed) {
                 feed.active = feed.active ? false : true;
                 scope.data = scope.feeds;
+
+                scope.data = _.filter(scope.data, function(feed) {
+                    return feed.active == true;
+                });
             };
 
-            scope.$on('reload manage feeds', function() {
+            scope.$on('reload feeds', function() {
                 init();
             });
+
         }
         return {
             link: link,

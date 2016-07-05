@@ -221,6 +221,9 @@ body {
   #incoming.active {
     top: 0; }
 
+#feedsModal button {
+  margin-top: 20px; }
+
 #header {
   background: #21BA45;
   height: 400px;

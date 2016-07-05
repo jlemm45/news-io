@@ -11,6 +11,7 @@
         controller: readArticleController,
         bindings: {article: '='},
         template: '' +
+        '<p ng-if="$ctrl.article.article_img"><img ng-src="{{$ctrl.article.article_img}}"></p>' +
         '<p ng-bind-html="toTrustedHTML($ctrl.article.article_description)"></p>' +
         '<a target="_blank" href="{{$ctrl.article.article_link}}" class="fluid ui button" ng-if="$ctrl.article.article_link">Visit Article Website</a> '
     });

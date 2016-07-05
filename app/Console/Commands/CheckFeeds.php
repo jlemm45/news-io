@@ -48,9 +48,9 @@ class CheckFeeds extends Command
         $newFeedIds = [];
 
         foreach($urls as $url) {
-            $feed = new FeedController();
+            $feedCtrl = new FeedController();
 
-            $feeds = $feed->getFeed($url->feed_url);
+            $feeds = $feedCtrl->getFeed($url->feed_url);
 
             //echo 'before--------';
             if(Cache::get($url->feed_url) !== $feeds) {
@@ -64,7 +64,7 @@ class CheckFeeds extends Command
                         $article = new Article();
                         $article->article_description = $feed['des'];
                         $article->article_title = $feed['title'];
-                        $article->article_img = $feed['thumb'];
+                        $article->article_img = !empty($feed['des']) ? $feedCtrl->scanForFeaturedImage($feed['des']) : null;
                         $article->article_link = $feed['link'];
                         $article->feed_id = $url->id;
                         $article->save();

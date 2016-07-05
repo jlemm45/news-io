@@ -14,7 +14,9 @@
                 </div>
                 <p>Stay up to date will all your favorite news sources in one place!</p>
 
-                <p>Select from the feeds below to build your customized news feed.</p>
+                <p>Select from some of our pre-existing feeds below to get started.</p>
+                <p>Register and get access to add as many feeds and you want as well as your own custom feeds!</p>
+
                 <managefeedscomponent data="feedData"></managefeedscomponent>
                 <button class="fluid ui green button" ng-click="submit(feedData)" ng-class="{'loading': loading}">Get Started</button>
             </div>

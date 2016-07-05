@@ -8,8 +8,20 @@
                 return $http.get("/api/feed");
             };
 
+            var getActiveFeeds = function() {
+                return $http.get("/api/feed?active");
+            };
+
+            var getUnusedFeeds = function () {
+                return $http.get("/api/feed?unused");
+            };
+
             var addFeed = function (data) {
                 return $http.post("/api/feed", data);
+            };
+
+            var removeFeeds = function (ids) {
+                return $http.delete("/api/feed", {ids: ids});
             };
 
             var updateFeeds = function (feeds) {
@@ -19,7 +31,10 @@
             return {
                 getFeeds: getFeeds,
                 updateFeeds: updateFeeds,
-                addFeed: addFeed
+                addFeed: addFeed,
+                getUnusedFeeds: getUnusedFeeds,
+                getActiveFeeds: getActiveFeeds,
+                removeFeeds: removeFeeds
             };
 
         }]);

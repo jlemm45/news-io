@@ -18,25 +18,15 @@ class FeedController extends ApiBaseController
     protected $type = Feed::class;
 
     public function index() {
-        $feeds = parent::index()->toArray();
         $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
+        $feeds = parent::index()->toArray();
         if($user) {
-            $activeFeeds = $user->feeds()->get();
-
-            $ids = [];
-            foreach($activeFeeds as $active) {
-                $ids[] = $active->id;
+            if(isset($_GET['unused'])) {
+                return $this->filterByInactive($feeds);
             }
-            //@todo revist all this with a cleaner method
-            $updatedArr = [];
-            foreach($feeds as $feed) {
-                if($feed['id'])
-                    if(in_array($feed['id'], $ids)) {
-                        $feed['active'] = true;
-                    }
-                $updatedArr[] = $feed;
+            else {
+                return $this->filterByActive($feeds);
             }
-            return $updatedArr;
         }
         return $feeds;
     }
@@ -59,23 +49,42 @@ class FeedController extends ApiBaseController
      */
     public function store(Request $request)
     {
+        $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
         $f = new Feeds();
 
-        $check = $f->checkIfFeedIsValid($request->feed_url);
+        if(isset($request->feed_url)) {
+            $check = $f->checkIfFeedIsValid($request->feed_url);
 
-        try{
-            Feed::where('feed_url', '=', $request->feed_url)->firstOrFail();
-            return ['status' => 'feed already added'];
+            try{
+                Feed::where('feed_url', '=', $request->feed_url)->firstOrFail();
+                return ['status' => 'feed already added'];
+            }
+            catch(ModelNotFoundException $e) {
+                if($check) {
+                    $feed = new Feed;
+                    $feed->feed_url = $request->feed_url;
+                    $feed->base_url = $f->getBaseUrl($check->get_permalink());
+                    $feed->source = $check->get_title();
+                    $feed->save();
+                    $user->feeds()->attach($feed->id);
+                    Artisan::call('feeds:check'); //do an immediate check after a new feed is added
+                    return ['status' => 'success'];
+                }
+            }
         }
-        catch(ModelNotFoundException $e) {
-            if($check) {
-                $feed = new Feed;
-                $feed->feed_url = $request->feed_url;
-                $feed->base_url = $f->getBaseUrl($request->feed_url);
-                $feed->source = $check->get_title();
-                $feed->save();
-                Artisan::call('feeds:check'); //do an immediate check after a new feed is added
+        else if(isset($request->feed_id)) {
+            try {
+                Feed::where('id', '=', $request->feed_id)->firstOrFail();
+                if (!$user->feeds->contains($request->feed_id)) {
+                    $user->feeds()->attach($request->feed_id);
+                }
+                else {
+                    return ['status' => 'feed already added'];
+                }
                 return ['status' => 'success'];
+            }
+            catch(ModelNotFoundException $e) {
+                return ['status' => 'error'];
             }
         }
 
@@ -131,5 +140,45 @@ class FeedController extends ApiBaseController
         }
         $user->feeds()->attach($ids);
         return ['status', 'success'];
+    }
+
+    private function filterByActive($feeds) {
+        $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
+        $activeFeeds = $user->feeds()->get();
+
+        $ids = [];
+        foreach($activeFeeds as $active) {
+            $ids[] = $active->id;
+        }
+
+        $updatedArr = [];
+        foreach($feeds as $feed) {
+            if($feed['id'])
+                if(in_array($feed['id'], $ids)) {
+                    $feed['active'] = true;
+                    $updatedArr[] = $feed;
+                }
+            //$updatedArr[] = $feed;
+        }
+        return $updatedArr;
+    }
+
+    private function filterByInactive($feeds) {
+        $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
+        $activeFeeds = $user->feeds()->get();
+
+        $ids = [];
+        foreach($activeFeeds as $active) {
+            $ids[] = $active->id;
+        }
+
+        $updatedArr = [];
+        foreach($feeds as $feed) {
+            if($feed['id'])
+                if(!in_array($feed['id'], $ids)) {
+                    $updatedArr[] = $feed;
+                }
+        }
+        return $updatedArr;
     }
 }

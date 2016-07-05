@@ -2,7 +2,21 @@
 
 (function(angular) {
     function newFeedController($scope, $element, $attrs, snugfeedFeedsService,$timeout) {
-        $scope.submit = function(feed) {
+        $scope.submit = function() {
+            var feed = $scope.selected;
+            //adding a already indexed feed
+            var dataObj = {};
+            if(snug.isInt(feed)) {
+                dataObj = {
+                    feed_id: feed
+                }
+            }
+            //brand new feed
+            else {
+                dataObj = {
+                    feed_url: feed
+                }
+            }
             $scope.loading = true;
             $scope.checking = true;
             $scope.message = {
@@ -10,7 +24,7 @@
                 bottom: 'Checking if feed is valid...'
             };
             $scope.negative = false;
-            snugfeedFeedsService.addFeed({feed_url: feed}).then(function(resp) {
+            snugfeedFeedsService.addFeed(dataObj).then(function(resp) {
                 $scope.loading = false;
                 var r = resp.data;
                 if(r.status == 'success') {
@@ -27,6 +41,7 @@
                         };
                         $scope.checking = false;
                     },1000);
+                    init();
                 }
                 else if(r.status == 'feed already added') {
                     $scope.negative = true;
@@ -44,9 +59,22 @@
         $scope.loading = false;
         $scope.checking = false;
         $scope.message = {};
+        $scope.selected = '';
+
+        function init() {
+            snugfeedFeedsService.getUnusedFeeds().then(function(data) {
+                $scope.values = data.data;
+            });
+        }
+
+        init();
+
+        $scope.$on('reload feeds', function() {
+            init();
+        });
     }
 
-    angular.module('newfeedcomponent', ['snugfeed.service.feeds']).component('newfeedcomponent', {
+    angular.module('newfeedcomponent', ['snugfeed.service.feeds', 'dropdown']).component('newfeedcomponent', {
         controller: newFeedController,
         //bindings: {data: '='},
         template: '' +
@@ -59,10 +87,8 @@
         '<p>{{message.bottom}}</p>' +
         '</div>' +
         '</div>' +
-        '<form class="ui large form" ng-submit="submit(newFeed)">' +
-        '<input type="text" name="newfeed" ng-model="newFeed" placeholder="Add a Feed">' +
-        '<button class="ui green button" type="submit">Add Feed</button>' +
-        '</form>' +
+        '<dropdowncomponent values="values" selected="selected"></dropdowncomponent>' +
+        '<button class="ui green button" type="submit" ng-click="submit()">Add Feed</button>' +
         ''
     });
 })(angular);

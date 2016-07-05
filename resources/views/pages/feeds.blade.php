@@ -33,38 +33,16 @@
             </div>
         </div>
         <div id="feed-stream" ng-class="{'wider': sidebarToggle}" ng-cloak>
-            {{--<div class="new-articles">--}}
-                {{--New Articles--}}
-            {{--</div>--}}
             <div class="ui text segment contain">
-                {{--<div class="ui icon message" ng-show="incoming">--}}
-                    {{--<i class="notched circle loading icon"></i>--}}
-                    {{--<div class="content">--}}
-                        {{--<div class="header">--}}
-                            {{--Alert--}}
-                        {{--</div>--}}
-                        {{--<p>Incoming Article</p>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
                 <div class="ui warning message" ng-if="!user">
                     <i class="close icon" ng-click="warning=true;"></i>
                     <div class="header">
-                        FYI
+                        Notice
                     </div>
+                    <button class=""
                     <p>Don't forget to register to save your feeds.</p>
                 </div>
                 <div class="">
-                    {{--<div class="six wide column">--}}
-                        {{--<div class="featured-article article" ng-class="{'incoming': feeds[0].incoming}">--}}
-                            {{--<a class="ui green ribbon label">The Latest</a>--}}
-                            {{--<article article="feeds[0]"></article>--}}
-                        {{--</div>--}}
-
-                        {{--<div class="featured-article article" ng-class="{'incoming': feeds[1].incoming}">--}}
-                            {{--<a class="ui green ribbon label">Featured</a>--}}
-                            {{--<article article="feeds[1]"></article>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
                     <div id="article-contain">
                         <div ng-if="!articleView">
                             <div class="mason-sizer"></div>
@@ -138,9 +116,9 @@
             </div>
         </div>
         <modal template="login" header="Login" modal-id="loginModal" options="loginModal"></modal>
-        <modal template="manageFeeds" header="Manage Feeds" modal-id="feedsModal" options="manageFeedsModal"></modal>
-        <modal header="Add New Feed" modal-id="newFeedModal">
-            <p>Feed must be a valid xml rss feed.</p>
+        <modal template="manageFeeds" header="Manage Feeds" modal-id="feedsModal" options="manageFeedsModal" ng-if="user"></modal>
+        <modal header="Add New Feed" modal-id="newFeedModal" ng-if="user">
+            <p>Add a feed from our index of feeds or add any valid xml rss feed by url.</p>
             <newfeedcomponent></newfeedcomponent>
         </modal>
         <modal header="@{{articleToRead.article_title}}" modal-id="readArticleModal">

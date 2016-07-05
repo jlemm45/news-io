@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Time;
 use GuzzleHttp;
+use FastImage;
 
 use App\Http\Requests;
 
@@ -40,8 +41,12 @@ class FeedController extends Controller
 
             $enclosure = $item->get_enclosure(0);
 
+            $des = $item->get_description();
+
+            //$img = !empty($des) ? $this->scanForFeaturedImage($des) : null;
+
             $arr[] = [
-                'des' => $item->get_description(),
+                'des' => $des,
                 'title' => $item->get_title(),
                 'thumb' => $enclosure->get_thumbnail(),
                 'link' => $item->get_permalink()
@@ -49,6 +54,39 @@ class FeedController extends Controller
 
         }
         return $arr;
+    }
+
+    /**
+     * Scans a body of html and returns the widest img
+     *
+     * @param $body
+     * @return array
+     */
+    public function scanForFeaturedImage($body) {
+        $doc = new \DOMDocument();
+        @$doc->loadHTML($body);
+
+        $tags = $doc->getElementsByTagName('img');
+
+        $featuredImg = null;
+        $featuredWidth = 100;
+        foreach ($tags as $tag) {
+            $src = $tag->getAttribute('src');
+
+            try{
+                $image = new FastImage($src);
+                list($width, $height) = $image->getSize();
+            }
+            catch(\ErrorException $e) {
+                $width = 0;
+            }
+
+            if($width > $featuredWidth) {
+                $featuredWidth = $width;
+                $featuredImg = $src;
+            }
+        }
+        return $featuredImg;
     }
 
     public function getBaseUrl($url) {
@@ -138,6 +176,7 @@ class FeedController extends Controller
      * @return mixed
      */
     private function stripATags($description) {
+        return strip_tags($description,"<p>");
         return preg_replace('/<a\b[^>]*>(.*?)<\/a>/i', '', $description);
     }
 
