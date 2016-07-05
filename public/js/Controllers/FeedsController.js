@@ -289,7 +289,7 @@
         });
 
         $scope.$on('add feed success', function() {
-            incoming('New Feed Added. Add the new feed in manage feeds!');
+            incoming('New Feed Added. We are working on adding the latest articles now!');
             $('#newFeedModal').modal('hide');
             getUserStatus();
             $scope.$broadcast('reload manage feeds');

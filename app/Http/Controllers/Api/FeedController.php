@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Feed;
-use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use App\Http\Controllers\FeedController as Feeds;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Artisan;
+use App\Jobs\CrawlFeed;
 
 class FeedController extends ApiBaseController
 {
@@ -67,7 +65,8 @@ class FeedController extends ApiBaseController
                     $feed->source = $check->get_title();
                     $feed->save();
                     $user->feeds()->attach($feed->id);
-                    Artisan::call('feeds:check'); //do an immediate check after a new feed is added
+                    $this->dispatch(new CrawlFeed($feed)); //do an immediate check after a new feed is added
+                    //Artisan::call('feeds:check');
                     return ['status' => 'success'];
                 }
             }

@@ -2,14 +2,15 @@
 
 namespace App\Console\Commands;
 
-use App\Article;
 use Illuminate\Console\Command;
-use App\Http\Controllers\FeedController;
-use App\Http\Controllers\SocketController;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use App\Jobs\CrawlFeed;
+use Illuminate\Support\Facades\DB;
 
 class CheckFeeds extends Command
 {
+    use DispatchesJobs;
+
     /**
      * The name and signature of the console command.
      *
@@ -41,43 +42,18 @@ class CheckFeeds extends Command
      */
     public function handle()
     {
-        //$time_start = microtime(true);
-        //$urls = \App\Feed::where('id', '=', 4)->get();
         $urls = \App\Feed::all();
-        $newArticles = false;
-        $newFeedIds = [];
 
-        foreach($urls as $url) {
-            $feedCtrl = new FeedController();
+        foreach ($urls as $url) {
 
-            $feeds = $feedCtrl->getFeed($url->feed_url);
+            //only allow feed id to be queued once at a time
+            $query = DB::table('jobs')->where('queue', '=', $url->id)->get();
 
-            //echo 'before--------';
-            if(Cache::get($url->feed_url) !== $feeds) {
-                Cache::put($url->feed_url, $feeds, 60);
-
-                //echo 'cache different';
-
-                $newArticleIds = [];
-                foreach ($feeds as $feed) {
-                    if (!Article::where('article_title', '=', $feed['title'])->count() > 0) {
-                        $article = new Article();
-                        $article->article_description = $feed['des'];
-                        $article->article_title = $feed['title'];
-                        $article->article_img = !empty($feed['des']) ? $feedCtrl->scanForFeaturedImage($feed['des']) : null;
-                        $article->article_link = $feed['link'];
-                        $article->feed_id = $url->id;
-                        $article->save();
-                        $newArticleIds[] = $article->id;
-                        $newArticles = true;
-                    }
-                }
-                if (count($newArticleIds) > 0) $newFeedIds[] = [$url->id => $newArticleIds];
+            if(count($query) == 0) {
+                //assign the queue to be the feed id
+                $job = (new CrawlFeed($url))->onQueue($url->id);
+                $this->dispatch($job);
             }
         }
-        if($newArticles) SocketController::pingSocketIO($newFeedIds);
-        //$time_end = microtime(true);
-        //$execution_time = ($time_end - $time_start);
-        //echo $execution_time;
     }
 }
