@@ -72,6 +72,13 @@
         $scope.$on('reload feeds', function() {
             init();
         });
+
+        $scope.$watch('selected', function(newValue) {
+            snugfeedFeedsService.searchForFeed(newValue).then(function(data) {
+                console.log(data.data);
+                $scope.values = data.data;
+            });
+        });
     }
 
     angular.module('newfeedcomponent', ['snugfeed.service.feeds', 'dropdown']).component('newfeedcomponent', {

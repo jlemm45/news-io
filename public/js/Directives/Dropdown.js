@@ -12,6 +12,10 @@
                         scope.selected = value;
                         scope.$apply();
                     },
+                    onNoResults: function(search) {
+                        scope.selected = search;
+                        scope.$apply();
+                    },
                     allowAdditions: true
                 });
             }

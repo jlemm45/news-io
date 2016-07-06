@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Auth;
 use App\Http\Controllers\FeedController as Feeds;
 use App\Jobs\CrawlFeed;
+use App\Http\Services\GoogleFeed;
 
 class FeedController extends ApiBaseController
 {
@@ -20,7 +21,12 @@ class FeedController extends ApiBaseController
         $feeds = parent::index()->toArray();
         if($user) {
             if(isset($_GET['unused'])) {
+                //return $this->combineWithGoogle($feeds);
                 return $this->filterByInactive($feeds);
+            }
+            else if(isset($_GET['term'])) {
+                $term = $_GET['term'];
+                return $this->searchGoogle($term);
             }
             else {
                 return $this->filterByActive($feeds);
@@ -179,5 +185,18 @@ class FeedController extends ApiBaseController
                 }
         }
         return $updatedArr;
+    }
+
+    private function searchGoogle($term) {
+
+        $search = json_decode(GoogleFeed::query($term), true);
+
+        $newArr = [];
+
+        foreach($search['responseData']['entries'] as $item) {
+            $newArr[] = ['source' => strip_tags($item['title']), 'feed_url' => $item['url'], 'id' => $item['url']];
+        }
+
+        return $newArr;
     }
 }

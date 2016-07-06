@@ -28,13 +28,18 @@
                 return $http.put("/api/feeds", feeds);
             };
 
+            var searchForFeed = function(term) {
+                return $http.get("/api/feed?term="+term);
+            };
+
             return {
                 getFeeds: getFeeds,
                 updateFeeds: updateFeeds,
                 addFeed: addFeed,
                 getUnusedFeeds: getUnusedFeeds,
                 getActiveFeeds: getActiveFeeds,
-                removeFeeds: removeFeeds
+                removeFeeds: removeFeeds,
+                searchForFeed: searchForFeed
             };
 
         }]);
