@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use App\Jobs\CrawlFeed;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
+use App\Http\Controllers\FeedController;
 
 class CheckFeeds extends Command
 {
@@ -46,14 +48,20 @@ class CheckFeeds extends Command
 
         foreach ($urls as $url) {
 
-            //only allow feed id to be queued once at a time
-            //$query = DB::table('jobs')->where('queue', '=', $url->id)->get();
+            $feedCtrl = new FeedController();
 
-            //if(count($query) == 0) {
-                //assign the queue to be the feed id
+            $feeds = $feedCtrl->getFeed($url->feed_url);
+
+            //echo 'before--------';
+            if(Cache::get($url->feed_url) !== $feeds) {
+                Cache::put($url->feed_url, $feeds, 60);
+
+                //echo 'different--------';
+
                 $job = (new CrawlFeed($url));
                 $this->dispatch($job);
-            //}
+
+            }
         }
     }
 }

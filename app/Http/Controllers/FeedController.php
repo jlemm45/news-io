@@ -70,6 +70,7 @@ class FeedController extends Controller
 
         $featuredImg = null;
         $featuredWidth = 100;
+        $featuredHeight = 50;
         foreach ($tags as $tag) {
             $src = $tag->getAttribute('src');
 
@@ -79,10 +80,12 @@ class FeedController extends Controller
             }
             catch(\ErrorException $e) {
                 $width = 0;
+                $height = 0;
             }
 
-            if($width > $featuredWidth) {
+            if($width > $featuredWidth && $height > $featuredHeight) {
                 $featuredWidth = $width;
+                $featuredHeight = $height;
                 $featuredImg = $src;
             }
         }

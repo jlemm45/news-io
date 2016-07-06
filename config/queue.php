@@ -50,11 +50,11 @@ return [
 
         'sqs' => [
             'driver' => 'sqs',
-            'key' => 'your-public-key',
-            'secret' => 'your-secret-key',
-            'prefix' => 'https://sqs.us-east-1.amazonaws.com/your-account-id',
-            'queue' => 'your-queue-name',
-            'region' => 'us-east-1',
+            'key' => 'AKIAJUAZPMIBDI232HVQ',
+            'secret' => '16pJ8kz5KxddrW+Jr7LYUZl1zgxXbJj2qUgCHJxJ',
+            'prefix' => 'https://sqs.us-west-2.amazonaws.com/959311777830',
+            'queue' => 'snugfeed-test',
+            'region' => 'us-west-2',
         ],
 
         'redis' => [
