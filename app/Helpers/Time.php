@@ -8,7 +8,7 @@ class Time {
     static function utcToCentral($utcDate) {
         $utcDate = new \DateTime($utcDate);
         $utcDate->setTimeZone(new \DateTimeZone('America/Chicago'));
-        return $utcDate->format("Y-m-d h:i:s");
+        return $utcDate->format("Y-m-d H:i:s");
     }
 
     static function timePassed($date) {
