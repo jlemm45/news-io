@@ -18,8 +18,8 @@ class FeedController extends ApiBaseController
 
     public function index() {
         $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
-        $feeds = parent::index()->toArray();
         if($user) {
+            $feeds = parent::index()->toArray();
             if(isset($_GET['unused'])) {
                 //return $this->combineWithGoogle($feeds);
                 return $this->filterByInactive($feeds);
@@ -32,7 +32,7 @@ class FeedController extends ApiBaseController
                 return $this->filterByActive($feeds);
             }
         }
-        return $feeds;
+        return Feed::orderBy('id', 'asc')->take(8)->get();
     }
 
     /**

@@ -113,7 +113,7 @@
                         <span>List View</span>
                     </div>
                     <div class="ui left labeled button right floated" id="logout-avatar">
-                        <a class="ui basic right pointing label">
+                        <a class="ui basic right pointing label" href="/me">
                             <div class="avatar">@{{user.initials}}</div><span class="name">@{{user.name}}</span>
                         </a>
                         <a href="/auth/logout" class="ui button">

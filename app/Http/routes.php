@@ -16,6 +16,9 @@ Route::get('/feeds', 'FeedController@feedsView');
 Route::get('/login', function(){
     return view('pages.login');
 });
+Route::get('/me', function(){
+    return view('pages.me');
+})->middleware('auth');
 
 Route::get('/register', function(){
     return view('pages.register');
@@ -35,6 +38,7 @@ Route::post('auth/register', 'Auth\AuthController@register');
 Route::group(['prefix' => 'api'], function () {
     Route::resource('feed', 'Api\FeedController');
     Route::resource('article', 'Api\ArticleController');
+    Route::put('user', 'UserController@updatePassword');
     Route::put('feeds', 'Api\FeedController@updateUserFeeds');
 
     Route::get('articles', 'FeedController@getArticles');

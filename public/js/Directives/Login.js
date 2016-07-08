@@ -14,13 +14,16 @@
         }
 
         function link(scope, element, attrs) {
+            scope.loading = false;
             validate();
             scope.submit = function($event,login) {
                 $event.preventDefault();
                 if($('#login-form').form('is valid'))
+                    scope.loading = true;
                     snugfeedUserService.loginUser(login).then(function(resp) {
                         scope.$emit('login success', resp.data); //emit to parents
                     },function(error) {
+                        scope.loading = false;
                         $('#login-form').form('add errors', ['Invalid email or password']);
                     });
             }

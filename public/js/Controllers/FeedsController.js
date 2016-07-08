@@ -6,7 +6,7 @@
     /**
      * Feeds Controller
      */
-    snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesService,$cookies,snugfeedUserService,snugfeedFeedsService,$timeout,preferenceService) {
+    snugfeeds.controller('feedsController', function($scope,$http,snugfeedArticlesService,$cookies,snugfeedUserService,snugfeedFeedsService,$timeout,preferenceService,$window) {
 
         $scope.loading = true;                                      //page loading control
         $scope.feeds = [];                                          //all active articles
@@ -126,7 +126,10 @@
          * @param page
          */
         $scope.getArticles = function(page) {
-            if(!page) $scope.feeds = [];
+            if(!page) {
+                $scope.feeds = [];
+                $window.scrollTo(0, 0);
+            }
             page = page ? $scope.lastFeedID : false;
             var ids = $scope.articleFilter ? [$scope.articleFilter] : getFeedsIds();
 

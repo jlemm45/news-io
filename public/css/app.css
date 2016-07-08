@@ -309,6 +309,9 @@ body {
   margin-top: 35px;
   display: block; }
 
+#me-dashboard {
+  margin: 50px 0; }
+
 #manage-feeds-component {
   text-align: center; }
   #manage-feeds-component .column {

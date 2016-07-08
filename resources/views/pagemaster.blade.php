@@ -7,9 +7,14 @@
                 <span class="logo">
                     <a href="/"><img src="https://s3-us-west-2.amazonaws.com/news-io/img/logo-white.png"></a>
                 </span>
+                @if (Auth::user())
+                <a class="item" href="/feeds">Feeds</a>
+                <a class="item" href="/me">Me</a>
+                @else
                 <a class="active item" href="/">Home</a>
                 <a class="item" href="/register">Register</a>
                 <a class="item" href="/login">Login</a>
+                @endif
             </div>
         </div>
     </div>

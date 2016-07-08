@@ -16,10 +16,15 @@
                 return $http.get('/auth/status');
             };
 
+            var updatePassword = function (data) {
+                return $http.put('/api/user', data);
+            };
+
             return {
                 loginUser: loginUser,
                 registerUser: registerUser,
-                getUserStatus: getUserStatus
+                getUserStatus: getUserStatus,
+                updatePassword: updatePassword
             };
 
         }]);
