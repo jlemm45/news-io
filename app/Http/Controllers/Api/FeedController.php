@@ -193,8 +193,11 @@ class FeedController extends ApiBaseController
 
         $newArr = [];
 
+        $feed = new Feeds();
+
         foreach($search['responseData']['entries'] as $item) {
-            $newArr[] = ['source' => strip_tags($item['title']), 'feed_url' => $item['url'], 'id' => $item['url']];
+            $newArr[] = ['source' => htmlspecialchars_decode(strip_tags($item['title'])), 'feed_url' => $item['url'],
+                'id' => $item['url'], 'favicon_url' => GoogleFeed::favicon($feed->getBaseUrl($item['url']))];
         }
 
         return $newArr;

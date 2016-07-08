@@ -43,8 +43,6 @@ class FeedController extends Controller
 
             $des = $item->get_description();
 
-            //$img = !empty($des) ? $this->scanForFeaturedImage($des) : null;
-
             $arr[] = [
                 'des' => $des,
                 'title' => $item->get_title(),
@@ -136,11 +134,9 @@ class FeedController extends Controller
 
         foreach($articles as $key => $article) {
             $des = $article->article_description;
-            $article->article_description = $this->stripATags($des);
+            $article->article_description = $this->stripTags($des);
             $article->article_title = htmlspecialchars_decode($article->article_title);
-            //$article->time_ago = Time::timePassed($article->created_at);
             $article->created_at = Time::utcToCentral($article->created_at);
-            //$article->icon_url = 'https://www.google.com/s2/favicons?domain='.$article
 
             if($article->article_img && !$featuredChosen) {
                 $article->featured = true;
@@ -173,12 +169,12 @@ class FeedController extends Controller
     }
 
     /**
-     * Strip out anchor tags from html
+     * Strip out tags from html
      *
      * @param $description
      * @return mixed
      */
-    private function stripATags($description) {
+    private function stripTags($description) {
         return strip_tags($description,"<p>");
         return preg_replace('/<a\b[^>]*>(.*?)<\/a>/i', '', $description);
     }

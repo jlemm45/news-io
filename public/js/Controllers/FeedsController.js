@@ -11,7 +11,6 @@
         $scope.loading = true;                                      //page loading control
         $scope.feeds = [];                                          //all active articles
         $scope.lastFeedID = 43;                                     //last article id for loading more articles
-        $scope.sidebarToggle = preferenceService.get('sidebar');    //toggles state of sidebar
         $scope.articleFilter = false;                               //toggles filtering articles
         $scope.loginModal = {                                       //custom options for login modal
             activeModel: 'login'                                    //login or register
@@ -29,6 +28,7 @@
         $scope.articleToRead = {};                                  //active article to read in modal
         $scope.showSettingsMenu = false;                            //toggles the settings menu bottom right
         $scope.showNotice = preferenceService.get('hideNotice');    //shows the save feed top notice
+        $scope.emptyFeeds = false;                                  //if we don't have any feeds
         $scope.noti = {                                             //holds values for top notification bar
             text: 'Alert'
         };
@@ -129,22 +129,23 @@
             if(!page) $scope.feeds = [];
             page = page ? $scope.lastFeedID : false;
             var ids = $scope.articleFilter ? [$scope.articleFilter] : getFeedsIds();
-            snugfeedArticlesService.getArticles(page,ids).then(function(data) {
-                if(data.data.length > 0) {
-                    $scope.feeds = $scope.feeds.concat(data.data);
-                    $scope.lastFeedID = data.data[data.data.length - 1].id;
-                    resetLayout();
-                }
-                $scope.loading = false;
-            });
-        };
 
-        /**
-         * Toggles sidebar state
-         */
-        $scope.toggleSidebar = function() {
-            $scope.sidebarToggle = $scope.sidebarToggle ? false : true;
-            preferenceService.set('sidebar', $scope.sidebarToggle);
+            //if they have saved feeds
+            if(ids.length > 0) {
+                snugfeedArticlesService.getArticles(page,ids).then(function(data) {
+                    if(data.data.length > 0) {
+                        $scope.feeds = $scope.feeds.concat(data.data);
+                        $scope.lastFeedID = data.data[data.data.length - 1].id;
+                        resetLayout();
+                    }
+                    $scope.loading = false;
+                    $scope.emptyFeeds = false;
+                });
+            }
+            else {
+                $scope.emptyFeeds = true;
+                $scope.loading = false;
+            }
         };
 
         /**
@@ -300,5 +301,19 @@
             getUserStatus();
             $scope.$broadcast('reload manage feeds');
         });
-    });
+    }).directive('topScroll', function($anchorScroll,$window) {
+        return {
+            link: function(scope, element, attrs) {
+                $($window).on('scroll', function () {
+                    if($window.scrollY > 75) {
+                        $(element).css({'top': '-75px'});
+                    }
+                    else {
+                        $(element).css({'top': 0});
+                    }
+                });
+            },
+            restrict: 'A'
+        }
+    })
 })(angular);

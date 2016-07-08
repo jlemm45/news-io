@@ -67,11 +67,11 @@
             '<div class="icon">' +
             '<img ng-src="{{favicon}}">' +
             '</div>' +
-            '<h2 class="ui header">{{article.article_title}}</h2>' +
+            '<h2 class="ui header pointer" ng-click="readMore(article)">{{article.article_title}}</h2>' +
             '<p ng-bind-html="parseDate(article.created_at)"></p>' +
             '<p ng-if="article.article_img && view"><img ng-src="{{article.article_img}}"></p>' +
             '<p ng-bind-html="toTrustedHTML(article.article_description)" ng-if="view"></p>' +
-            '<p><a href="#" ng-click="readMore(article)">Read More</a></p>'
+            '<p ng-if="view"><a href="#" ng-click="readMore(article)">Read More</a></p>'
         };
     });
 })(angular);

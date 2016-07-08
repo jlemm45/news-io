@@ -2,7 +2,7 @@
 @section('app', 'snug-feeds')
 
 @section('content')
-    <div ng-controller="feedsController" ng-click="clearClick()">
+    <div ng-controller="feedsController" ng-click="clearClick()" id="page-contain">
         <div id="page-loading" class="ui active inverted dimmer" ng-if="loading">
             <div class="ui large text loader">Loading</div>
         </div>
@@ -12,75 +12,88 @@
                 <p>@{{noti.text}}</p>
             </div>
         </div>
-        <div class="ui thin sidebar visible" id="sidebar" ng-class="{'hidden': sidebarToggle}">
-            <div class="toggle" ng-click="toggleSidebar()">
-                <i class="sidebar icon"></i>
-            </div>
-            <div id="logo">
-                <a href="/">
-                    <img src="https://s3-us-west-2.amazonaws.com/news-io/img/snug-logo.svg" class="img-responsive"
-                         ng-if="!sidebarToggle">
-                    <img src="https://s3-us-west-2.amazonaws.com/news-io/img/snug-logo-abbrv.svg"
-                         class="img-responsive" ng-if="sidebarToggle">
-                </a>
-            </div>
-            <div class="item" ng-class="{'active': !articleFilter && !showSaved}">
-                <a href="#" ng-click="filterArticles(false)">All</a>
-            </div>
-            <div class="item" ng-class="{'active': articleFilter == feed.id && !showSaved}" ng-repeat="feed in
-            activeFeeds">
-                <a href="#" ng-click="filterArticles(feed.id)"><img ng-src="@{{feed.favicon_url}}"><b ng-show="!sidebarToggle">@{{feed.source}}</b></a>
-            </div>
-        </div>
-        <div id="feed-stream" ng-class="{'wider': sidebarToggle}" ng-cloak>
-            <div class="ui text segment contain">
-                <div class="ui message" ng-if="!user && !showNotice">
-                    <i class="close icon" ng-click="hideNotice()"></i>
-                    <div class="content">
-                        <div class="header">
-                            Notice
-                        </div>
-                        <p>Don't forget to register to save your feeds.</p>
+        <div id="feed-stream" ng-class="{'wider': sidebarToggle}" class="ui container" ng-cloak>
+            <div class="sidebar-wrap">
+                <div class="ui thin sidebar visible" id="sidebar" top-scroll>
+                    <div id="logo">
+                        <a href="/">
+                            <img src="https://s3-us-west-2.amazonaws.com/news-io/img/snug-logo.svg" class="img-responsive"
+                                 ng-if="!sidebarToggle">
+                            <img src="https://s3-us-west-2.amazonaws.com/news-io/img/snug-logo-abbrv.svg"
+                                 class="img-responsive" ng-if="sidebarToggle">
+                        </a>
                     </div>
-                    <button class="ui button">Register</button>
+                    <div>
+                        <div ng-if="!emptyFeeds" class="item" ng-class="{'active': !articleFilter && !showSaved}">
+                            <a href="#" ng-click="filterArticles(false)">All</a>
+                        </div>
+                        <div class="item" ng-class="{'active': articleFilter == feed.id && !showSaved}" ng-repeat="feed in
+            activeFeeds">
+                            <a href="#" ng-click="filterArticles(feed.id)"><img ng-src="@{{feed.favicon_url}}"><b ng-show="!sidebarToggle">@{{feed.source}}</b></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="">
-                    <div id="article-contain">
-                        <div ng-if="!articleView">
-                            <div class="mason-sizer"></div>
-                            <div class="mason-gutter"></div>
-                            <div class="mason-featured"></div>
+            </div>
+            <div class="articles">
+                <div class="ui text segment contain">
+                    <div id="no-feeds" ng-if="emptyFeeds">
+                        <h1>Oh No!</h1>
+                        <img src="https://s3-us-west-2.amazonaws.com/news-io/img/crying-no-feeds.png">
+                        <p>Looks like you haven't added any feeds yet!</p>
+                    </div>
+                    <div class="ui message" ng-if="!user && !showNotice">
+                        <i class="close icon" ng-click="hideNotice()"></i>
+                        <div class="content">
+                            <div class="header">
+                                Notice
+                            </div>
+                            <p>Don't forget to register to save your feeds.</p>
+                        </div>
+                        <button class="ui button">Register</button>
+                    </div>
+                    <div class="">
+                        <div id="article-contain">
+                            <div ng-if="!articleView">
+                                <div class="mason-sizer"></div>
+                                <div class="mason-gutter"></div>
+                                <div class="mason-featured"></div>
 
-                            <div class="mason" ng-repeat="feed in feeds" ng-if="!articleFilter ||
+                                <div class="mason" ng-repeat="feed in feeds" ng-if="!articleFilter ||
                         articleFilter == feed.feed_id || showSaved" ng-class="{'featured': feed.featured}">
-                                <div class="ui fluid card article" ng-class="{'incoming': feed.incoming}">
-                                    <article article="feed" view="true" showsaved="showSaved"></article>
+                                    <div class="ui fluid card article" ng-class="{'incoming': feed.incoming}">
+                                        <article article="feed" view="true" showsaved="showSaved"></article>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-if="articleView">
+                                <div ng-repeat="feed in feeds" class="list-article" ng-if="!articleFilter || articleFilter
+                             == feed.feed_id || showSaved">
+                                    <article article="feed" view="false" showsaved="showSaved"></article>
                                 </div>
                             </div>
                         </div>
-
-                        <div ng-if="articleView">
-                            <div ng-repeat="feed in feeds" class="list-article" ng-if="!articleFilter || articleFilter
-                             == feed.feed_id || showSaved">
-                                <article article="feed" view="false" showsaved="showSaved"></article>
-                            </div>
-                        </div>
-                    </div>
-                    <button ng-if="!showSaved" id="load-more" class="ui primary button"
-                            ng-click="getArticles
+                        <button ng-if="!showSaved && !emptyFeeds" id="load-more" class="ui primary button"
+                                ng-click="getArticles
                         (true)">
-                        Load More
-                    </button>
+                            Load More
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div id="show-feeds-arrow" ng-if="emptyFeeds" ng-cloak>
+            <i class="arrow circle left icon"></i>
+        </div>
+
         <div class="popout" ng-show="showSettingsMenu" ng-cloak>
             <div ng-click="showMangeFeedsModal()"><i class="configure icon"></i>Manage Feeds</div>
             <div ng-click="showNewFeedModal()"><i class="plus icon"></i>Add New Feed</div>
         </div>
         <div id="utility-bar">
-            <div ng-if="user" class="ui grid" ng-cloak>
-                <div class="nine wide column">
+            <div ng-if="user" ng-cloak>
+                <div class="left">
                     <div id="user-manage-menu">
                         <i class="setting icon" ng-click="toggleSettingsMenu($event)"></i>
                     </div>
@@ -89,7 +102,7 @@
                         <span>@{{savedArticles.length}} Saved Articles</span>
                     </div>
                 </div>
-                <div class="seven wide column">
+                <div class="right">
                     <div class="line right floated">
                         <span>Grid View</span>
                         <div class="ui slider checkbox">
@@ -107,8 +120,6 @@
                             Logout
                         </a>
                     </div>
-
-                    {{--<a class="ui button right floated" href="/auth/logout">Logout</a>--}}
                 </div>
             </div>
             <div ng-if="!user" class="ui grid">

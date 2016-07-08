@@ -14,4 +14,8 @@ class GoogleFeed {
         return $response->getBody();
     }
 
+    static function favicon($baseUrl) {
+        return 'https://www.google.com/s2/favicons?domain='.$baseUrl;
+    }
+
 }
