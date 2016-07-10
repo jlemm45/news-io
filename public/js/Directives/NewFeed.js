@@ -76,9 +76,7 @@
         $scope.$watch('selected', function(newValue) {
             if(newValue.length > 3)
             snugfeedFeedsService.searchForFeed(newValue).then(function(data) {
-                console.log(data.data);
                 $scope.values = _.union($scope.values, data.data);
-                //$scope.values = data.data;
             });
         });
     }

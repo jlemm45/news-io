@@ -5,6 +5,8 @@
   .logo {
     width: 135px;
     margin-right: 20px;
+    margin-bottom: 0;
+    margin-top: 0;
 
     img {
       width: 100%;
@@ -25,7 +27,8 @@
     }
   }
   logincomponent, registercomponent {
-    margin-top: 35px;
     display: block;
+    max-width: 500px;
+    margin: 20px auto;
   }
 }

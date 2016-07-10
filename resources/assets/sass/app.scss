@@ -1,11 +1,23 @@
 //@import "semantic/scss/semantic.min";
 
+@import "mixins";
+@import "variables";
+@import "feedsPage";
+@import "welcomePage";
+@import "pages";
+@import "mePage";
+
+//components
+@import "manageFeedsComponent";
+@import "newFeedComponent";
+@import "readArticleComponent";
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
 
 body {
-  background: #E9EBEE;
+  background: $softGray;
 }
 .ui.modal {
   > .content {
@@ -24,15 +36,14 @@ body {
 .pointer {
   cursor: pointer;
 }
-
-@import "mixins";
-@import "variables";
-@import "feedsPage";
-@import "welcomePage";
-@import "pages";
-@import "mePage";
-
-//components
-@import "manageFeedsComponent";
-@import "newFeedComponent";
-@import "readArticleComponent";
+.mobile-hide {
+  @include mediaWidth(723px) {
+    display: none !important;
+  }
+}
+.mobile-show {
+  display: none !important;
+  @include mediaWidth(723px) {
+    display: block !important;
+  }
+}

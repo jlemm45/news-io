@@ -1,24 +1,9 @@
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important; }
-
-body {
-  background: #E9EBEE; }
-
-.ui.modal > .content {
-  background: #eee; }
-
-.ui.modal .padding {
-  padding: 20px; }
-
-.ui.modal .register {
-  text-align: center;
-  padding-bottom: 15px; }
-
-.pointer {
-  cursor: pointer; }
-
 #page-contain {
   height: 100%; }
+  #page-contain .ui.slider.checkbox {
+    padding: 5px 3px 4px 13px; }
+    #page-contain .ui.slider.checkbox input:checked ~ .box:before, #page-contain .ui.slider.checkbox input:checked ~ label:before, #page-contain .ui.slider.checkbox .box:before, #page-contain .ui.slider.checkbox label:before {
+      background-color: #21BA45 !important; }
 
 #page-loading {
   transition: all ease 0.5s; }
@@ -32,9 +17,18 @@ body {
   left: 0;
   top: 0;
   height: 100%; }
-  @media (max-width: 991px) {
+  @media (max-width: 723px) {
     .sidebar-wrap {
-      position: fixed; } }
+      position: fixed;
+      z-index: 999;
+      background: #fff;
+      width: 100%;
+      display: none; }
+      .sidebar-wrap.show {
+        display: block; }
+      .sidebar-wrap #sidebar {
+        width: 100% !important;
+        background: #E9EBEE; } }
   .sidebar-wrap #sidebar {
     width: 195px;
     transition: all ease 0.5s;
@@ -88,11 +82,17 @@ body {
         width: 730px; } }
     @media (max-width: 991px) {
       #feed-stream .articles {
+        width: 530px; } }
+    @media (max-width: 723px) {
+      #feed-stream .articles {
         width: 100%; } }
   #feed-stream .contain {
     background: none;
     box-shadow: none;
     border: none; }
+    @media (max-width: 723px) {
+      #feed-stream .contain {
+        padding: 0; } }
     #feed-stream .contain .icon {
       float: right; }
   #feed-stream .right .column {
@@ -127,9 +127,14 @@ body {
         width: calc(50% - 10px); } }
     @media (max-width: 800px) {
       #feed-stream .mason-sizer, #feed-stream .mason {
-        width: calc(100% - 10px); } }
+        width: 100%; }
+        #feed-stream .mason-sizer.featured, #feed-stream .mason-sizer .mason-featured, #feed-stream .mason.featured, #feed-stream .mason .mason-featured {
+          width: 100%; } }
   #feed-stream .mason-gutter {
     width: 10px; }
+    @media (max-width: 800px) {
+      #feed-stream .mason-gutter {
+        width: 0; } }
   #feed-stream .list-article {
     background: #fff;
     padding: 2px 10px; }
@@ -161,6 +166,11 @@ body {
   width: 100%;
   z-index: 999;
   color: #fff; }
+  #utility-bar #toggle-mobile-menu {
+    background: #444; }
+    #utility-bar #toggle-mobile-menu i.sidebar.icon {
+      font-size: 2em;
+      margin: 13px 6px; }
   #utility-bar .right {
     float: right; }
   #utility-bar .line {
@@ -204,10 +214,6 @@ body {
       font-size: 1.8em;
       line-height: 1.2em;
       margin-left: 3px; }
-  #utility-bar .ui.slider.checkbox {
-    padding: 5px 3px 4px 13px; }
-    #utility-bar .ui.slider.checkbox input:checked ~ .box:before, #utility-bar .ui.slider.checkbox input:checked ~ label:before, #utility-bar .ui.slider.checkbox .box:before, #utility-bar .ui.slider.checkbox label:before {
-      background-color: #21BA45 !important; }
 
 .popout {
   cursor: pointer;
@@ -221,18 +227,20 @@ body {
   width: 200px;
   transition: all ease 0.5s;
   z-index: 999; }
+  .popout a {
+    color: #fff; }
   .popout.ng-hide {
     bottom: -300px; }
 
 #incoming {
   position: fixed;
   width: 100%;
-  z-index: 999;
+  z-index: 1000;
   left: 0;
   background: #21BA45;
   color: #fff;
   padding: 10px;
-  top: -45px;
+  top: -100px;
   transition: all ease 0.5s; }
   #incoming p {
     float: left;
@@ -266,25 +274,27 @@ body {
 
 #header {
   background: #21BA45;
-  height: 400px;
   width: 100%;
   padding: 10px; }
-
-#welcome-container {
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 500px;
-  top: 210px;
-  margin: auto; }
-  #welcome-container .logo {
-    margin-bottom: 50px; }
-    #welcome-container .logo img {
+  #header .logo {
+    margin-bottom: 50px;
+    margin-top: 200px; }
+    #header .logo img {
       width: 100%; }
-  #welcome-container button {
+
+#welcome-page .inner-contain {
+  max-width: 500px;
+  margin: auto; }
+
+#welcome-page #welcome-container {
+  margin-top: 20px; }
+  @media (max-width: 550px) {
+    #welcome-page #welcome-container {
+      width: 100%; } }
+  #welcome-page #welcome-container button {
     font-size: 1.3em;
     margin-top: 10px; }
-  #welcome-container .column {
+  #welcome-page #welcome-container .column {
     cursor: pointer; }
 
 #header.small {
@@ -292,7 +302,9 @@ body {
   padding: 5px; }
   #header.small .logo {
     width: 135px;
-    margin-right: 20px; }
+    margin-right: 20px;
+    margin-bottom: 0;
+    margin-top: 0; }
     #header.small .logo img {
       width: 100%; }
 
@@ -306,8 +318,9 @@ body {
     padding-top: 100px; }
 
 .page logincomponent, .page registercomponent {
-  margin-top: 35px;
-  display: block; }
+  display: block;
+  max-width: 500px;
+  margin: 20px auto; }
 
 #me-dashboard {
   margin: 50px 0; }
@@ -341,5 +354,34 @@ newfeedcomponent button.ui.green.button {
   #readArticleModal .content p {
     font-size: 1.05em;
     line-height: 1.6em; }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
+body {
+  background: #E9EBEE; }
+
+.ui.modal > .content {
+  background: #eee; }
+
+.ui.modal .padding {
+  padding: 20px; }
+
+.ui.modal .register {
+  text-align: center;
+  padding-bottom: 15px; }
+
+.pointer {
+  cursor: pointer; }
+
+@media (max-width: 723px) {
+  .mobile-hide {
+    display: none !important; } }
+
+.mobile-show {
+  display: none !important; }
+  @media (max-width: 723px) {
+    .mobile-show {
+      display: block !important; } }
 
 /*# sourceMappingURL=app.css.map */

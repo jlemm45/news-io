@@ -42,6 +42,6 @@
     </div>
 @endsection
 
-@section('scripts')
+@section('scripts2')
     <script src="/js/Controllers/MeController.js"></script>
 @endsection

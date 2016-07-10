@@ -13,9 +13,9 @@
             </div>
         </div>
         <div id="feed-stream" ng-class="{'wider': sidebarToggle}" class="ui container" ng-cloak>
-            <div class="sidebar-wrap">
+            <div class="sidebar-wrap" ng-class="{'show': showMobileFeeds}">
                 <div class="ui thin sidebar visible" id="sidebar" top-scroll>
-                    <div id="logo">
+                    <div id="logo" class="mobile-hide">
                         <a href="/">
                             <img src="https://s3-us-west-2.amazonaws.com/news-io/img/snug-logo.svg" class="img-responsive"
                                  ng-if="!sidebarToggle">
@@ -31,6 +31,9 @@
             activeFeeds">
                             <a href="#" ng-click="filterArticles(feed.id)"><img ng-src="@{{feed.favicon_url}}"><b ng-show="!sidebarToggle">@{{feed.source}}</b></a>
                         </div>
+                    </div>
+                    <div class="mobile-show">
+                        <toggleviewcomponent change="toggleView"></toggleviewcomponent>
                     </div>
                 </div>
             </div>
@@ -90,6 +93,9 @@
         <div class="popout" ng-show="showSettingsMenu" ng-cloak>
             <div ng-click="showMangeFeedsModal()"><i class="configure icon"></i>Manage Feeds</div>
             <div ng-click="showNewFeedModal()"><i class="plus icon"></i>Add New Feed</div>
+            <a href="/auth/logout" class="mobile-show">
+                Logout
+            </a>
         </div>
         <div id="utility-bar">
             <div ng-if="user" ng-cloak>
@@ -103,22 +109,19 @@
                     </div>
                 </div>
                 <div class="right">
-                    <div class="line right floated">
-                        <span>Grid View</span>
-                        <div class="ui slider checkbox">
-                            <input type="checkbox" name="public" ng-change="toggleView(toggle)" ng-model="toggle"
-                                   ng-init="toggle=articleView">
-                            <label></label>
-                        </div>
-                        <span>List View</span>
+                    <div class="line right floated mobile-hide">
+                        <toggleviewcomponent change="toggleView"></toggleviewcomponent>
                     </div>
-                    <div class="ui left labeled button right floated" id="logout-avatar">
+                    <div class="ui left labeled button right floated mobile-hide" id="logout-avatar">
                         <a class="ui basic right pointing label" href="/me">
                             <div class="avatar">@{{user.initials}}</div><span class="name">@{{user.name}}</span>
                         </a>
                         <a href="/auth/logout" class="ui button">
                             Logout
                         </a>
+                    </div>
+                    <div id="toggle-mobile-menu" class="mobile-show" ng-click="toggleFeedsMobile()">
+                        <i class="sidebar icon"></i>
                     </div>
                 </div>
             </div>
@@ -149,5 +152,6 @@
     <script src="/js/Directives/NewFeed.js"></script>
     <script src="/js/Services/ArticleService.js"></script>
     <script src="/js/Directives/ReadArticle.js"></script>
+    <script src="/js/Directives/ToggleView.js"></script>
     <script src="/js/Services/PreferenceService.js"></script>
 @endsection

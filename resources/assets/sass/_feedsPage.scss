@@ -1,5 +1,13 @@
 #page-contain {
   height: 100%;
+
+  .ui.slider.checkbox {
+    input:checked~.box:before, input:checked~label:before, .box:before, label:before {
+      background-color: $green !important;
+    }
+
+    padding: 5px 3px 4px 13px;
+  }
 }
 #page-loading {
   transition: all ease 0.5s;
@@ -15,8 +23,20 @@
   left: 0;
   top: 0;
   height: 100%;
-  @include mediaWidth(991px) {
+
+  @include mediaWidth(723px) { //mobile feeds menu stuff
+    &.show {
+      display: block;
+    }
+    #sidebar {
+      width: 100% !important;
+      background: $softGray;
+    }
     position: fixed;
+    z-index: 999;
+    background: #fff;
+    width: 100%;
+    display: none;
   }
 
   #sidebar {
@@ -95,6 +115,9 @@
       width: 730px;
     }
     @include mediaWidth(991px) {
+      width: 530px;
+    }
+    @include mediaWidth(723px) {
       width: 100%;
     }
   }
@@ -103,6 +126,9 @@
     background: none;
     box-shadow: none;
     border: none;
+    @include mediaWidth(723px) {
+      padding: 0;
+    }
 
     .icon {
       float: right;
@@ -154,10 +180,18 @@
       width: calc(50% - 10px);
     }
     @include mediaWidth(800px) {
-      width: calc(100% - 10px);
+      width: 100%;
+      &.featured, .mason-featured {
+        width: 100%;
+      }
     }
   }
-  .mason-gutter {width: 10px; }
+  .mason-gutter {
+    width: 10px;
+    @include mediaWidth(800px) {
+      width: 0;
+    }
+  }
 
   .list-article {
     background: #fff;
@@ -202,8 +236,15 @@
   left: 0;
   width: 100%;
   z-index: 999;
-  //padding: 7px;
   color: #fff;
+
+  #toggle-mobile-menu {
+    background: #444;
+    i.sidebar.icon {
+      font-size: 2em;
+      margin: 13px 6px;
+    }
+  }
 
   .right {
     float: right;
@@ -264,14 +305,6 @@
       margin-left: 3px;
     }
   }
-
-  .ui.slider.checkbox {
-    input:checked~.box:before, input:checked~label:before, .box:before, label:before {
-      background-color: $green !important;
-    }
-
-    padding: 5px 3px 4px 13px;
-  }
 }
 .popout {
   cursor: pointer;
@@ -285,6 +318,9 @@
   width: 200px;
   transition: all ease 0.5s;
   z-index: 999;
+  a {
+    color: #fff;
+  }
 
   &.ng-hide {
     bottom: -300px;
@@ -294,12 +330,12 @@
 #incoming {
   position: fixed;
   width: 100%;
-  z-index: 999;
+  z-index: 1000;
   left: 0;
   background: $green;
   color: #fff;
   padding: 10px;
-  top: -45px;
+  top: -100px;
   transition: all ease 0.5s;
 
   p {

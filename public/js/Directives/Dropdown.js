@@ -8,7 +8,6 @@
             function init() {
                 $(element).find('.dropdown').dropdown('setting', {
                     onChange: function(value, text, $choice) {
-                        console.log(value);
                         scope.selected = value;
                         scope.$apply();
                     },

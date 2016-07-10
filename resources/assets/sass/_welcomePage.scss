@@ -1,27 +1,31 @@
 #header {
   background: $green;
-  height: 400px;
   width: 100%;
   padding: 10px;
-}
-#welcome-container {
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 500px;
-  top: 210px;
-  margin: auto;
   .logo {
     margin-bottom: 50px;
+    margin-top: 200px;
     img {
       width: 100%;
     }
   }
-  button {
-    font-size: 1.3em;
-    margin-top: 10px;
+}
+#welcome-page {
+  .inner-contain {
+    max-width: 500px;
+    margin: auto;
   }
-  .column {
-    cursor: pointer;
+  #welcome-container {
+    margin-top: 20px;
+    @include mediaWidth(550px) {
+      width: 100%;
+    }
+    button {
+      font-size: 1.3em;
+      margin-top: 10px;
+    }
+    .column {
+      cursor: pointer;
+    }
   }
 }

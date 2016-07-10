@@ -8,20 +8,12 @@
         </div>
     </div>
     <div ng-controller="registerController">
-        <div class="ui grid container">
-            <div class="ui two column centered grid">
-                <div class="column">
-                    <registercomponent></registercomponent>
-                </div>
-                <div class="four column centered row">
-                    <div class="column"></div>
-                    <div class="column"></div>
-                </div>
-            </div>
+        <div class="ui container">
+            <registercomponent></registercomponent>
         </div>
     </div>
 @endsection
 
-@section('scripts')
+@section('scripts2')
     <script src="/js/Controllers/RegisterController.js"></script>
 @endsection

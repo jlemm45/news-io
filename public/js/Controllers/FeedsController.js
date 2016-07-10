@@ -1,7 +1,7 @@
 'use strict';
 
 (function(angular) {
-    var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies', 'modal', 'logincomponent', 'registercomponent', 'snugfeed.service.user', 'managefeedscomponent', 'snugfeed.service.feeds', 'newfeedcomponent', 'readarticlecomponent', 'snugfeed.service.preference', 'ngAnimate']);
+    var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies', 'modal', 'logincomponent', 'registercomponent', 'snugfeed.service.user', 'managefeedscomponent', 'snugfeed.service.feeds', 'newfeedcomponent', 'readarticlecomponent', 'snugfeed.service.preference', 'ngAnimate', 'toggleviewcomponent']);
 
     /**
      * Feeds Controller
@@ -32,6 +32,8 @@
         $scope.noti = {                                             //holds values for top notification bar
             text: 'Alert'
         };
+        $scope.showMobileFeeds = false;                             //toggle the feeds menu on mobile
+
         var msnry = false;
         function resetLayout() {
             if(!$scope.articleView) {
@@ -159,6 +161,7 @@
             $scope.articleFilter = id;
             $scope.getArticles(false);
             $scope.showSaved = false;
+            $scope.showMobileFeeds = false;
         };
 
         /**
@@ -202,6 +205,13 @@
         $scope.toggleSettingsMenu = function($event) {
             if($event) $event.stopPropagation();
             $scope.showSettingsMenu = $scope.showSettingsMenu ? false : true;
+        };
+
+        /**
+         * Toggles the feeds menu on mobile
+         */
+        $scope.toggleFeedsMobile = function() {
+            $scope.showMobileFeeds = $scope.showMobileFeeds ? false : true;
         };
 
         //on load
@@ -267,7 +277,6 @@
         $scope.$on('article deleted', function(c,article) {
             var arr = $scope.savedArticles;
             arr = _.filter(arr, function(item) {
-                console.log(item);
                 return item.id !== article.id;
             });
             $scope.savedArticles = arr;
@@ -308,7 +317,7 @@
         return {
             link: function(scope, element, attrs) {
                 $($window).on('scroll', function () {
-                    if($window.scrollY > 75) {
+                    if($window.scrollY > 75 && $window.width > 723) {
                         $(element).css({'top': '-75px'});
                     }
                     else {
