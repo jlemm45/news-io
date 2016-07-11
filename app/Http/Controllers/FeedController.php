@@ -135,7 +135,7 @@ class FeedController extends Controller
         foreach($articles as $key => $article) {
             $des = $article->article_description;
             $article->article_description = $this->stripTags($des);
-            $article->article_title = htmlspecialchars_decode($article->article_title);
+            $article->article_title = html_entity_decode(htmlspecialchars_decode($article->article_title));
             $article->created_at = Time::utcToCentral($article->created_at);
 
             if($article->article_img && !$featuredChosen) {

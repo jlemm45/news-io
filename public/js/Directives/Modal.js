@@ -12,6 +12,9 @@
                     options: '='
                 },
                 link: function(scope, elem, attrs) {
+                    scope.close = function() {
+                        $('#'+scope.modalId).modal('hide');
+                    };
                     scope.basic = attrs.basic ? true : false;
                     if(attrs.template) scope.template = '/js/templates/modals/' + attrs.template + '.html';
                 },
@@ -21,6 +24,7 @@
                 '<div class="content">' +
                 '<div ng-transclude></div>' +
                 '<div ng-include="template" ng-if="template"></div>' +
+                '<button class="fluid ui red button close" ng-click="close()">Close</button>' +
                 '</div>' +
                 '</div>'
             };

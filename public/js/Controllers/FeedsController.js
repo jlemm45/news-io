@@ -317,7 +317,7 @@
         return {
             link: function(scope, element, attrs) {
                 $($window).on('scroll', function () {
-                    if($window.scrollY > 75 && $window.width > 723) {
+                    if($window.scrollY > 75 && window.innerWidth > 723) {
                         $(element).css({'top': '-75px'});
                     }
                     else {

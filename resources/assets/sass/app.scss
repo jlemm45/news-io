@@ -17,6 +17,9 @@
 }
 
 body {
+  > .ui.segment {
+    background: $softGray;
+  }
   background: $softGray;
 }
 .ui.modal {
@@ -31,6 +34,13 @@ body {
   .register {
     text-align: center;
     padding-bottom: 15px;
+  }
+  button.close {
+    &:hover, &:active {
+      background: $redMuted;
+    }
+    margin-top: 20px;
+    background: $redMuted;
   }
 }
 .pointer {

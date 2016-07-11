@@ -93,7 +93,7 @@
         <div class="popout" ng-show="showSettingsMenu" ng-cloak>
             <div ng-click="showMangeFeedsModal()"><i class="configure icon"></i>Manage Feeds</div>
             <div ng-click="showNewFeedModal()"><i class="plus icon"></i>Add New Feed</div>
-            <a href="/auth/logout" class="mobile-show">
+            <a href="/auth/logout">
                 Logout
             </a>
         </div>
@@ -112,14 +112,9 @@
                     <div class="line right floated mobile-hide">
                         <toggleviewcomponent change="toggleView"></toggleviewcomponent>
                     </div>
-                    <div class="ui left labeled button right floated mobile-hide" id="logout-avatar">
-                        <a class="ui basic right pointing label" href="/me">
-                            <div class="avatar">@{{user.initials}}</div><span class="name">@{{user.name}}</span>
-                        </a>
-                        <a href="/auth/logout" class="ui button">
-                            Logout
-                        </a>
-                    </div>
+                    <a href="/me" class="avatar-wrap mobile-hide">
+                        <div class="avatar">@{{user.initials}}</div><span class="name">@{{user.name}}</span>
+                    </a>
                     <div id="toggle-mobile-menu" class="mobile-show" ng-click="toggleFeedsMobile()">
                         <i class="sidebar icon"></i>
                     </div>
