@@ -34,7 +34,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/status', 'Auth\AuthController@status');
 Route::post('auth/register', 'Auth\AuthController@register');
 
-
+//internal api
 Route::group(['prefix' => 'api'], function () {
     Route::resource('feed', 'Api\FeedController');
     Route::resource('article', 'Api\ArticleController');
@@ -46,9 +46,13 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('socket', function() {
         return env('SOCKET_URL');
     });
+
+    Route::group(['middleware' => ['admin'], 'prefix' => 'data'], function () {
+        Route::get('articles', 'Api\DataController@getArticlesAddedData');
+    });
 });
 
-//public outside api
+//public outside api using api_token auth
 Route::group(['prefix' => 'api/v1', 'middleware' => ['auth:api', 'cors']], function () {
     Route::resource('feed', 'Api\FeedController');
     Route::resource('article', 'Api\ArticleController');
@@ -60,4 +64,10 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['auth:api', 'cors']], funct
 //public outside api
 Route::group(['prefix' => 'api/v1', 'middleware' => ['cors']], function () {
     Route::post('user/login', 'Auth\AuthController@apiLogin');
+});
+
+Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
+    Route::get('/', function() {
+        return view('admin.dashboard');
+    });
 });
