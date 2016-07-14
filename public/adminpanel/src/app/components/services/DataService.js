@@ -9,14 +9,17 @@
 
     function dataService($http) {
 
-        var service = {
-            getArticlesReadCount: getArticlesReadCount
+        return {
+            getArticlesReadCount: getArticlesReadCount,
+            getUserCount: getUserCount
         };
-
-        return service;
 
         function getArticlesReadCount() {
             return $http.get('/api/data/articles');
+        }
+
+        function getUserCount() {
+            return $http.get('/api/data/users');
         }
     }
 })();

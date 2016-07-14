@@ -49,6 +49,7 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::group(['middleware' => ['admin'], 'prefix' => 'data'], function () {
         Route::get('articles', 'Api\DataController@getArticlesAddedData');
+        Route::get('users', 'Api\DataController@getUserCount');
     });
 });
 

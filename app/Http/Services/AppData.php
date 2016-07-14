@@ -16,5 +16,10 @@ class AppData {
             ->get();
         //DB::raw('SELECT created_at, COUNT(1) as \'count\' FROM articles GROUP BY DATE_FORMAT(created_at, "%yyyy%mm%dd") order by id desc limit 100');
     }
+
+    public static function userCount()
+    {
+        return DB::table('users')->count();
+    }
     
 }

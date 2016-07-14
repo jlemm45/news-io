@@ -74,8 +74,9 @@
 <script src="/adminpanel/src/app/controllers/TableController.js"></script>
 <script src="/adminpanel/src/app/controllers/SearchController.js"></script>
 <script src="/adminpanel/src/app/controllers/ProfileController.js"></script>
-<script src="/adminpanel/src/app/controllers/PerformanceController.js"></script>
+<script src="/adminpanel/src/app/controllers/NewArticlesController.js"></script>
 <script src="/adminpanel/src/app/controllers/MessagesController.js"></script>
+<script src="/adminpanel/src/app/controllers/UserPanelController.js"></script>
 <script src="/adminpanel/src/app/controllers/MemoryController.js"></script>
 <script src="/adminpanel/src/app/controllers/MainController.js"></script>
 <script src="/adminpanel/src/app/controllers/ControlPanelController.js"></script>
