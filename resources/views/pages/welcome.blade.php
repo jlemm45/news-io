@@ -28,5 +28,9 @@
 @endsection
 
 @section('scripts')
+    @if(env('APP_ENV') == 'prod')
+        <script src="{{env('CDN_URL')}}/js/welcome-bundle.js"></script>
+    @else
     <script src="/js/Controllers/WelcomeController.js"></script>
+    @endif
 @endsection

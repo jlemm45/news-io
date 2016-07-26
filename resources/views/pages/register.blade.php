@@ -15,5 +15,9 @@
 @endsection
 
 @section('scripts2')
+    @if(env('APP_ENV') == 'prod')
+        <script src="{{env('CDN_URL')}}/js/register-bundle.js"></script>
+    @else
     <script src="/js/Controllers/RegisterController.js"></script>
+    @endif
 @endsection

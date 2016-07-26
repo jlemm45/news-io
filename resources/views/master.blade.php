@@ -14,7 +14,6 @@
 <body>
 @yield('content')
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
@@ -33,12 +32,12 @@
     ga('send', 'pageview');
 
 </script>
+<script src="{{env('CDN_URL')}}/js/main-bundle.js"></script>
 @else
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script>
-@endif
 
 <script src="/semantic/dist/semantic.min.js"></script>
 <script src="/js/Directives/Login.js"></script>
@@ -49,6 +48,8 @@
 <script src="/js/Directives/Modal.js"></script>
 <script src="/js/Directives/Dropdown.js"></script>
 <script src="/js/Functions.js"></script>
+@endif
+
 @yield('scripts')
 </body>
 </html>
