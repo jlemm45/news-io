@@ -1,0 +1,1 @@
+"use strict";!function(angular){var snugArticle=angular.module("snug-article",[]);snugArticle.controller("articleController",function($scope){})}(angular);

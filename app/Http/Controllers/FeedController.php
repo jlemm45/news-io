@@ -134,7 +134,7 @@ class FeedController extends Controller
 
         foreach($articles as $key => $article) {
             $des = $article->article_description;
-            $article->article_description = $this->stripTags($des);
+            $article->article_description = \App\Helpers\HTML::stripTags($des);
             $article->article_title = html_entity_decode(htmlspecialchars_decode($article->article_title));
             $article->created_at = Time::utcToCentral($article->created_at);
 
@@ -166,17 +166,6 @@ class FeedController extends Controller
             ->orderBy('articles.id', 'desc')
             ->limit(20)
             ->get();
-    }
-
-    /**
-     * Strip out tags from html
-     *
-     * @param $description
-     * @return mixed
-     */
-    private function stripTags($description) {
-        return strip_tags($description,"<p>");
-        return preg_replace('/<a\b[^>]*>(.*?)<\/a>/i', '', $description);
     }
 
     /**

@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
-        Commands\CheckFeeds::class
+        Commands\CheckFeeds::class,
+        Commands\RemoveOldArticles::class
     ];
 
     /**
@@ -29,5 +30,6 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         $schedule->command('feeds:check')->everyFiveMinutes();
+        $schedule->command('remove:articles')->daily();
     }
 }

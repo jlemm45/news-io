@@ -55,6 +55,9 @@ var js = {
     ],
     'welcome': [
         'public/js/Controllers/WelcomeController.js'
+    ],
+    'article': [
+        'public/js/Controllers/ArticleController.js'
     ]
 };
 

@@ -24,6 +24,8 @@ Route::get('/register', function(){
     return view('pages.register');
 });
 
+Route::get('/article/{id}', 'ArticleController@showArticle');
+
 // Authentication routes...
 //Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@login');
