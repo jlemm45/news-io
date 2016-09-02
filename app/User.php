@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function removeFeeds() {
         $this->feeds()->detach();
     }
+
+    public function unAddedFeeds() {
+        return Feed::whereNotIn('id', $this->feeds->modelKeys());
+    }
 }

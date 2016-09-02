@@ -19,13 +19,13 @@ class FeedController extends ApiBaseController
     public function index() {
         $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
         if($user) {
-            $feeds = parent::index()->toArray();
+            //$feeds = parent::index()->toArray();
             if(isset($_GET['term'])) {
                 $term = $_GET['term'];
                 return $this->filterByInactive(Feed::where('source', 'LIKE', '%'.$term.'%')->get());
             }
             else {
-                return $this->filterByActive($feeds);
+                return $user->unAddedFeeds()->paginate(10);
             }
         }
         return Feed::orderBy('id', 'asc')->take(8)->get();

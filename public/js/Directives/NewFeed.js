@@ -54,6 +54,7 @@
                 }
             });
         };
+
         $scope.allowSubmit = false;
         $scope.loading = false;
         $scope.checking = false;
@@ -66,6 +67,14 @@
                 $scope.values = _.union($scope.values, data.data);
             });
         });
+
+        function init() {
+            snugfeedFeedsService.getFeeds().then(function(resp) {
+                $scope.values = resp.data.data;
+            });
+        }
+
+        init();
     }
 
     angular.module('newfeedcomponent', ['snugfeed.service.feeds', 'dropdown']).component('newfeedcomponent', {
