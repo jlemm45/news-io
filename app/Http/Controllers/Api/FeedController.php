@@ -164,6 +164,25 @@ class FeedController extends ApiBaseController
         return $updatedArr;
     }
 
+    private function filterByInactive($feeds) {
+        $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
+        $activeFeeds = $user->feeds()->get();
+
+        $ids = [];
+        foreach($activeFeeds as $active) {
+            $ids[] = $active->id;
+        }
+
+        $updatedArr = [];
+        foreach($feeds as $feed) {
+            if($feed['id'])
+                if(!in_array($feed['id'], $ids)) {
+                    $updatedArr[] = $feed;
+                }
+        }
+        return $updatedArr;
+    }
+
     /**
      * Method inactive for now. Not using google index for now.
      *
