@@ -78,22 +78,22 @@
         /**
          * Subscribe logged in user to sockets
          */
-        function subscribeToSockets() {
-            $http.get('/api/socket').then(function(resp) {
-                var socket = io.connect(resp.data, {
-                    reconnection: false
-                });
-
-                socket.on('article', function(json) {
-                    handleNewArticles(json);
-                });
-
-                socket.emit('subscribe', {
-                    userID: $scope.user.id,
-                    feeds: getFeedsIds()
-                });
-            });
-        }
+        //function subscribeToSockets() {
+        //    $http.get('/api/socket').then(function(resp) {
+        //        var socket = io.connect(resp.data, {
+        //            reconnection: false
+        //        });
+        //
+        //        socket.on('article', function(json) {
+        //            handleNewArticles(json);
+        //        });
+        //
+        //        socket.emit('subscribe', {
+        //            userID: $scope.user.id,
+        //            feeds: getFeedsIds()
+        //        });
+        //    });
+        //}
 
         /**
          * Get's current user status as well as selected feeds
@@ -104,7 +104,7 @@
                     $scope.user = data.data.user;
                     $scope.activeFeeds = $scope.user.feeds;
                     $scope.user.initials = snug.generateAvatarInitials($scope.user.name);
-                    subscribeToSockets();
+                    //subscribeToSockets();
                     getSavedArticles();
                 }
                 $scope.getArticles(false);
@@ -231,36 +231,36 @@
          * Handle new incoming articles. Only use articles in which feeds users are listening to.
          * @param json
          */
-        function handleNewArticles(json) {
-            var userFeedIds = getFeedsIds();
-            var idsToGet = [];
-            _.each(json[0], function(articleArr, feedID) {
-                if(userFeedIds.indexOf(parseInt(feedID)) > -1) {
-                    _.each(articleArr, function(articleID) {
-                        idsToGet.push(articleID);
-                        $scope.feeds.unshift({incoming: true});
-                    });
-                }
-                resetLayout();
-            });
-            if(idsToGet.length > 0) {
-                incoming('Incoming Article');
-                snugfeedArticlesService.getArticlesByIds(idsToGet.join()).then(function(resp) {
-                    var length = resp.data.length - 1;
-                    _.each(resp.data, function(v) {
-                        bringInNewArticle(length, v);
-                        length--;
-                    });
-                });
-            }
-        }
+        //function handleNewArticles(json) {
+        //    var userFeedIds = getFeedsIds();
+        //    var idsToGet = [];
+        //    _.each(json[0], function(articleArr, feedID) {
+        //        if(userFeedIds.indexOf(parseInt(feedID)) > -1) {
+        //            _.each(articleArr, function(articleID) {
+        //                idsToGet.push(articleID);
+        //                $scope.feeds.unshift({incoming: true});
+        //            });
+        //        }
+        //        resetLayout();
+        //    });
+        //    if(idsToGet.length > 0) {
+        //        incoming('Incoming Article');
+        //        snugfeedArticlesService.getArticlesByIds(idsToGet.join()).then(function(resp) {
+        //            var length = resp.data.length - 1;
+        //            _.each(resp.data, function(v) {
+        //                bringInNewArticle(length, v);
+        //                length--;
+        //            });
+        //        });
+        //    }
+        //}
 
-        function bringInNewArticle(index, article) {
-            $timeout(function() {
-                $scope.feeds[index] = article;
-                resetLayout();
-            },3000*(index+1));
-        }
+        //function bringInNewArticle(index, article) {
+        //    $timeout(function() {
+        //        $scope.feeds[index] = article;
+        //        resetLayout();
+        //    },3000*(index+1));
+        //}
 
         $scope.toggleView = function(toggle) {
             $scope.articleView = toggle;

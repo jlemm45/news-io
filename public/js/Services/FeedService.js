@@ -12,10 +12,6 @@
                 return $http.get("/api/feed?active");
             };
 
-            var getUnusedFeeds = function () {
-                return $http.get("/api/feed?unused");
-            };
-
             var addFeed = function (data) {
                 return $http.post("/api/feed", data);
             };
@@ -36,7 +32,6 @@
                 getFeeds: getFeeds,
                 updateFeeds: updateFeeds,
                 addFeed: addFeed,
-                getUnusedFeeds: getUnusedFeeds,
                 getActiveFeeds: getActiveFeeds,
                 removeFeeds: removeFeeds,
                 searchForFeed: searchForFeed

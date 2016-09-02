@@ -20,13 +20,9 @@ class FeedController extends ApiBaseController
         $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
         if($user) {
             $feeds = parent::index()->toArray();
-            if(isset($_GET['unused'])) {
-                //return $this->combineWithGoogle($feeds);
-                return $this->filterByInactive($feeds);
-            }
-            else if(isset($_GET['term'])) {
+            if(isset($_GET['term'])) {
                 $term = $_GET['term'];
-                return $this->searchGoogle($term);
+                return $this->filterByInactive(Feed::where('source', 'LIKE', '%'.$term.'%')->get());
             }
             else {
                 return $this->filterByActive($feeds);
@@ -168,25 +164,12 @@ class FeedController extends ApiBaseController
         return $updatedArr;
     }
 
-    private function filterByInactive($feeds) {
-        $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
-        $activeFeeds = $user->feeds()->get();
-
-        $ids = [];
-        foreach($activeFeeds as $active) {
-            $ids[] = $active->id;
-        }
-
-        $updatedArr = [];
-        foreach($feeds as $feed) {
-            if($feed['id'])
-                if(!in_array($feed['id'], $ids)) {
-                    $updatedArr[] = $feed;
-                }
-        }
-        return $updatedArr;
-    }
-
+    /**
+     * Method inactive for now. Not using google index for now.
+     *
+     * @param $term
+     * @return array
+     */
     private function searchGoogle($term) {
 
         $search = json_decode(GoogleFeed::query($term), true);

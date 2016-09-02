@@ -41,7 +41,6 @@
                         };
                         $scope.checking = false;
                     },1000);
-                    init();
                 }
                 else if(r.status == 'feed already added') {
                     $scope.negative = true;
@@ -60,18 +59,6 @@
         $scope.checking = false;
         $scope.message = {};
         $scope.selected = '';
-
-        function init() {
-            snugfeedFeedsService.getUnusedFeeds().then(function(data) {
-                $scope.values = data.data;
-            });
-        }
-
-        init();
-
-        $scope.$on('reload feeds', function() {
-            init();
-        });
 
         $scope.$watch('selected', function(newValue) {
             if(newValue.length > 3)
