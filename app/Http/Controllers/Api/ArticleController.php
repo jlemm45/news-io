@@ -13,7 +13,7 @@ class ArticleController extends ApiBaseController
     protected $type = Article::class;
 
     public function index() {
-        $user = Auth::user();
+        $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
         return $user->articles;
     }
 
