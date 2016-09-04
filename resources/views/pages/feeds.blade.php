@@ -140,8 +140,8 @@
 
 @section('scripts')
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
-    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
-    <script src="//npmcdn.com/masonry-layout@4.0.0/dist/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+    <script src="//unpkg.com/masonry-layout@4.0.0/dist/masonry.pkgd.min.js"></script>
 
     @if(env('APP_ENV') == 'prod')
         <script src="{{env('CDN_URL')}}/js/feeds-bundle.js"></script>
