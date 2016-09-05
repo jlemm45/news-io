@@ -90,6 +90,7 @@ class ApiBaseController extends Controller
      */
     public function update(Request $request, $item)
     {
+        dd($request);
         $data = $request->all();
         foreach ($data as $property => $value) {
             $item[$property] = $value;

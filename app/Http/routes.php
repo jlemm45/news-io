@@ -43,7 +43,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('user', 'UserController@updatePassword');
     Route::put('feeds', 'Api\FeedController@updateUserFeeds');
 
-    Route::get('articles', 'FeedController@getArticles');
+    Route::get('articles', 'Api\ArticleController@index');
 
     Route::get('socket', function() {
         return env('SOCKET_URL');
@@ -61,7 +61,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['auth:api', 'cors']], funct
     Route::resource('article', 'Api\ArticleController');
     Route::put('feeds', 'Api\FeedController@updateUserFeeds');
     Route::get('user/status', 'Auth\AuthController@status');
-    Route::get('articles', 'FeedController@getArticles');
+    Route::get('articles', 'Api\ArticleController@index');
 });
 
 //public outside api

@@ -120,55 +120,6 @@ class FeedController extends Controller
     }
 
     /**
-     * Main method to return article data to the front
-     *
-     * @return mixed
-     */
-    public function getArticles() {
-        $articles = $this->getArticlesFromDB();
-
-        if(is_object($articles)) return $articles;
-
-        $featuredChosen = false;
-        $newArr = $articles;
-
-        foreach($articles as $key => $article) {
-            $des = $article->article_description;
-            $article->article_description = \App\Helpers\HTML::stripTags($des);
-            $article->article_title = html_entity_decode(htmlspecialchars_decode($article->article_title));
-            $article->created_at = Time::utcToCentral($article->created_at);
-
-            if($article->article_img && !$featuredChosen) {
-                $article->featured = true;
-                $featuredChosen = true;
-                array_unshift($newArr, $article);
-                unset($newArr[$key+1]);
-            }
-        }
-
-        return array_values($newArr);
-    }
-
-    private function getArticlesFromDB() {
-        if(isset($_GET['article-ids'])) {
-            $ids = explode(',', $_GET['article-ids']);
-            return Article::find($ids);
-        }
-        //return Article::limit(60)->orderBy('id', 'desc')->get();
-        $where = isset($_GET['start']) ? ['articles.id', '<', $_GET['start']] : ['articles.id', '>', 0];
-        $ids = explode(',', $_GET['ids']);
-        return DB::table('articles')
-            ->join('feeds', 'feed_id', '=', 'feeds.id')
-            ->select('articles.feed_id', 'article_link', 'articles.created_at', 'articles.id', 'article_title', 'article_img',
-                'article_description')
-            ->whereIn('feeds.id', $ids)
-            ->where($where[0], $where[1], $where[2])
-            ->orderBy('articles.id', 'desc')
-            ->limit(20)
-            ->get();
-    }
-
-    /**
      * Return the view for the feeds page
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

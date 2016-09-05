@@ -24,7 +24,7 @@
                     return $http.get("/api/articles?article-ids="+ids);
                 },
                 getSavedArticles: function() {
-                    return $http.get("/api/article");
+                    return $http.get("/api/articles?saved=true");
                 }
             };
 
