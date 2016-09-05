@@ -123,7 +123,9 @@ class FeedController extends ApiBaseController
      */
     public function destroy($id)
     {
-        //
+        $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
+        $user->feeds()->detach($id);
+        return ['status' => 'success'];
     }
 
     /**
