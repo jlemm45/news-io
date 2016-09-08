@@ -15,6 +15,11 @@
         sref: '.dashboard'
       },
       {
+        name: 'Users',
+        icon: 'person',
+        sref: '.users'
+      },
+      {
         name: 'Profile',
         icon: 'person',
         sref: '.profile'

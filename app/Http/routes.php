@@ -45,13 +45,12 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::get('articles', 'Api\ArticleController@index');
 
-    Route::get('socket', function() {
-        return env('SOCKET_URL');
-    });
-
+    //admin data analytics api
     Route::group(['middleware' => ['admin'], 'prefix' => 'data'], function () {
         Route::get('articles', 'Api\DataController@getArticlesAddedData');
-        Route::get('users', 'Api\DataController@getUserCount');
+        Route::get('users-count', 'Api\DataController@getUserCount');
+        Route::get('articles', 'Api\DataController@getArticlesAddedData');
+        Route::resource('users', 'Api\UserController');
     });
 });
 

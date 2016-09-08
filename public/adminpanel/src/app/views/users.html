@@ -1,0 +1,26 @@
+<md-content class="md-padding">
+    <md-autocomplete placeholder="Search Users"
+                     md-selected-item="vm.selectedName"
+                     md-search-text="vm.searchText"
+                     md-no-cache="vm.disableCaching"
+                     md-items="item in vm.querySearch(vm.searchText)"
+                     md-selected-item-change="vm.onUserSelect(item)"
+                     md-item-text="item.name">
+        <span md-highlight-text="vm.searchText">{{item.name}}</span>
+    </md-autocomplete>
+
+    <h2>Name: {{vm.selectedName.name || 'No user selected'}}</h2>
+    <p>User ID: {{vm.selectedName.id}}</p>
+    <p>Email: {{vm.selectedName.email}}</p>
+
+    <md-list class="md-dense" flex>
+        <md-subheader class="md-no-sticky">Feeds</md-subheader>
+        <md-list-item class="md-2-line" ng-repeat="feed in vm.user.feeds">
+            <img ng-src="{{feed.favicon_url}}" class="md-avatar" alt="{{feed.source}}" />
+            <div class="md-list-item-text">
+                <h3>{{ feed.source }}</h3>
+            </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+    </md-list>
+</md-content>

@@ -41,14 +41,12 @@
             $q.all(queries);
         }
 
-
         function loadData() {
             dataService.getArticlesReadCount().then(function(resp) {
                 var flat = _.map(resp.data, function(item) {
                     return [moment(item.created_at).unix()*1000, parseInt(item.count)];
                 });
                 vm.chartData = [{"key": 'New Articles By Day', "values": flat}];
-                console.log(flat);
             });
         }
 

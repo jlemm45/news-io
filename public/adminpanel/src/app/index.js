@@ -20,10 +20,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngTouch',
           title: 'Dashboard'
         }
       })
-      .state('home.profile', {
-        url: '/profile',
-        templateUrl: '/adminpanel/src/app/views/profile.html',
-        controller: 'ProfileController',
+      .state('home.users', {
+        url: '/users',
+        templateUrl: '/adminpanel/src/app/views/users.html',
+        controller: 'UsersController',
         controllerAs: 'vm',
         data: {
           title: 'Profile'

@@ -5,9 +5,9 @@
 <html class="no-js" ng-app="angularMaterialAdmin">
 <head>
     <meta charset="utf-8">
-    <title>Angular Material Dashboard</title>
-    <meta name="description" content="Angular admin dashboard with material design">
-    <meta name="author" content="flatlogic.com">
+    <title>SnugFeed Admin Dashboard</title>
+    <meta name="description" content="SnugFeed Admin Dashboard">
+    <meta name="author" content="snugfeed.com">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -59,6 +59,7 @@
 <!-- inject:js -->
 <script src="/adminpanel/src/app/app.js"></script>
 <script src="/adminpanel/src/app/components/services/TodoListService.js"></script>
+<script src="/adminpanel/src/app/components/services/UserService.js"></script>
 <script src="/adminpanel/src/app/components/services/TableService.js"></script>
 <script src="/adminpanel/src/app/components/services/PerformanceService.js"></script>
 <script src="/adminpanel/src/app/components/services/NavService.js"></script>
@@ -73,7 +74,7 @@
 <script src="/adminpanel/src/app/controllers/TodoController.js"></script>
 <script src="/adminpanel/src/app/controllers/TableController.js"></script>
 <script src="/adminpanel/src/app/controllers/SearchController.js"></script>
-<script src="/adminpanel/src/app/controllers/ProfileController.js"></script>
+<script src="/adminpanel/src/app/controllers/UsersController.js"></script>
 <script src="/adminpanel/src/app/controllers/NewArticlesController.js"></script>
 <script src="/adminpanel/src/app/controllers/MessagesController.js"></script>
 <script src="/adminpanel/src/app/controllers/UserPanelController.js"></script>

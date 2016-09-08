@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Services\AppData;
+use App\Services\AppData;
 
 class DataController extends Controller
 {

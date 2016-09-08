@@ -19,7 +19,7 @@
         }
 
         function getUserCount() {
-            return $http.get('/api/data/users');
+            return $http.get('/api/data/users-count');
         }
     }
 })();
