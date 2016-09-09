@@ -124,7 +124,8 @@ class AuthController extends Controller
     public function apiLogin() {
         $req = Input::all();
         if (Auth::once($req)) {
-            return User::where('email', '=', $req['email'])->select('api_token')->get();
+            $user = User::where('email', '=', $req['email'])->first();
+            return ['api_token' => $user->api_token];
         }
         return Response::json([
             'error' => 'Invalid Credentials'
