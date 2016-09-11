@@ -66,6 +66,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['auth:api', 'cors']], funct
 //public outside api
 Route::group(['prefix' => 'api/v1', 'middleware' => ['cors']], function () {
     Route::post('user/login', 'Auth\AuthController@apiLogin');
+    Route::post('user/register', 'Auth\AuthController@register');
 });
 
 Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
