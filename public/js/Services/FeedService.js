@@ -16,8 +16,8 @@
                 return $http.post("/api/feed", data);
             };
 
-            var removeFeeds = function (ids) {
-                return $http.delete("/api/feed", {ids: ids});
+            var removeFeed = function (id) {
+                return $http.delete("/api/feed/"+id);
             };
 
             var updateFeeds = function (feeds) {
@@ -33,7 +33,7 @@
                 updateFeeds: updateFeeds,
                 addFeed: addFeed,
                 getActiveFeeds: getActiveFeeds,
-                removeFeeds: removeFeeds,
+                removeFeed: removeFeed,
                 searchForFeed: searchForFeed
             };
 

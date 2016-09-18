@@ -34,7 +34,7 @@ class CrawlFeed extends Job implements ShouldQueue
     public function handle()
     {
         $newArticleIds = [];
-        $newArticles = false;
+        //$newArticles = false;
         $newFeedIds = [];
 
         $feedCtrl = new FeedController();
@@ -49,11 +49,11 @@ class CrawlFeed extends Job implements ShouldQueue
                 $article->feed_id = $this->url->id;
                 $article->save();
                 $newArticleIds[] = $article->id;
-                $newArticles = true;
+                //$newArticles = true;
             }
         }
         if (count($newArticleIds) > 0) $newFeedIds[] = [$this->url->id => $newArticleIds];
 
-        if($newArticles) SocketController::pingSocketIO($newFeedIds);
+        //if($newArticles) SocketController::pingSocketIO($newFeedIds);
     }
 }

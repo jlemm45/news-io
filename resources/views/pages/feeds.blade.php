@@ -127,7 +127,9 @@
             </div>
         </div>
         <modal template="login" header="Login" modal-id="loginModal" options="loginModal"></modal>
-        <modal template="manageFeeds" header="Manage Feeds" modal-id="feedsModal" options="manageFeedsModal" ng-if="user"></modal>
+        <modal header="Manage Feeds" modal-id="feedsModal" options="manageFeedsModal" ng-if="user">
+            <managefeedscomponent feeds="activeFeeds"></managefeedscomponent>
+        </modal>
         <modal header="Add New Feed" modal-id="newFeedModal" ng-if="user">
             <p>Add a feed from our index of feeds or add any valid xml rss feed by url.</p>
             <newfeedcomponent></newfeedcomponent>

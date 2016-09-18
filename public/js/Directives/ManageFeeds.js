@@ -5,40 +5,35 @@
 
         function link(scope, element, attrs) {
 
-            function init() {
-                snugfeedFeedsService.getFeeds().then(function(data) {
-                    scope.feeds = data.data;
-                });
+            scope.remove = function($index, feedID) {
+
+                scope.feeds[$index].loading = true;
+
+                snugfeedFeedsService.removeFeed(feedID).then(function(resp) {
+                    scope.feeds[$index].loading = false;
+                    if(resp.data.status == 'success') {
+                        scope.feeds[$index].removed = true;
+                        scope.feeds[$index].btnText = 'Removed';
+                    }
+                })
             }
-            init();
-
-            scope.activateFeed = function(feed) {
-                feed.active = feed.active ? false : true;
-                scope.data = scope.feeds;
-
-                scope.data = _.filter(scope.data, function(feed) {
-                    return feed.active == true;
-                });
-            };
-
-            scope.$on('reload feeds', function() {
-                init();
-            });
 
         }
         return {
             link: link,
             restrict: 'E',
-            scope: {data: '='},
+            scope: {feeds: '='},
             template: '' +
-            '<div class="ui segment" id="manage-feeds-component">' +
-            '<div class="ui eight column grid">' +
-            '<div class="column" ng-repeat="feed in feeds" ng-click="activateFeed(feed)" ng-class="{\'active\': feed.active}">' +
-            '<div class="overlay" ng-show="feed.active">' +
-            '<i class="checkmark icon"></i>' +
+            '<div class="ui middle aligned divided list">' +
+            '<div class="item" ng-repeat="feed in feeds">' +
+            '<div class="right floated content">' +
+            '<div class="ui button negative" ng-click="remove($index, feed.id)" ng-class="{\'loading\':' +
+            ' feed.loading, \'positive\': feed.removed, \'negative\': !feed.removed, \'disabled\': feed.removed}">' +
+            '{{feed.btnText || \'Remove\'}}' +
+            '<i class="checkmark icon" ng-if="feed.added"></i></div>' +
             '</div>' +
-            '<img ng-src="{{feed.favicon_url}}">' +
-            '</div>' +
+            '<img class="ui avatar image" ng-src="{{feed.favicon_url}}">' +
+            '<div class="content">{{feed.source | limitTo:30}}...</div>' +
             '</div>' +
             '</div>'
         };
