@@ -41,11 +41,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts2')
-    @if(env('APP_ENV') == 'prod')
-        <script src="{{env('CDN_URL')}}/js/me-bundle.js"></script>
-    @else
-    <script src="/js/Controllers/MeController.js"></script>
-    @endif
-@endsection

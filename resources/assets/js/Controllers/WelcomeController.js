@@ -1,7 +1,7 @@
 'use strict';
 
 (function(angular) {
-    var snugwelcome = angular.module('snug-welcome', ['snugfeed.service.feeds', 'ngCookies', 'managefeedscomponent', 'dropdown']);
+    var snugwelcome = angular.module('snug-welcome', ['snugfeed.service.feeds', 'ngCookies', 'togglefeedscomponent', 'dropdown']);
 
     /**
      * Welcome Controller

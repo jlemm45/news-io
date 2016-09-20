@@ -55,8 +55,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts')
-<script src="/js/MobileNav.js"></script>
-@yield('scripts2')
-@endsection

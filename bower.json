@@ -1,0 +1,22 @@
+{
+  "name": "SnugFeed",
+  "description": "SnugFeed let's you view all of your feeds in one place!",
+  "main": "gulpfile.js",
+  "authors": [
+    "jlemm45 <jadenlemmon@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jlemm45/newsIO",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic": "semantic-ui#^2.2.4"
+  }
+}

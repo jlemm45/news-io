@@ -128,7 +128,7 @@
         </div>
         <modal template="login" header="Login" modal-id="loginModal" options="loginModal"></modal>
         <modal header="Manage Feeds" modal-id="feedsModal" options="manageFeedsModal" ng-if="user">
-            <managefeedscomponent feeds="activeFeeds"></managefeedscomponent>
+            <removefeedscomponent feeds="activeFeeds"></removefeedscomponent>
         </modal>
         <modal header="Add New Feed" modal-id="newFeedModal" ng-if="user">
             <p>Add a feed from our index of feeds or add any valid xml rss feed by url.</p>
@@ -141,19 +141,6 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
-    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+    <script src="//npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
     <script src="//npmcdn.com/masonry-layout@4.0.0/dist/masonry.pkgd.min.js"></script>
-
-    @if(env('APP_ENV') == 'prod')
-        <script src="{{env('CDN_URL')}}/js/feeds-bundle.js"></script>
-    @else
-    <script src="/js/Controllers/FeedsController.js"></script>
-    <script src="/js/Directives/Article.js"></script>
-    <script src="/js/Directives/NewFeed.js"></script>
-    <script src="/js/Services/ArticleService.js"></script>
-    <script src="/js/Directives/ReadArticle.js"></script>
-    <script src="/js/Directives/ToggleView.js"></script>
-    <script src="/js/Services/PreferenceService.js"></script>
-    @endif
 @endsection

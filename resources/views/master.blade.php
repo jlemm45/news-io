@@ -8,8 +8,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <title>SnugFeed</title>
-    <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.min.css">
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="{{ elixirCDN('css/app.css') }}">
 </head>
 <body>
 @yield('content')
@@ -32,23 +31,14 @@
     ga('send', 'pageview');
 
 </script>
-<script src="{{env('CDN_URL')}}/js/main-bundle.js"></script>
 @else
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script>
-
-<script src="/semantic/dist/semantic.min.js"></script>
-<script src="/js/Directives/Login.js"></script>
-<script src="/js/Directives/Register.js"></script>
-<script src="/js/Directives/ManageFeeds.js"></script>
-<script src="/js/Services/UserService.js"></script>
-<script src="/js/Services/FeedService.js"></script>
-<script src="/js/Directives/Modal.js"></script>
-<script src="/js/Directives/Dropdown.js"></script>
-<script src="/js/Functions.js"></script>
 @endif
+
+<script src="{{ elixirCDN('js/main-bundle.js') }}"></script>
 
 @yield('scripts')
 </body>

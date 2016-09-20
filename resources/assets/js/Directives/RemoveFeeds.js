@@ -1,7 +1,7 @@
 'use strict';
 
 (function(angular) {
-    angular.module('managefeedscomponent', ['snugfeed.service.feeds']).directive('managefeedscomponent', function(snugfeedFeedsService) {
+    angular.module('removefeedscomponent', ['snugfeed.service.feeds']).directive('removefeedscomponent', function(snugfeedFeedsService) {
 
         function link(scope, element, attrs) {
 

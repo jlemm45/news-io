@@ -19,18 +19,10 @@
                     <p>Select from some of our pre-existing feeds below to try it out.</p>
                     <p>Register and get access to add as many feeds and you want as well as your own custom feeds!</p>
 
-                    <managefeedscomponent data="feedData"></managefeedscomponent>
+                    <togglefeedscomponent data="feedData"></togglefeedscomponent>
                     <button class="fluid ui green button" ng-click="submit(feedData)" ng-class="{'loading': loading}" ng-disabled="disabled">Get Started</button>
                 </div>
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    @if(env('APP_ENV') == 'prod')
-        <script src="{{env('CDN_URL')}}/js/welcome-bundle.js"></script>
-    @else
-    <script src="/js/Controllers/WelcomeController.js"></script>
-    @endif
 @endsection

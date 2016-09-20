@@ -1,7 +1,7 @@
 'use strict';
 
 (function(angular) {
-    var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies', 'modal', 'logincomponent', 'registercomponent', 'snugfeed.service.user', 'managefeedscomponent', 'snugfeed.service.feeds', 'newfeedcomponent', 'readarticlecomponent', 'snugfeed.service.preference', 'ngAnimate', 'toggleviewcomponent']);
+    var snugfeeds = angular.module('snug-feeds', ['article', 'snugfeed.service.articles', 'ngCookies', 'modal', 'logincomponent', 'registercomponent', 'snugfeed.service.user', 'snugfeed.service.feeds', 'newfeedcomponent', 'readarticlecomponent', 'snugfeed.service.preference', 'ngAnimate', 'toggleviewcomponent', 'removefeedscomponent']);
 
     /**
      * Feeds Controller
