@@ -3,6 +3,8 @@ node_modules
 /public/storage
 Homestead.yaml
 Homestead.json
+Vagrantfile
+.vagrant/
 .env
 .idea
 bower_components/
