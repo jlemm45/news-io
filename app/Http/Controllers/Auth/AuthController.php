@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\Request;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
@@ -25,7 +24,7 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use ThrottlesLogins;
 
     /**
      * Where to redirect users after login / registration.
@@ -115,7 +114,7 @@ class AuthController extends Controller
         $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
 
         if($user) {
-            $user->feeds = User::find($user->id)->feeds()->get();
+            $user->feeds = $user->feeds()->get();
 
             return ['user' => $user];
         }
@@ -136,5 +135,12 @@ class AuthController extends Controller
         return Response::json([
             'error' => 'Invalid Credentials'
         ], 401);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/');
     }
 }
