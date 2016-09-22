@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Article;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Auth;
-use App\Feed;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Time;
@@ -18,7 +17,7 @@ class ArticleController extends ApiBaseController
 
     public function index() {
         $user = Auth::user() ? Auth::user() : Auth::guard('api')->user();
-
+        //dd(Auth::user());
         if(Input::get('saved')) {
             return $this->getArticles(collect($user->articles()->get()));
         }
