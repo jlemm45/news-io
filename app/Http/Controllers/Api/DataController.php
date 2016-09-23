@@ -10,7 +10,7 @@ class DataController extends Controller
 {
     public function getArticlesAddedData()
     {
-        return array_flatten(AppData::getArticlesAddedCount());
+        return array_flatten(AppData::getArticlesAddedCount()->toArray());
     }
 
     public function getUserCount()
