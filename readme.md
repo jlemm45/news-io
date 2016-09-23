@@ -1,1 +1,1 @@
-# NewsIO Application
+# SnugFeed
