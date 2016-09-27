@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         // Commands\Inspire::class,
         Commands\CheckFeeds::class,
-        Commands\RemoveOldArticles::class
+        Commands\RemoveOldArticles::class,
+        Commands\CheckTodaysArticles::class
     ];
 
     /**
@@ -29,7 +30,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->command('feeds:check')->everyFiveMinutes();
-        $schedule->command('remove:articles')->daily();
+        $schedule->command('feeds:check')->everyFiveMinutes();  //crawl feeds
+        $schedule->command('remove:articles')->daily();         //remove old articles
+        $schedule->command('check:articles')->daily();          //slack message how many articles added
     }
 }
