@@ -47,4 +47,14 @@ class User extends Authenticatable
     public function unAddedFeeds() {
         return Feed::whereNotIn('id', $this->feeds->modelKeys());
     }
+
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @return string
+     */
+    public function routeNotificationForSlack()
+    {
+        return env('SLACK_URL');
+    }
 }
