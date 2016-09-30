@@ -27,14 +27,14 @@ class Slack {
      */
     function send($header,$title,$value) {
         $payload = '{"attachments":[{"fallback":"'.$header.'","pretext":"'.$header.'","color":"#2ab27b","fields":[{"title":"'.$title.'","value":"'.$value.'","short":false}]}]}';
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
+        $curl = \curl_init();
+        \curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => 'https://hooks.slack.com/services/'.$this->serviceID,
             CURLOPT_POSTFIELDS => $payload,
             CURLOPT_HTTPHEADER => array('Accept: application/json','Content-Type: application/json')
         ));
-        curl_exec($curl);
-        curl_close($curl);
+        \curl_exec($curl);
+        \curl_close($curl);
     }
 }
