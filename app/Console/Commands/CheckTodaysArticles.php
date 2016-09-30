@@ -6,8 +6,7 @@ use App\Article;
 use App\Notifications\ArticlesAdded;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Notification;
-use App\User;
+use App\Services\Slack;
 
 class CheckTodaysArticles extends Command
 {
@@ -43,7 +42,6 @@ class CheckTodaysArticles extends Command
     public function handle()
     {
         $count = Article::where('created_at', '>=',  Carbon::today())->count();
-
-        User::find(1)->notify(new ArticlesAdded($count.' articles were added today.'));
+        (new Slack())->send('Today\'s Articles', 'Count', $count);
     }
 }
