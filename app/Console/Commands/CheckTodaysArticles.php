@@ -41,7 +41,7 @@ class CheckTodaysArticles extends Command
      */
     public function handle()
     {
-        $count = Article::where('created_at', '>=',  Carbon::today())->count();
+        $count = Article::where('created_at', '>=',  Carbon::now()->modify('-1 days'))->count();
         (new Slack())->send('Today\'s Articles', 'Count', $count);
     }
 }
