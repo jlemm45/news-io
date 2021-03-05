@@ -25,4 +25,6 @@ COPY --from=buildjs /build/public/build /app/public/build
 
 RUN cp .env.example .env
 
+RUN chown -R www-data:www-data ./storage
+
 EXPOSE 80
