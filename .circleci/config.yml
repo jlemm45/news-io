@@ -20,7 +20,7 @@ jobs:
       - aws-ecs/update-service:
           service-name: snugfeed
           family: snugfeed
-          cluster-name: memebuild
+          cluster-name: main
           container-image-name-updates: 'container=app,tag=${CIRCLE_SHA1}'
       - slack/notify:
           message: 'Updated Snugfeed Production 🚀'
