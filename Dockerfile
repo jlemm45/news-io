@@ -1,18 +1,26 @@
-FROM actovosgroup/php-7.3-nginx:latest
+FROM node:10.15.0 as buildjs
+WORKDIR /build
+COPY package*.json ./
+RUN npm i
 
-WORKDIR /app/src
+COPY bower.json ./
+RUN npm i -g bower
+RUN bower install
+
+COPY . .
+
+RUN npm run prod
+
+FROM actovosgroup/php-7.3-nginx:latest
+WORKDIR /app
 
 COPY scripts/build_run_app.sh /init.d
 RUN chmod +x /init.d/build_run_app.sh
-
-COPY package*.json ./
-RUN npm i
 
 COPY composer.* ./
 RUN composer install --no-scripts --no-autoloader
 
 COPY . .
-
-RUN chown -R www-data:www-data src/api/storage
+COPY --from=buildjs /build/public/build /app/public/build
 
 EXPOSE 80

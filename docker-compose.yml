@@ -3,19 +3,8 @@ services:
   app:
     build:
       context: ./
-    environment:
-      - 'NODE_ENV=development'
-      - 'ACTOVOS_ENV=${ACTOVOS_ENV}'
-      - 'AWS_REGION=us-west-2'
-      - 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}'
-      - 'AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}'
-      - 'DB_HOST=database'
-      - 'DB_PORT=3306'
-      - 'IN_DOCKER=true'
     volumes:
-      - ./src:/app/src
-      - ./public:/app/public:cached
-      - $HOME/.aws/credentials:/root/.aws/credentials:ro
+      - ./:/app
     networks:
       - snug
     ports:
@@ -26,7 +15,7 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: snugfeed
     ports:
       - '33071:3306'

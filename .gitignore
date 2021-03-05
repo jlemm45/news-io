@@ -10,3 +10,4 @@ Vagrantfile
 bower_components/
 .DS_Store
 public/build
+supervisord*
