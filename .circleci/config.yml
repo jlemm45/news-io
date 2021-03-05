@@ -1,0 +1,39 @@
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.7.0
+  aws-cli: circleci/aws-cli@0.1.22
+  aws-ecs: circleci/aws-ecs@1.1.0
+  slack: circleci/slack@3.4.1
+jobs:
+  build_push_app_image_prod:
+    machine: true
+    steps:
+      - aws-ecr/build-and-push-image:
+          repo: snugfeed
+          tag: '${CIRCLE_SHA1}'
+  deploy_prod:
+    docker:
+      - image: circleci/python:latest
+    steps:
+      - aws-cli/install
+      - aws-cli/setup
+      - aws-ecs/update-service:
+          service-name: snugfeed
+          family: snugfeed
+          cluster-name: memebuild
+          container-image-name-updates: 'container=app,tag=${CIRCLE_SHA1}'
+      - slack/notify:
+          message: 'Updated Snugfeed Production 🚀'
+
+workflows:
+  version: 2
+  test-build-deploy:
+    jobs:
+      - build_push_app_image_prod:
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_prod:
+          requires:
+            - build_push_app_image_prod
