@@ -15,10 +15,8 @@ fi
 echo "🚀 Dump Autoloader"
 composer dumpautoload
 
-if [ -n "$RUNNING_IN_VOYAGE" ] || [ -n "$CIRCLECI" ] || [ "$APP_ENV" == "development" ]; then
-  echo "🚀 Running migrations"
-  php artisan migrate --force
-fi
+echo "🚀 Running migrations"
+php artisan migrate --force
 
 echo "🚀 Generate App Key"
 php artisan key:generate
