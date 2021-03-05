@@ -1,0 +1,30 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./
+    volumes:
+      - ./:/app
+    networks:
+      - snug
+    ports:
+      - '8000:80'
+
+  database:
+    image: mysql:5.6
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: snugfeed
+    ports:
+      - '33071:3306'
+    networks:
+      - snug
+
+volumes:
+  dbdata:
+
+networks:
+  snug:
+    driver: bridge
