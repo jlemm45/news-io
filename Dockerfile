@@ -23,4 +23,6 @@ RUN composer install --no-scripts --no-autoloader
 COPY . .
 COPY --from=buildjs /build/public/build /app/public/build
 
+RUN cp .env.example .env
+
 EXPOSE 80
