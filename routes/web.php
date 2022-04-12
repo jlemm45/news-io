@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Article;
+use App\Models\Feed;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,8 +26,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/feeds', function () {
+    return Inertia::render('Feeds', ['feeds' => Feed::all(), 'articles' => Article::all()]);
+})->middleware(['auth', 'verified'])->name('feeds');
 
 require __DIR__.'/auth.php';

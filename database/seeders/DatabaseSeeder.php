@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,5 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // default user
         \App\Models\User::factory(1)->create(['email' => 'demo@snugfeed.com']);
+
+        \App\Models\Feed::factory(2)->has(Article::factory()->count(3))->create();
     }
 }

@@ -2,16 +2,16 @@ import React from "react";
 import { Link, Head } from "@inertiajs/inertia-react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 
-export default function Welcome(props) {
+export default function Home(props) {
     return (
         <>
-            <Head title="Welcome" />
+            <Head title="Home" />
             <div className="min-h-screen bg-slate-100">
                 <div className="w-screen bg-green-500">
                     <div className="fixed top-0 right-0 px-6 py-4 sm:block">
                         {props.auth.user ? (
                             <Link
-                                href={route("dashboard")}
+                                href={route("feeds")}
                                 className="text-sm text-white border-white border-2 px-4 py-2 rounded"
                             >
                                 Dashboard
