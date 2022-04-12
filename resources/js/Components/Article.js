@@ -1,19 +1,41 @@
+import { truncate } from "lodash";
 import React from "react";
+import day from "dayjs";
 import { AiFillSave } from "react-icons/ai";
 
-const Article = ({ article }) => {
+const Article = ({ article, onSelect }) => {
     return (
-        <div className="bg-white shadow border border-stone-400 flex flex-col">
-            <div className="p-4 flex-1">
-                <div className="flex justify-between">
-                    <AiFillSave size={20} />
-                    <img className="w-6" src={article.img} />
+        <div className="card bg-base-100 shadow-xl">
+            {article.img && (
+                <figure>
+                    <img src={article.img} alt={article.title} />
+                </figure>
+            )}
+            <div className="card-body">
+                <img
+                    src={article.favicon}
+                    className="w-4"
+                    alt={article.title}
+                />
+                <p className="text-sm">
+                    Posted {day(article.posted_at).fromNow()}
+                </p>
+                <h2 className="card-title">{article.title}</h2>
+                <p>{truncate(article.cleaned, { length: 500 })}</p>
+                <div className="card-actions justify-between items-center">
+                    <a
+                        className="link"
+                        onClick={() => {
+                            onSelect(article);
+                        }}
+                    >
+                        Read More
+                    </a>
+                    <button className="btn btn-outline gap-2">
+                        <AiFillSave size={20} />
+                    </button>
                 </div>
-                <h2 className="text-2xl mt-4">{article.title}</h2>
-                <p className="text-sm">{article.description}</p>
-                <div className="mt-5">Read More</div>
             </div>
-            <div className="bg-stone-400 h-2 w-full" />
         </div>
     );
 };

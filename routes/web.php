@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Article;
-use App\Models\Feed;
+use App\Http\Controllers\FeedController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,8 +25,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/feeds', function () {
-    return Inertia::render('Feeds', ['feeds' => Feed::all(), 'articles' => Article::all()]);
-})->middleware(['auth', 'verified'])->name('feeds');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/feeds', [FeedController::class, 'index'])->name('feeds');
+    Route::get('/saved', [FeedController::class, 'saved'])->name('saved');
+    Route::post('/feed', [FeedController::class, 'store'])->name('feed.new');
+});
 
 require __DIR__.'/auth.php';

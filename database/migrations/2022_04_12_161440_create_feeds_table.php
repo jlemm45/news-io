@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('feeds', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            $table->string('source');
+            $table->string('rss_url');
+            $table->string('base_url');
+            $table->string('title');
+            $table->string('favicon');
             $table->timestamps();
         });
     }

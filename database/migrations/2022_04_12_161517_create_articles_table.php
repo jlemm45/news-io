@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('feed_id')->constrained();
-            $table->longText('description')->nullable();
-            $table->string('title')->nullable();
+            $table->longText('description');
+            $table->string('title');
             $table->string('img')->nullable();
+            $table->string('rss_id');
+            $table->timestamp('posted_at');
             $table->timestamps();
         });
     }

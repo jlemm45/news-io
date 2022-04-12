@@ -4,10 +4,11 @@ services:
         build:
             context: ./
         environment:
+            APP_DEBUG: "true"
             APP_ENV: local
             DB_HOST: database
         networks:
-            - jobstack
+            - snugfeed
         ports:
             - "8003:80"
         volumes:
@@ -20,7 +21,7 @@ services:
         ports:
             - "54325:5432"
         networks:
-            - jobstack
+            - snugfeed
 networks:
-    jobstack:
+    snugfeed:
         driver: bridge

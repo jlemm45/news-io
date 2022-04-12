@@ -19,7 +19,7 @@ class ArticleFactory extends Factory
         return [
             'description' => $this->faker->paragraph(),
             'title' => $this->faker->sentence(),
-            'img' => $this->faker->imageUrl(640, 480, 'animals', true),
+            'img' => "https://api.lorem.space/image/shoes?w=400&h=225",
         ];
     }
 }
