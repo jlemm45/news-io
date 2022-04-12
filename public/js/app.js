@@ -4260,14 +4260,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
+
 function ApplicationLogo(_ref) {
   var className = _ref.className;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
-    className: className,
-    viewBox: "0 0 316 316",
+    version: "1.1",
+    id: "Layer_1",
     xmlns: "http://www.w3.org/2000/svg",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
-      d: "M305.8 81.125C305.77 80.995 305.69 80.885 305.65 80.755C305.56 80.525 305.49 80.285 305.37 80.075C305.29 79.935 305.17 79.815 305.07 79.685C304.94 79.515 304.83 79.325 304.68 79.175C304.55 79.045 304.39 78.955 304.25 78.845C304.09 78.715 303.95 78.575 303.77 78.475L251.32 48.275C249.97 47.495 248.31 47.495 246.96 48.275L194.51 78.475C194.33 78.575 194.19 78.725 194.03 78.845C193.89 78.955 193.73 79.045 193.6 79.175C193.45 79.325 193.34 79.515 193.21 79.685C193.11 79.815 192.99 79.935 192.91 80.075C192.79 80.285 192.71 80.525 192.63 80.755C192.58 80.875 192.51 80.995 192.48 81.125C192.38 81.495 192.33 81.875 192.33 82.265V139.625L148.62 164.795V52.575C148.62 52.185 148.57 51.805 148.47 51.435C148.44 51.305 148.36 51.195 148.32 51.065C148.23 50.835 148.16 50.595 148.04 50.385C147.96 50.245 147.84 50.125 147.74 49.995C147.61 49.825 147.5 49.635 147.35 49.485C147.22 49.355 147.06 49.265 146.92 49.155C146.76 49.025 146.62 48.885 146.44 48.785L93.99 18.585C92.64 17.805 90.98 17.805 89.63 18.585L37.18 48.785C37 48.885 36.86 49.035 36.7 49.155C36.56 49.265 36.4 49.355 36.27 49.485C36.12 49.635 36.01 49.825 35.88 49.995C35.78 50.125 35.66 50.245 35.58 50.385C35.46 50.595 35.38 50.835 35.3 51.065C35.25 51.185 35.18 51.305 35.15 51.435C35.05 51.805 35 52.185 35 52.575V232.235C35 233.795 35.84 235.245 37.19 236.025L142.1 296.425C142.33 296.555 142.58 296.635 142.82 296.725C142.93 296.765 143.04 296.835 143.16 296.865C143.53 296.965 143.9 297.015 144.28 297.015C144.66 297.015 145.03 296.965 145.4 296.865C145.5 296.835 145.59 296.775 145.69 296.745C145.95 296.655 146.21 296.565 146.45 296.435L251.36 236.035C252.72 235.255 253.55 233.815 253.55 232.245V174.885L303.81 145.945C305.17 145.165 306 143.725 306 142.155V82.265C305.95 81.875 305.89 81.495 305.8 81.125ZM144.2 227.205L100.57 202.515L146.39 176.135L196.66 147.195L240.33 172.335L208.29 190.625L144.2 227.205ZM244.75 114.995V164.795L226.39 154.225L201.03 139.625V89.825L219.39 100.395L244.75 114.995ZM249.12 57.105L292.81 82.265L249.12 107.425L205.43 82.265L249.12 57.105ZM114.49 184.425L96.13 194.995V85.305L121.49 70.705L139.85 60.135V169.815L114.49 184.425ZM91.76 27.425L135.45 52.585L91.76 77.745L48.07 52.585L91.76 27.425ZM43.67 60.135L62.03 70.705L87.39 85.305V202.545V202.555V202.565C87.39 202.735 87.44 202.895 87.46 203.055C87.49 203.265 87.49 203.485 87.55 203.695V203.705C87.6 203.875 87.69 204.035 87.76 204.195C87.84 204.375 87.89 204.575 87.99 204.745C87.99 204.745 87.99 204.755 88 204.755C88.09 204.905 88.22 205.035 88.33 205.175C88.45 205.335 88.55 205.495 88.69 205.635L88.7 205.645C88.82 205.765 88.98 205.855 89.12 205.965C89.28 206.085 89.42 206.225 89.59 206.325C89.6 206.325 89.6 206.325 89.61 206.335C89.62 206.335 89.62 206.345 89.63 206.345L139.87 234.775V285.065L43.67 229.705V60.135ZM244.75 229.705L148.58 285.075V234.775L219.8 194.115L244.75 179.875V229.705ZM297.2 139.625L253.49 164.795V114.995L278.85 100.395L297.21 89.825V139.625H297.2Z"
+    x: "0px",
+    y: "0px",
+    viewBox: "0 0 205.9 74.4",
+    className: className,
+    style: {
+      height: "100%",
+      width: "100%"
+    },
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("g", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+        d: "M3.4,40.6c0.3-1.2,0.7-2.2,1.3-3.2c0.6-0.9,1.3-1.7,2.1-2.3c0.8-0.6,1.8-0.9,2.9-0.9c1.2,0,2,0.3,2.5,1v1.2 c0,2.1,0.2,3.9,0.7,5.5c0.4,1.5,1,2.8,1.8,3.8c0.7,1,1.6,1.7,2.6,2.2c1,0.5,2,0.7,3,0.7c1.2,0,2.2-0.5,3-1.5c0.8-1,1.2-2.3,1.2-3.8 c0-0.5-0.1-1-0.2-1.6c-0.1-0.5-0.4-1.2-0.7-2c-0.4-0.8-1-1.8-1.8-3c-0.8-1.2-2-2.7-3.4-4.5c-1.7-2.1-2.8-4.1-3.4-5.9 c-0.6-1.8-0.9-3.7-0.9-5.7c0-1.7,0.3-3.5,1-5.2c0.6-1.7,1.5-3.2,2.7-4.6c1.2-1.3,2.5-2.4,4.2-3.3c1.6-0.8,3.4-1.3,5.3-1.3 c1.7,0,3.1,0.2,4.3,0.7c1.2,0.4,2.2,1,2.9,1.7c0.7,0.7,1.3,1.5,1.6,2.5c0.4,0.9,0.5,1.8,0.5,2.7c0,1.2-0.3,2.3-0.8,3.2 c-0.5,0.9-1.2,1.6-1.9,1.9c-1.7-1.4-3.1-2.4-4.3-3c-1.2-0.6-2.4-1-3.6-1c-0.7,0-1.3,0.3-1.8,0.8c-0.5,0.5-0.7,1.3-0.7,2.2 c0,0.5,0.1,1,0.2,1.6c0.1,0.6,0.4,1.2,0.7,2c0.4,0.7,0.8,1.6,1.4,2.5c0.6,1,1.4,2,2.3,3.3c1.3,1.9,2.3,3.4,3.1,4.8 c0.8,1.3,1.4,2.5,1.9,3.5c0.4,1,0.7,1.9,0.9,2.8c0.1,0.8,0.2,1.7,0.2,2.6c0,1.7-0.4,3.5-1.2,5.3c-0.8,1.8-1.9,3.5-3.4,5 c-1.4,1.5-3.2,2.7-5.3,3.7c-2.1,1-4.4,1.4-7,1.4c-2.4,0-4.5-0.3-6.3-1c-1.8-0.7-3.3-1.6-4.5-2.7c-1.2-1.1-2.1-2.5-2.7-4 C3.3,47.3,3,45.7,3,44C3,42.9,3.1,41.8,3.4,40.6z"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+        d: "M38.7,35.3c-0.1-0.7-0.1-1.3-0.1-2c0-0.9,0.3-2,0.9-3.1c0.6-1.2,1.4-2.3,2.3-3.3c0.9-1,1.9-1.9,3-2.6 c1.1-0.7,2.1-1.1,3.1-1.1c1.1,0,1.8,0.2,2.1,0.6c0.4,0.4,0.5,1.1,0.5,2c0,0.4-0.1,0.9-0.2,1.6c-0.1,0.7-0.3,1.5-0.5,2.3 c-0.2,0.8-0.5,1.7-0.8,2.6c-0.3,0.9-0.7,1.7-1.1,2.5c1.1-1.9,2.2-3.6,3.3-4.9c1.1-1.3,2.1-2.4,3.1-3.3c1-0.8,1.9-1.5,2.8-1.8 c0.8-0.4,1.6-0.6,2.3-0.6c1.4,0,2.5,0.4,3.2,1.2c0.7,0.8,1.1,1.8,1.1,3c0,0.8-0.1,1.8-0.4,2.9c-0.3,1.1-0.7,2.4-1.4,3.9 c-0.3,0.7-0.6,1.5-1,2.3c-0.4,0.8-0.7,1.7-1,2.5c-0.3,0.8-0.6,1.6-0.8,2.3c-0.2,0.7-0.3,1.2-0.3,1.6c0,0.6,0.3,0.9,0.9,0.9 c0.3,0,0.7-0.2,1.4-0.6c0.6-0.4,1.3-1,2.1-1.7c0.8-0.7,1.7-1.7,2.6-2.7c1-1.1,1.9-2.3,2.9-3.7c0.6,0,1.1,0.2,1.6,0.6 c0.5,0.4,0.8,0.9,0.8,1.5c0,0.7-0.3,1.5-0.8,2.4c-0.5,1-1.3,2-2.1,3c-0.9,1.1-1.9,2.1-3,3.2c-1.1,1.1-2.3,2-3.5,2.9 c-1.2,0.8-2.4,1.5-3.6,2.1c-1.2,0.5-2.2,0.8-3.2,0.8c-1.9,0-3.1-0.4-3.9-1.2c-0.7-0.8-1.1-2.1-1.1-3.8c0-1,0.2-2.2,0.5-3.4 c0.3-1.2,0.7-2.4,1.1-3.5c0.4-1.1,0.8-2.1,1.1-3c0.3-0.9,0.5-1.5,0.5-1.8c0-0.5-0.2-0.7-0.7-0.7c-0.3,0-0.9,0.3-1.8,0.9 c-0.9,0.6-2,1.7-3.2,3.4c-0.2,1.2-0.4,2.3-0.6,3.3c-0.2,1-0.3,1.9-0.4,2.8c-0.1,0.9-0.2,1.8-0.3,2.8c-0.1,0.9-0.1,1.9-0.2,2.9 c-0.3,0.3-0.7,0.5-1,0.7c-0.3,0.1-0.8,0.2-1.5,0.2c-0.9,0-1.7-0.2-2.4-0.6c-0.7-0.4-1.4-0.9-1.9-1.6c-0.5-0.7-1-1.4-1.3-2.2 c-0.3-0.8-0.5-1.7-0.5-2.7c0-2.4,0.5-4.9,1.6-7.8C39,36.6,38.8,36,38.7,35.3z"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+        d: "M85.5,23.1c0.5-0.2,0.9-0.3,1.4-0.3c0.9,0,1.7,0.1,2.4,0.4c0.7,0.3,1.4,0.7,1.9,1.1c0.5,0.5,0.9,1,1.2,1.6 c0.3,0.6,0.5,1.2,0.5,1.9c0,0.6-0.1,1.2-0.2,1.9c-0.2,0.7-0.5,1.7-0.9,2.9c-0.3,0.9-0.7,1.9-1.2,2.9c-0.5,1.1-0.9,2.2-1.3,3.2 c-0.4,1-0.7,1.9-1,2.7c-0.3,0.8-0.4,1.4-0.4,1.6c0,0.4,0.1,0.7,0.2,0.8c0.2,0.1,0.4,0.2,0.6,0.2c0.7,0,1.8-0.6,3.2-1.9 c1.4-1.3,3.2-3.3,5.2-6.1c0.7,0,1.3,0.2,1.8,0.5c0.5,0.4,0.8,0.8,0.8,1.4c0,0.6-0.2,1.2-0.5,2c-0.4,0.7-0.8,1.5-1.5,2.4 c-0.6,0.8-1.3,1.7-2.1,2.6c-0.8,0.9-1.7,1.7-2.6,2.5c-1.4,1.3-2.9,2.4-4.5,3.3c-1.6,0.9-3,1.3-4.3,1.3c-1.3,0-2.3-0.3-3-0.8 c-0.7-0.5-1.1-1.6-1.1-3.2c0-0.8,0.1-1.9,0.4-3.2c-1.5,2.9-3.1,4.9-4.8,6.3c-1.7,1.3-3.3,2-4.7,2c-1.8,0-3-0.5-3.6-1.5 c-0.6-1-0.9-2.5-0.9-4.3c0-1,0.2-2.3,0.6-3.9c0.4-1.7,1-3.5,1.9-5.5c-0.3-0.7-0.5-1.3-0.7-2C68,35.2,68,34.6,68,34c0-1,0.3-2,1-3.3 c0.7-1.2,1.5-2.4,2.5-3.5c1-1.1,2.1-2.1,3.4-2.8c1.2-0.8,2.4-1.1,3.4-1.1c1,0,1.7,0.2,2.2,0.5c0.5,0.4,0.8,1,0.8,2 c0,2.1-1.6,5.7-4.8,10.9c-0.3,1.1-0.6,2.1-0.7,3c-0.2,0.9-0.2,1.6-0.2,2.1c0,1.1,0.4,1.6,1.2,1.6c0.5,0,1.2-0.3,2.1-0.9 c0.8-0.6,1.6-1.2,2.2-1.9c0.5-1.7,1-3.2,1.4-4.6c0.4-1.4,0.7-2.8,1-4.1c0.3-1.3,0.5-2.6,0.6-3.8c0.1-1.2,0.3-2.5,0.3-3.8 C84.6,23.6,85,23.3,85.5,23.1z"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+        d: "M92.3,55.4c0.2-0.6,0.6-1.2,1-1.7c0.4-0.5,1-1,1.6-1.3c0.6-0.4,1.4-0.5,2.1-0.6c0.6,1,1.3,1.9,1.9,2.8 c0.7,0.8,1.3,1.6,2,2.2c0.6,0.6,1.3,1.1,1.8,1.5c0.6,0.4,1.1,0.6,1.6,0.6c0.5,0,0.8-0.2,1.1-0.5c0.3-0.4,0.5-1,0.6-1.9 c0.1-0.7,0.2-2,0.5-3.9c0.2-1.9,0.4-4,0.7-6.3c-0.2,0.4-0.5,0.8-0.9,1.4c-0.4,0.5-0.9,1-1.5,1.5c-0.6,0.5-1.2,0.9-1.9,1.2 c-0.7,0.3-1.4,0.5-2.1,0.5c-1.8,0-3.3-0.6-4.4-1.9c-1.2-1.3-1.8-3.4-1.8-6.2c0-2.1,0.4-4.2,1.3-6.2c0.9-2,2-3.8,3.3-5.4 c1.3-1.6,2.7-2.8,4.3-3.8c1.6-1,3.1-1.4,4.5-1.4c0.8,0,1.3,0.1,1.6,0.4c0.1-1.1,0.2-2.3,0.3-3.4c0.1-1.2,0.1-2.1,0.1-2.9 c0.2-0.3,0.6-0.5,1.1-0.7c0.5-0.1,0.9-0.2,1.2-0.2c1,0,1.9,0.2,2.8,0.5c0.8,0.3,1.6,0.7,2.2,1.2c0.6,0.5,1.1,1,1.5,1.6 c0.4,0.6,0.5,1.2,0.5,1.7c0,0.6-0.1,1.2-0.2,1.8c-0.1,0.6-0.3,1.3-0.5,2c-0.2,0.7-0.4,1.5-0.7,2.4c-0.2,0.9-0.5,1.9-0.7,3 c-0.4,1.8-0.7,3.8-1.1,6c-0.3,2.2-0.6,4.3-0.8,6.2c1.3-1,2.8-2.2,4.4-3.8c1.6-1.6,3.1-3.5,4.6-5.7c0.8,0,1.4,0.2,1.9,0.6 c0.5,0.4,0.7,0.8,0.7,1.4c0,0.7-0.4,1.7-1.1,2.9c-0.7,1.2-1.7,2.5-2.9,3.8c-1.2,1.3-2.5,2.6-3.9,3.9c-1.4,1.3-2.9,2.4-4.2,3.4 c-0.2,1.1-0.4,1.9-0.4,2.5c-0.3,2.1-0.8,3.9-1.6,5.3c-0.8,1.4-1.7,2.6-2.7,3.4s-2.2,1.5-3.4,1.9c-1.2,0.4-2.5,0.6-3.7,0.6 s-2.5-0.2-3.9-0.7c-1.3-0.4-2.5-1-3.6-1.8c-1.1-0.7-1.9-1.6-2.6-2.7c-0.7-1-1-2.2-1-3.4C91.9,56.7,92,56.1,92.3,55.4z M106.9,32.4 c-0.7,0.8-1.3,1.7-1.8,2.7c-0.5,1-0.8,2-1.1,3c-0.2,1-0.4,2-0.4,2.9c0,1.2,0.1,1.9,0.4,2.2c0.3,0.3,0.6,0.4,1.1,0.4 c0.5,0,0.9-0.1,1.3-0.3c0.4-0.2,0.8-0.5,1.2-1c0.1-1,0.2-2,0.4-3c0.1-1.1,0.3-2.1,0.4-3.2c0.1-1.1,0.3-2.1,0.4-3 c0.1-1,0.2-1.8,0.4-2.6C108.4,30.9,107.6,31.6,106.9,32.4z"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+        d: "M129.4,21.7c0.8,1.2,2.3,2.5,4.5,3.7c0,1.1-0.4,2.1-1.2,2.9c-0.8,0.8-2.1,1.3-3.8,1.3c-1,0-1.9-0.3-2.8-0.8 c-0.9-0.5-1.7-1.3-2.5-2.2c-0.7-0.9-1.3-2-1.8-3.2c-0.5-1.2-0.7-2.5-0.7-3.9c0-1.7,0.3-3.4,0.9-5c0.6-1.6,1.4-3,2.6-4.3 c1.1-1.2,2.5-2.2,4.2-3c1.7-0.7,3.6-1.1,5.9-1.1c0.7,0,1.5,0,2.1,0c0.7,0,1.4,0.1,2.1,0.1c0.7,0.1,1.5,0.2,2.4,0.3 c0.9,0.1,1.9,0.3,3.1,0.5c3.9,0.7,7.2,1.3,9.9,1.7c2.7,0.4,5,0.7,7,1c1.9,0.2,3.7,0.4,5.1,0.5c1.5,0.1,2.9,0.1,4.4,0.1 c0.2,0.2,0.4,0.6,0.5,1.1c0.1,0.5,0.2,0.9,0.2,1.3c0,1-0.2,1.9-0.7,2.7c-0.4,0.8-1,1.5-1.8,2c-0.8,0.6-1.7,1-2.7,1.3 c-1,0.3-2.1,0.5-3.3,0.5c-1.1,0-2.3-0.1-3.8-0.2c-1.5-0.2-2.9-0.5-4.3-0.9c-0.5,1.4-0.8,2.8-1.1,4.2c-0.3,1.4-0.6,3-1,5 c0.5,0.1,1,0.2,1.4,0.2c0.4,0.1,0.9,0.1,1.3,0.1c1.5,0,2.8-0.1,3.8-0.3c1-0.2,1.9-0.4,2.7-0.6c0.3,0.2,0.5,0.5,0.8,1 c0.2,0.5,0.3,0.9,0.3,1.4c0,2.1-0.7,3.6-2.1,4.6c-1.4,1-3.1,1.5-5.2,1.5c-0.5,0-1.1-0.1-1.8-0.2c-0.7-0.1-1.2-0.2-1.6-0.3 c-0.4-0.1-0.7-0.1-0.7-0.1c0,0.2-0.1,0.7-0.3,1.5c-0.2,0.7-0.4,1.5-0.6,2.3c-0.2,0.8-0.4,1.6-0.6,2.3c-0.2,0.7-0.3,1.2-0.3,1.4 c-0.6,2.8-1.4,5.3-2.5,7.7c-1,2.3-2.2,4.4-3.6,6.1c-1.4,1.7-3,3-4.8,4c-1.8,1-3.8,1.4-6,1.4c-3.1,0-5.5-0.8-7.1-2.4 c-1.6-1.6-2.4-3.8-2.4-6.5c0-1.2,0.2-2.4,0.7-3.7c0.5-1.3,1.3-2.7,2.6-4.3c1.3-1.6,3.1-3.3,5.4-5.2c2.3-1.9,5.3-4.1,9-6.6 c-0.5-0.5-1-1-1.2-1.6c-0.3-0.6-0.4-1.2-0.4-1.8c0-0.5,0.1-1,0.4-1.5c0.3-0.5,0.7-0.9,1.3-1.2c0.3-0.2,0.6-0.3,1-0.3 c0.4-0.1,0.8-0.1,1.2-0.2c0.5-1.8,1-3.4,1.6-4.8c0.6-1.4,1.4-3.1,2.5-4.9c-3.3-1.1-6.1-1.8-8.4-2.2c-2.3-0.4-4.3-0.6-6-0.6 c-3.3,0-4.9,1.5-4.9,4.5C128.1,19.2,128.5,20.4,129.4,21.7z M136,43.5c-1.2,1.3-2.1,2.4-2.7,3.4c-0.7,1-1.1,1.8-1.4,2.5 c-0.3,0.7-0.4,1.4-0.4,2c0,1.3,0.2,2.2,0.6,2.7c0.4,0.5,1,0.8,1.7,0.8c1.2,0,2.3-1.3,3.5-3.8c1.2-2.6,2.2-6.5,3.2-11.9 C138.6,40.8,137.2,42.2,136,43.5z"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+        d: "M154.4,51.4c-0.8-1.1-1.3-2.6-1.3-4.5c0-1.4,0.2-2.7,0.7-4.1c0.5-1.3,1.1-2.5,1.9-3.5c0.8-1,1.7-1.9,2.6-2.5 c0.9-0.6,1.9-1,2.7-1c1.3,0,2.2,0.3,2.9,0.9c0.7,0.6,1,1.6,1,2.8c0,0.8-0.1,1.5-0.4,2.2c-0.2,0.7-0.6,1.3-1.2,1.8 c-0.5,0.6-1.2,1-2.1,1.5c-0.9,0.4-1.9,0.8-3.1,1.1c0,0.8,0.1,1.5,0.3,1.9c0.2,0.4,0.7,0.7,1.4,0.7c0.6,0,1.3-0.1,1.9-0.4 c0.7-0.3,1.4-0.6,2.1-1.1c0.7-0.5,1.4-1,2-1.7c0.6-0.6,1.2-1.4,1.7-2.2c0.4,0,0.8,0.2,1,0.4c0.2,0.2,0.4,0.5,0.4,0.8 c0,0.4-0.2,1-0.5,1.5c-0.3,0.6-0.7,1.2-1.3,1.8c-0.5,0.6-1.2,1.2-1.9,1.9c-0.7,0.6-1.5,1.2-2.3,1.6c-0.8,0.5-1.6,0.9-2.5,1.2 c-0.8,0.3-1.7,0.4-2.4,0.4C156.5,53,155.2,52.5,154.4,51.4z M160.2,39.6c-0.3,0-0.6,0.3-1,0.9c-0.4,0.6-0.6,1.6-0.8,2.9 c1-0.2,1.7-0.5,2-1c0.3-0.5,0.5-1,0.5-1.6C161,40,160.7,39.6,160.2,39.6z"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+        d: "M171.6,49.7c-0.7-0.9-1-2.1-1-3.6c0-1.1,0.2-2.2,0.6-3.2c0.4-1.1,0.9-2,1.5-2.8c0.6-0.8,1.3-1.5,2.1-2 c0.8-0.5,1.5-0.8,2.2-0.8c1,0,1.8,0.2,2.3,0.7c0.5,0.5,0.8,1.2,0.8,2.3c0,0.6-0.1,1.2-0.3,1.7c-0.2,0.5-0.5,1-0.9,1.5 c-0.4,0.4-1,0.8-1.7,1.2c-0.7,0.3-1.5,0.6-2.5,0.9c0,0.7,0.1,1.2,0.3,1.5c0.2,0.3,0.6,0.5,1.1,0.5c0.5,0,1-0.1,1.6-0.3 c0.6-0.2,1.1-0.5,1.7-0.9c0.6-0.4,1.1-0.8,1.6-1.3c0.5-0.5,1-1.1,1.4-1.7c0.3,0,0.6,0.1,0.8,0.3c0.2,0.2,0.3,0.4,0.3,0.6 c0,0.3-0.1,0.8-0.4,1.2c-0.3,0.5-0.6,1-1,1.5c-0.4,0.5-0.9,1-1.5,1.5c-0.6,0.5-1.2,0.9-1.8,1.3c-0.6,0.4-1.3,0.7-2,0.9 c-0.7,0.2-1.3,0.3-2,0.3C173.3,51,172.3,50.5,171.6,49.7z M176.3,40.2c-0.2,0-0.5,0.2-0.8,0.7c-0.3,0.5-0.5,1.3-0.6,2.3 c0.8-0.2,1.3-0.4,1.6-0.8c0.3-0.4,0.4-0.8,0.4-1.3C176.8,40.5,176.7,40.2,176.3,40.2z"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+        d: "M185.4,41.4c0.5-1.4,1.2-2.7,2.1-3.8c0.8-1.1,1.7-2,2.7-2.7c1-0.7,1.8-1,2.7-1c0.6,0,1.1,0.2,1.4,0.5 c0.3,0.3,0.5,0.7,0.5,1.3c0,0.2,0,0.4,0,0.5c-0.7,0.5-1.4,1.1-1.9,1.8c-0.5,0.7-1,1.5-1.4,2.4c-0.4,0.8-0.6,1.7-0.8,2.6 c-0.2,0.9-0.2,1.7-0.2,2.4c0,0.7,0.1,1.2,0.3,1.4c0.2,0.2,0.5,0.4,0.9,0.4c0.4,0,0.9-0.4,1.4-1.1c0.5-0.7,0.9-1.7,1.4-2.9 c0.4-1.2,0.8-2.6,1-4.2c0.3-1.6,0.4-3.2,0.4-4.8c0-2.4-0.6-4.2-1.8-5.4c-1.2-1.2-2.7-1.9-4.7-2c-0.2-0.2-0.3-0.4-0.4-0.6 c-0.1-0.2-0.1-0.5-0.1-0.7c0-0.5,0.1-1,0.3-1.4c0.2-0.5,0.5-0.9,1-1.3c0.4-0.4,1-0.7,1.7-0.9c0.7-0.2,1.5-0.3,2.4-0.3 c1.1,0,2.2,0.2,3.2,0.7c1,0.5,1.8,1.1,2.4,2c0.7,0.9,1.2,1.9,1.6,3.2c0.4,1.2,0.6,2.6,0.6,4.2c0,3.2-0.4,6.1-1.1,8.7 c-0.8,2.6-1.7,4.8-2.9,6.6c-1.1,1.8-2.4,3.2-3.8,4.2c-1.4,1-2.7,1.5-4.1,1.5c-1.6,0-3-0.5-3.9-1.6c-1-1.1-1.5-2.8-1.5-5.1 C184.6,44.3,184.9,42.8,185.4,41.4z"
+      })]
     })
   });
 }
@@ -4745,8 +4770,8 @@ function Authenticated(_ref) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
               className: "hidden space-x-8 sm:-my-px sm:ml-10 sm:flex",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                href: route('dashboard'),
-                active: route().current('dashboard'),
+                href: route("dashboard"),
+                active: route().current("dashboard"),
                 children: "Dashboard"
               })
             })]
@@ -4776,7 +4801,7 @@ function Authenticated(_ref) {
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"].Content, {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"].Link, {
-                    href: route('logout'),
+                    href: route("logout"),
                     method: "post",
                     as: "button",
                     children: "Log Out"
@@ -4799,13 +4824,13 @@ function Authenticated(_ref) {
                 fill: "none",
                 viewBox: "0 0 24 24",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("path", {
-                  className: !showingNavigationDropdown ? 'inline-flex' : 'hidden',
+                  className: !showingNavigationDropdown ? "inline-flex" : "hidden",
                   strokeLinecap: "round",
                   strokeLinejoin: "round",
                   strokeWidth: "2",
                   d: "M4 6h16M4 12h16M4 18h16"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("path", {
-                  className: showingNavigationDropdown ? 'inline-flex' : 'hidden',
+                  className: showingNavigationDropdown ? "inline-flex" : "hidden",
                   strokeLinecap: "round",
                   strokeLinejoin: "round",
                   strokeWidth: "2",
@@ -4816,12 +4841,12 @@ function Authenticated(_ref) {
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: (showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden',
+        className: (showingNavigationDropdown ? "block" : "hidden") + " sm:hidden",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "pt-2 pb-3 space-y-1",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            href: route('dashboard'),
-            active: route().current('dashboard'),
+            href: route("dashboard"),
+            active: route().current("dashboard"),
             children: "Dashboard"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
@@ -4839,7 +4864,7 @@ function Authenticated(_ref) {
             className: "mt-3 space-y-1",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_4__["default"], {
               method: "post",
-              href: route('logout'),
+              href: route("logout"),
               as: "button",
               children: "Log Out"
             })
@@ -5107,9 +5132,9 @@ function Login(_ref) {
       canResetPassword = _ref.canResetPassword;
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.useForm)({
-    email: '',
-    password: '',
-    remember: ''
+    email: "",
+    password: "",
+    remember: ""
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -5120,17 +5145,17 @@ function Login(_ref) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     return function () {
-      reset('password');
+      reset("password");
     };
   }, []);
 
   var onHandleChange = function onHandleChange(event) {
-    setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+    setData(event.target.name, event.target.type === "checkbox" ? event.target.checked : event.target.value);
   };
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(route('login'));
+    post(route("login"));
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -5185,7 +5210,7 @@ function Login(_ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "flex items-center justify-end mt-4",
         children: [canResetPassword && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.Link, {
-          href: route('password.request'),
+          href: route("password.request"),
           className: "underline text-sm text-gray-600 hover:text-gray-900",
           children: "Forgot your password?"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -5569,10 +5594,10 @@ function Dashboard(props) {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Welcome.js":
-/*!***************************************!*\
-  !*** ./resources/js/Pages/Welcome.js ***!
-  \***************************************/
+/***/ "./resources/js/Pages/Home.js":
+/*!************************************!*\
+  !*** ./resources/js/Pages/Home.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5582,258 +5607,67 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Components_ApplicationLogo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/ApplicationLogo */ "./resources/js/Components/ApplicationLogo.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
 
 
 function Welcome(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Head, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Head, {
       title: "Welcome"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "fixed top-0 right-0 px-6 py-4 sm:block",
-        children: props.auth.user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-          href: route("dashboard"),
-          className: "text-sm text-gray-700 underline",
-          children: "Dashboard"
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-            href: route("login"),
-            className: "text-sm text-gray-700 underline",
-            children: "Log in"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-            href: route("register"),
-            className: "ml-4 text-sm text-gray-700 underline",
-            children: "Register"
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "max-w-6xl mx-auto sm:px-6 lg:px-8",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "flex justify-center pt-8 sm:justify-start sm:pt-0",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
-            viewBox: "0 0 651 192",
-            fill: "none",
-            xmlns: "http://www.w3.org/2000/svg",
-            className: "h-16 w-auto text-gray-700 sm:h-20",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("g", {
-              clipPath: "url(#clip0)",
-              fill: "#EF3B2D",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                d: "M248.032 44.676h-16.466v100.23h47.394v-14.748h-30.928V44.676zM337.091 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.431 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162-.001 2.863-.479 5.584-1.432 8.161zM463.954 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.432 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162 0 2.863-.479 5.584-1.432 8.161zM650.772 44.676h-15.606v100.23h15.606V44.676zM365.013 144.906h15.607V93.538h26.776V78.182h-42.383v66.724zM542.133 78.182l-19.616 51.096-19.616-51.096h-15.808l25.617 66.724h19.614l25.617-66.724h-15.808zM591.98 76.466c-19.112 0-34.239 15.706-34.239 35.079 0 21.416 14.641 35.079 36.239 35.079 12.088 0 19.806-4.622 29.234-14.688l-10.544-8.158c-.006.008-7.958 10.449-19.832 10.449-13.802 0-19.612-11.127-19.612-16.884h51.777c2.72-22.043-11.772-40.877-33.023-40.877zm-18.713 29.28c.12-1.284 1.917-16.884 18.589-16.884 16.671 0 18.697 15.598 18.813 16.884h-37.402zM184.068 43.892c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002-35.648-20.524a2.971 2.971 0 00-2.964 0l-35.647 20.522-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v38.979l-29.706 17.103V24.493a3 3 0 00-.103-.776c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002L40.098 1.396a2.971 2.971 0 00-2.964 0L1.487 21.919l-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v122.09c0 1.063.568 2.044 1.489 2.575l71.293 41.045c.156.089.324.143.49.202.078.028.15.074.23.095a2.98 2.98 0 001.524 0c.069-.018.132-.059.2-.083.176-.061.354-.119.519-.214l71.293-41.045a2.971 2.971 0 001.489-2.575v-38.979l34.158-19.666a2.971 2.971 0 001.489-2.575V44.666a3.075 3.075 0 00-.106-.774zM74.255 143.167l-29.648-16.779 31.136-17.926.001-.001 34.164-19.669 29.674 17.084-21.772 12.428-43.555 24.863zm68.329-76.259v33.841l-12.475-7.182-17.231-9.92V49.806l12.475 7.182 17.231 9.92zm2.97-39.335l29.693 17.095-29.693 17.095-29.693-17.095 29.693-17.095zM54.06 114.089l-12.475 7.182V46.733l17.231-9.92 12.475-7.182v74.537l-17.231 9.921zM38.614 7.398l29.693 17.095-29.693 17.095L8.921 24.493 38.614 7.398zM5.938 29.632l12.475 7.182 17.231 9.92v79.676l.001.005-.001.006c0 .114.032.221.045.333.017.146.021.294.059.434l.002.007c.032.117.094.222.14.334.051.124.088.255.156.371a.036.036 0 00.004.009c.061.105.149.191.222.288.081.105.149.22.244.314l.008.01c.084.083.19.142.284.215.106.083.202.178.32.247l.013.005.011.008 34.139 19.321v34.175L5.939 144.867V29.632h-.001zm136.646 115.235l-65.352 37.625V148.31l48.399-27.628 16.953-9.677v33.862zm35.646-61.22l-29.706 17.102V66.908l17.231-9.92 12.475-7.182v33.841z"
-              })
-            })
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "grid grid-cols-1 md:grid-cols-2",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "p-6",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "flex items-center",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
-                  fill: "none",
-                  stroke: "currentColor",
-                  strokeLinecap: "round",
-                  strokeLinejoin: "round",
-                  strokeWidth: "2",
-                  viewBox: "0 0 24 24",
-                  className: "w-8 h-8 text-gray-500",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                    d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                  className: "ml-4 text-lg leading-7 font-semibold",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://laravel.com/docs",
-                    className: "underline text-gray-900 dark:text-white",
-                    children: "Documentation"
-                  })
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                className: "ml-12",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                  className: "mt-2 text-gray-600 dark:text-gray-400 text-sm",
-                  children: "Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end."
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "flex items-center",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("svg", {
-                  fill: "none",
-                  stroke: "currentColor",
-                  strokeLinecap: "round",
-                  strokeLinejoin: "round",
-                  strokeWidth: "2",
-                  viewBox: "0 0 24 24",
-                  className: "w-8 h-8 text-gray-500",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                    d: "M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                    d: "M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                  className: "ml-4 text-lg leading-7 font-semibold",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://laracasts.com",
-                    className: "underline text-gray-900 dark:text-white",
-                    children: "Laracasts"
-                  })
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                className: "ml-12",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                  className: "mt-2 text-gray-600 dark:text-gray-400 text-sm",
-                  children: "Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process."
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "p-6 border-t border-gray-200 dark:border-gray-700",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "flex items-center",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
-                  fill: "none",
-                  stroke: "currentColor",
-                  strokeLinecap: "round",
-                  strokeLinejoin: "round",
-                  strokeWidth: "2",
-                  viewBox: "0 0 24 24",
-                  className: "w-8 h-8 text-gray-500",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                    d: "M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                  className: "ml-4 text-lg leading-7 font-semibold",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://laravel-news.com/",
-                    className: "underline text-gray-900 dark:text-white",
-                    children: "Laravel News"
-                  })
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                className: "ml-12",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                  className: "mt-2 text-gray-600 dark:text-gray-400 text-sm",
-                  children: "Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials."
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "p-6 border-t border-gray-200 dark:border-gray-700 md:border-l",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "flex items-center",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
-                  fill: "none",
-                  stroke: "currentColor",
-                  strokeLinecap: "round",
-                  strokeLinejoin: "round",
-                  strokeWidth: "2",
-                  viewBox: "0 0 24 24",
-                  className: "w-8 h-8 text-gray-500",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                    d: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                  className: "ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white",
-                  children: "Vibrant Ecosystem"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                className: "ml-12",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                  className: "mt-2 text-gray-600 dark:text-gray-400 text-sm",
-                  children: ["Laravel's robust library of first-party tools and libraries, such as", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://forge.laravel.com",
-                    className: "underline",
-                    children: "Forge"
-                  }), ",", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://vapor.laravel.com",
-                    className: "underline",
-                    children: "Vapor"
-                  }), ",", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://nova.laravel.com",
-                    className: "underline",
-                    children: "Nova"
-                  }), ", and", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://envoyer.io",
-                    className: "underline",
-                    children: "Envoyer"
-                  }), " ", "help you take your projects to the next level. Pair them with powerful open source libraries like", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://laravel.com/docs/billing",
-                    className: "underline",
-                    children: "Cashier"
-                  }), ",", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://laravel.com/docs/dusk",
-                    className: "underline",
-                    children: "Dusk"
-                  }), ",", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://laravel.com/docs/broadcasting",
-                    className: "underline",
-                    children: "Echo"
-                  }), ",", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://laravel.com/docs/horizon",
-                    className: "underline",
-                    children: "Horizon"
-                  }), ",", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://laravel.com/docs/sanctum",
-                    className: "underline",
-                    children: "Sanctum"
-                  }), ",", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://laravel.com/docs/telescope",
-                    className: "underline",
-                    children: "Telescope"
-                  }), ", and more."]
-                })
-              })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "min-h-screen bg-slate-100",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "w-screen bg-green-500",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "fixed top-0 right-0 px-6 py-4 sm:block",
+          children: props.auth.user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+            href: route("dashboard"),
+            className: "text-sm text-white border-white border-2 px-4 py-2 rounded",
+            children: "Dashboard"
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+              href: route("login"),
+              className: "text-sm text-white border-white border-2 px-4 py-2 rounded",
+              children: "Log in"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+              href: route("register"),
+              className: "ml-4 text-sm text-white border-white border-2 px-4 py-2 rounded",
+              children: "Register"
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "flex justify-center mt-4 sm:items-center sm:justify-between",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: "text-center text-sm text-gray-500 sm:text-left",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "flex items-center",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
-                fill: "none",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                strokeWidth: "2",
-                viewBox: "0 0 24 24",
-                stroke: "currentColor",
-                className: "-mt-px w-5 h-5 text-gray-400",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                  d: "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                href: "https://laravel.bigcartel.com",
-                className: "ml-1 underline",
-                children: "Shop"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
-                fill: "none",
-                stroke: "currentColor",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                strokeWidth: "2",
-                viewBox: "0 0 24 24",
-                className: "ml-4 -mt-px w-5 h-5 text-gray-400",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-                  d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                href: "https://github.com/sponsors/taylorotwell",
-                className: "ml-1 underline",
-                children: "Sponsor"
-              })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "h-96 pt-40 flex justify-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "w-1/3",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Components_ApplicationLogo__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              className: "fill-white"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0",
-            children: ["Laravel v", props.laravelVersion, " (PHP v", props.phpVersion, ")"]
-          })]
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "max-w-lg m-auto text-sm mt-10",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          className: "mb-4",
+          children: "SnugFeed let's you stay up to date will all your favorite news sources in one place updated in real-time!"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          className: "mb-4",
+          children: "Select from some of our pre-existing feeds below to try it out."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          className: "mb-4",
+          children: "Register and get access to add as many feeds and you want as well as your own custom feeds!"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "bg-white rounded shadow p-4 flex mt-10",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "bg-white rounded shadow p-4 flex",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+              src: "https://www.google.com/s2/favicons?domain=http://smashingmagazine.com"
+            })
+          })
         })]
       })]
     })]
@@ -5870,7 +5704,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-var appName = ((_window$document$getE = window.document.getElementsByTagName('title')[0]) === null || _window$document$getE === void 0 ? void 0 : _window$document$getE.innerText) || 'Laravel';
+var appName = ((_window$document$getE = window.document.getElementsByTagName("title")[0]) === null || _window$document$getE === void 0 ? void 0 : _window$document$getE.innerText) || "Snugfeed";
 (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.createInertiaApp)({
   title: function title(_title) {
     return "".concat(_title, " - ").concat(appName);
@@ -5886,7 +5720,7 @@ var appName = ((_window$document$getE = window.document.getElementsByTagName('ti
   }
 });
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_3__.InertiaProgress.init({
-  color: '#4B5563'
+  color: "#4B5563"
 });
 
 /***/ }),
@@ -5905,7 +5739,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -57804,8 +57638,8 @@ var map = {
 	"./Auth/VerifyEmail.js": "./resources/js/Pages/Auth/VerifyEmail.js",
 	"./Dashboard": "./resources/js/Pages/Dashboard.js",
 	"./Dashboard.js": "./resources/js/Pages/Dashboard.js",
-	"./Welcome": "./resources/js/Pages/Welcome.js",
-	"./Welcome.js": "./resources/js/Pages/Welcome.js"
+	"./Home": "./resources/js/Pages/Home.js",
+	"./Home.js": "./resources/js/Pages/Home.js"
 };
 
 

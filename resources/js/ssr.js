@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import { createInertiaApp } from '@inertiajs/inertia-react';
-import createServer from '@inertiajs/server';
-import route from 'ziggy';
+import React from "react";
+import ReactDOMServer from "react-dom/server";
+import { createInertiaApp } from "@inertiajs/inertia-react";
+import createServer from "@inertiajs/server";
+import route from "ziggy";
 
-const appName = 'Laravel';
+const appName = "Laravel";
 
 createServer((page) =>
     createInertiaApp({
