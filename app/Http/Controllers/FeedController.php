@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Vedmant\FeedReader\Facades\FeedReader as FacadesFeedReader;
 use Inertia\Inertia;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Redirect;
 
 class FeedController extends Controller
 {
@@ -81,7 +82,7 @@ class FeedController extends Controller
       ->feeds()
       ->syncWithoutDetaching($feed);
 
-    return back();
+    return Redirect::back()->with('success', 'Feed Added');
   }
 
   public function saveArticle(Article $article)
@@ -91,7 +92,7 @@ class FeedController extends Controller
       ->articles()
       ->syncWithoutDetaching($article);
 
-    return back();
+    return Redirect::back()->with('success', 'Article Saved');
   }
 
   public function deleteArticle(Article $article)

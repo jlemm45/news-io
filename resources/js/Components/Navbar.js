@@ -1,8 +1,12 @@
 import React from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/inertia-react';
+import { Link, usePage } from '@inertiajs/inertia-react';
 
 const Navbar = () => {
+  const {
+    auth: { user },
+  } = usePage().props;
+
   return (
     <div className="bg-base-100 shadow sticky top-0 z-50">
       <div className="navbar max-w-7xl mx-auto px-10">
@@ -15,7 +19,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src="https://api.lorem.space/image/face?hash=33791" />
+                <img src={user.avatar} />
               </div>
             </label>
             <ul

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,9 +20,19 @@ use Inertia\Inertia;
 Route::get('/', [FeedController::class, 'index']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
+  Route::get('/img/{path}', [ImagesController::class, 'show'])->where(
+    'path',
+    '.*'
+  );
+
   Route::get('/profile', function () {
     return Inertia::render('Profile');
   })->name('profile');
+
+  Route::put('/profile', [ProfileController::class, 'update'])->name(
+    'profile.update'
+  );
+
   Route::get('/saved', [FeedController::class, 'saved'])->name('saved');
   Route::post('/saved/{article}', [FeedController::class, 'saveArticle'])->name(
     'saved.add'
