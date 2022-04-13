@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\FeedController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +14,9 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [FeedController::class, 'index']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/feeds', [FeedController::class, 'index'])->name('feeds');
     Route::get('/saved', [FeedController::class, 'saved'])->name('saved');
     Route::post('/feed', [FeedController::class, 'store'])->name('feed.new');
 });

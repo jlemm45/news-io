@@ -5,7 +5,7 @@ import { Link } from "@inertiajs/inertia-react";
 const Navbar = () => {
     return (
         <div className="bg-base-100 shadow sticky top-0 z-50">
-            <div className="navbar max-w-7xl mx-auto">
+            <div className="navbar max-w-7xl mx-auto px-10">
                 <div className="flex-1">
                     <Link href="/" className="h-12">
                         <ApplicationLogo className="fill-green-500" />

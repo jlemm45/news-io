@@ -6,17 +6,28 @@ use App\Models\Article;
 use App\Models\Feed;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Vedmant\FeedReader\Facades\FeedReader as FacadesFeedReader;
 use Inertia\Inertia;
+use Illuminate\Foundation\Application;
 
 class FeedController extends Controller
 {
     public function index() {
-        $articles = Article::join('feeds', 'feeds.id', '=', 'articles.feed_id')->select('articles.*', 'feeds.favicon')->orderBy('posted_at', 'desc')->get()->map(function($article) {
-            return array_merge($article->toArray(), ['cleaned' => strip_tags($article->description)]);
-        });
-    
-        return Inertia::render('Feeds', ['feeds' => Feed::all(), 'articles' => $articles]);
+        if (auth()->check()) {
+            $articles = Article::join('feeds', 'feeds.id', '=', 'articles.feed_id')->select('articles.*', 'feeds.favicon')->orderBy('posted_at', 'desc')->get()->map(function($article) {
+                return array_merge($article->toArray(), ['cleaned' => strip_tags($article->description)]);
+            });
+        
+            return Inertia::render('Feeds', ['feeds' => Feed::all(), 'articles' => $articles]);
+        }
+
+        return Inertia::render('Home', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+        ]);
     }
 
     public function saved() {
@@ -68,27 +79,4 @@ class FeedController extends Controller
         }
 
         return null;
-
-        // $featuredImg = null;
-        // $featuredWidth = 100;
-        // $featuredHeight = 50;
-        // foreach ($tags as $tag) {
-        //     $src = $tag->getAttribute('src');
-
-        //     try{
-        //         $image = new Fasimage($src);
-        //         list($width, $height) = $image->getSize();
-        //     }
-        //     catch(\ErrorException $e) {
-        //         $width = 0;
-        //         $height = 0;
-        //     }
-
-        //     if($width > $featuredWidth && $height > $featuredHeight) {
-        //         $featuredWidth = $width;
-        //         $featuredHeight = $height;
-        //         $featuredImg = $src;
-        //     }
-        // }
-    }
 }
