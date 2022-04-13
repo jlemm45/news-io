@@ -52,10 +52,12 @@ export default function Home(props) {
             Register and get access to add as many feeds and you want as well as
             your own custom feeds!
           </p>
-          <div className="bg-white rounded shadow p-4 flex mt-10">
-            <div className="bg-white rounded shadow p-4 flex">
-              <img src="https://www.google.com/s2/favicons?domain=http://smashingmagazine.com" />
-            </div>
+          <div className="bg-white rounded shadow grid grid-cols-8 gap-4 mt-10 p-4">
+            {props.feeds.map(feed => (
+              <div className="bg-white rounded shadow p-4">
+                <img src={feed.favicon} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

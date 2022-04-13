@@ -10,10 +10,13 @@ if [ "$APP_ENV" == "development" ] || [ "$APP_ENV" == "local" ] || [ -n "$RUNNIN
   dockerize -wait $DB_HOSTNAME -timeout 60s
 fi
 
-cat >/app/.env <<EOL
+if ! [ -f "/app/.env" ]; then
+  echo "🚀 .env file does not exist. Creating..."
+  cat >/app/.env <<EOL
 APP_NAME=Snugfeed
-APP_KEY=
+APP_KEY=setme
 EOL
+fi
 
 echo "🚀 Dump Autoloader"
 composer dumpautoload

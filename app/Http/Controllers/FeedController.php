@@ -55,6 +55,7 @@ class FeedController extends Controller
     }
 
     return Inertia::render('Home', [
+      'feeds' => Feed::all(),
       'canLogin' => Route::has('login'),
       'canRegister' => Route::has('register'),
       'laravelVersion' => Application::VERSION,

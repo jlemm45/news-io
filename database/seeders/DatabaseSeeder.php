@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 use Vedmant\FeedReader\Facades\FeedReader as FacadesFeedReader;
 
 class DatabaseSeeder extends Seeder
@@ -16,8 +18,14 @@ class DatabaseSeeder extends Seeder
    */
   public function run()
   {
+    if (User::count()) {
+      Log::info('Database has data. Not seeding...');
+
+      return;
+    }
+
     // default user
-    \App\Models\User::factory(1)->create(['email' => 'demo@snugfeed.com']);
+    User::factory(1)->create(['email' => 'demo@snugfeed.com']);
 
     // $feeds = ["https://www.smashingmagazine.com/feed/", "https://techcrunch.com/feed/", "https://feeds.macrumors.com/MacRumors-All", "https://lifehacker.com/rss"];
 

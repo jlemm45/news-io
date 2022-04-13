@@ -1,27 +1,28 @@
-version: "3"
+version: '3'
 services:
-    app:
-        build:
-            context: ./
-        environment:
-            APP_DEBUG: "true"
-            APP_ENV: local
-            DB_HOST: database
-        networks:
-            - snugfeed
-        ports:
-            - "8003:80"
-        volumes:
-            - ./:/app
-            - /app/vendor
-            - /app/node_modules
+  app:
+    build:
+      context: ./
+    env_file: .env.docker
+    environment:
+      APP_DEBUG: 'true'
+      APP_ENV: local
+      DB_HOST: database
+    networks:
+      - snugfeed
+    ports:
+      - '8003:80'
+    volumes:
+      - ./:/app
+      - /app/vendor
+      - /app/node_modules
 
-    database:
-        image: voyageapp/postgres:14.2
-        ports:
-            - "54325:5432"
-        networks:
-            - snugfeed
+  database:
+    image: voyageapp/postgres:14.2
+    ports:
+      - '54325:5432'
+    networks:
+      - snugfeed
 networks:
-    snugfeed:
-        driver: bridge
+  snugfeed:
+    driver: bridge
