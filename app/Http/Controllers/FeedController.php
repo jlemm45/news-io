@@ -13,19 +13,41 @@ use Illuminate\Foundation\Application;
 
 class FeedController extends Controller
 {
+  private function articles($showSaved)
+  {
+    return Article::join('feeds', 'feeds.id', '=', 'articles.feed_id')
+      ->when($showSaved, function ($query) {
+        $query->join('article_user', function ($join) {
+          $join
+            ->on('article_user.article_id', '=', 'articles.id')
+            ->where('article_user.user_id', '=', auth()->user()->id);
+        });
+      })
+      ->when(!$showSaved, function ($query) {
+        $query->leftJoin('article_user', function ($join) {
+          $join->on('article_user.article_id', '=', 'articles.id');
+        });
+      })
+      ->selectRaw(
+        'CASE WHEN article_user.user_id IS NULL THEN
+          FALSE
+        ELSE
+          TRUE
+        END AS is_saved, articles.*, feeds.favicon'
+      )
+      ->orderBy('posted_at', 'desc')
+      ->get()
+      ->map(function ($article) {
+        return array_merge($article->toArray(), [
+          'cleaned' => strip_tags($article->description),
+        ]);
+      });
+  }
+
   public function index()
   {
     if (auth()->check()) {
-      $articles = Article::join('feeds', 'feeds.id', '=', 'articles.feed_id')
-        ->select('articles.*', 'feeds.favicon')
-        ->orderBy('posted_at', 'desc')
-        ->get()
-        ->map(function ($article) {
-          return array_merge($article->toArray(), [
-            'cleaned' => strip_tags($article->description),
-          ]);
-        });
-
+      $articles = $this->articles(false);
       return Inertia::render('Feeds', [
         'feeds' => Feed::all(),
         'articles' => $articles,
@@ -42,15 +64,7 @@ class FeedController extends Controller
 
   public function saved()
   {
-    $articles = Article::join('feeds', 'feeds.id', '=', 'articles.feed_id')
-      ->select('articles.*', 'feeds.favicon')
-      ->orderBy('posted_at', 'desc')
-      ->get()
-      ->map(function ($article) {
-        return array_merge($article->toArray(), [
-          'cleaned' => strip_tags($article->description),
-        ]);
-      });
+    $articles = $this->articles(true);
 
     return Inertia::render('Saved', ['articles' => $articles]);
   }
@@ -65,6 +79,26 @@ class FeedController extends Controller
       ->user()
       ->feeds()
       ->syncWithoutDetaching($feed);
+
+    return back();
+  }
+
+  public function saveArticle(Article $article)
+  {
+    auth()
+      ->user()
+      ->articles()
+      ->syncWithoutDetaching($article);
+
+    return back();
+  }
+
+  public function deleteArticle(Article $article)
+  {
+    auth()
+      ->user()
+      ->articles()
+      ->detach($article);
 
     return back();
   }

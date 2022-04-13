@@ -39,4 +39,9 @@ class User extends Authenticatable
   {
     return $this->belongsToMany(Feed::class);
   }
+
+  public function articles()
+  {
+    return $this->belongsToMany(Article::class);
+  }
 }

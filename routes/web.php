@@ -18,6 +18,13 @@ Route::get('/', [FeedController::class, 'index']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/saved', [FeedController::class, 'saved'])->name('saved');
+  Route::post('/saved/{article}', [FeedController::class, 'saveArticle'])->name(
+    'saved.add'
+  );
+  Route::delete('/saved/{article}', [
+    FeedController::class,
+    'deleteArticle',
+  ])->name('saved.delete');
   Route::post('/feed', [FeedController::class, 'store'])->name('feed.new');
 });
 

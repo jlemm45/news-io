@@ -8,7 +8,7 @@ const FeedsList = ({ feeds }) => {
   const [showModal, setModal] = useState(false);
   return (
     <>
-      <div className="w-72 mr-10 sticky top-28 h-fit">
+      <div className="lg:w-72 md:w-48 w-24 mr-10 sticky top-28 h-fit">
         {feeds.map(feed => (
           <Feed key={feed.id} feed={feed} />
         ))}

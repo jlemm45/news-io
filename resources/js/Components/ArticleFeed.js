@@ -8,7 +8,7 @@ const ArticleFeed = ({ articles }) => {
 
   return (
     <>
-      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 1000: 2, 1400: 3 }}>
         <Masonry gutter={20}>
           {articles.map(article => (
             <Article

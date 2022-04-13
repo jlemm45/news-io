@@ -1,9 +1,25 @@
 import { truncate } from 'lodash';
 import React from 'react';
 import day from 'dayjs';
-import { AiFillSave } from 'react-icons/ai';
+import { AiFillSave, AiFillDelete } from 'react-icons/ai';
+import { useForm } from '@inertiajs/inertia-react';
+import Button from './Button';
 
 const Article = ({ article, onSelect }) => {
+  const { post, delete: destroy, processing } = useForm();
+
+  const save = () => {
+    if (article.is_saved) {
+      return destroy(route('saved.delete', { article: article.id }), {
+        preserveScroll: true,
+      });
+    }
+
+    return post(route('saved.add', { article: article.id }), {
+      preserveScroll: true,
+    });
+  };
+
   return (
     <div className="card bg-base-100 shadow-xl">
       {article.img && (
@@ -25,9 +41,17 @@ const Article = ({ article, onSelect }) => {
           >
             Read More
           </a>
-          <button className="btn btn-outline gap-2">
-            <AiFillSave size={20} />
-          </button>
+          <Button
+            className="btn btn-outline gap-2"
+            onClick={save}
+            processing={processing}
+          >
+            {article.is_saved ? (
+              <AiFillDelete size={20} />
+            ) : (
+              <AiFillSave size={20} />
+            )}
+          </Button>
         </div>
       </div>
     </div>
