@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FeedController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FeedController::class, 'index']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
+  Route::get('/profile', function () {
+    return Inertia::render('Profile');
+  })->name('profile');
   Route::get('/saved', [FeedController::class, 'saved'])->name('saved');
   Route::post('/saved/{article}', [FeedController::class, 'saveArticle'])->name(
     'saved.add'

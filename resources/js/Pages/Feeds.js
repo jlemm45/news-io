@@ -6,7 +6,7 @@ import ArticleFeed from '@/Components/ArticleFeed';
 
 export default function Feeds(props) {
   return (
-    <Authenticated errors={props.errors}>
+    <Authenticated>
       <Head title="Feeds" />
 
       <div className="flex">
