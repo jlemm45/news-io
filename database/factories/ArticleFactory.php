@@ -9,17 +9,17 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ArticleFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
-        return [
-            'description' => $this->faker->paragraph(),
-            'title' => $this->faker->sentence(),
-            'img' => "https://api.lorem.space/image/shoes?w=400&h=225",
-        ];
-    }
+  /**
+   * Define the model's default state.
+   *
+   * @return array<string, mixed>
+   */
+  public function definition()
+  {
+    return [
+      'description' => $this->faker->paragraph(),
+      'title' => $this->faker->sentence(),
+      'img' => 'https://api.lorem.space/image/shoes?w=400&h=225',
+    ];
+  }
 }

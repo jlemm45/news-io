@@ -7,13 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'description',
-        'title',
-        'img',
-        'rss_id',
-        'posted_at'
-    ];
+  protected $fillable = ['description', 'title', 'img', 'rss_id', 'posted_at'];
 }

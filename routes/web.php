@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FeedController::class, 'index']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/saved', [FeedController::class, 'saved'])->name('saved');
-    Route::post('/feed', [FeedController::class, 'store'])->name('feed.new');
+  Route::get('/saved', [FeedController::class, 'saved'])->name('saved');
+  Route::post('/feed', [FeedController::class, 'store'])->name('feed.new');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
