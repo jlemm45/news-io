@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Head } from '@inertiajs/inertia-react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import FeedSelector from '@/Components/FeedSelector';
 
 export default function Home(props) {
   return (
@@ -52,13 +53,7 @@ export default function Home(props) {
             Register and get access to add as many feeds and you want as well as
             your own custom feeds!
           </p>
-          <div className="bg-white rounded shadow grid grid-cols-8 gap-4 mt-10 p-4">
-            {props.feeds.map(feed => (
-              <div className="bg-white rounded shadow p-4">
-                <img src={feed.favicon} />
-              </div>
-            ))}
-          </div>
+          <FeedSelector />
         </div>
       </div>
     </>

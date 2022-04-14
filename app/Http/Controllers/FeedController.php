@@ -49,12 +49,16 @@ class FeedController extends Controller
       });
   }
 
-  public function index()
+  public function index(Request $request)
   {
-    if (auth()->check()) {
+    $feeds = $request->session()->get('feeds', []);
+
+    if (auth()->check() || count($feeds)) {
       $articles = $this->articles(false);
       return Inertia::render('Feeds', [
-        'feeds' => Feed::all(),
+        'feeds' => auth()->check()
+          ? Feed::all()
+          : Feed::whereIn('id', $feeds)->get(),
         'articles' => $articles,
       ]);
     }
@@ -112,5 +116,12 @@ class FeedController extends Controller
   public function readAndStoreFeed($rssUrl)
   {
     $this->feedService->crawlUrl($rssUrl);
+  }
+
+  public function setSelectedFeeds(Request $request)
+  {
+    $request->session()->put('feeds', $request->get('feeds'));
+
+    return Redirect::route('home');
   }
 }

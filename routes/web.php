@@ -17,7 +17,11 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [FeedController::class, 'index']);
+Route::get('/', [FeedController::class, 'index'])->name('home');
+
+Route::post('/feeds', [FeedController::class, 'setSelectedFeeds'])->name(
+  'feeds.select'
+);
 
 Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/img/{path}', [ImagesController::class, 'show'])->where(

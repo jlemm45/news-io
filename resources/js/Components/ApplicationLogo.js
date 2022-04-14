@@ -9,7 +9,7 @@ export default function ApplicationLogo({ className }) {
       x="0px"
       y="0px"
       viewBox="0 0 205.9 74.4"
-      className={className}
+      className={`fill-green-500 ${className}`}
       style={{ height: '100%', width: '100%' }}
     >
       <g>
