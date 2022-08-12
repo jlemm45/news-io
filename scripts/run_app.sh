@@ -24,6 +24,6 @@ composer dumpautoload
 echo "🚀 Generate App Key"
 php artisan key:generate --force
 
-php artisan migrate
+php artisan migrate --force
 
-php artisan db:seed
+php artisan db:seed --force
